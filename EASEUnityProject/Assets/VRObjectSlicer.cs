@@ -52,6 +52,7 @@ public class VRObjectSlicer : MonoBehaviour {
         ivro.commandOnTrigger = source.GetComponent<InteractableVRObject>().commandOnTrigger;
         isCuttableObject ico = part.AddComponent<isCuttableObject>();
         ico.innerMaterial = source.GetComponent<isCuttableObject>().innerMaterial;
+        part.tag = source.tag;
     }
 
     public bool checkIfOverMinimal(GameObject part, GameObject source)

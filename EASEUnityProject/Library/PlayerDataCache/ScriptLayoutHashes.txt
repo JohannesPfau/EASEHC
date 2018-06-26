@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-D:/EASE/EASEUnityProject/EASEUnityProject/Builds/Milestone1/Milestone1.exe
+D:/EASE/EASEUnityProject/EASEUnityProject/Builds/Milestone1.02/Milestone1.02.exe
 SceneListBegin?
 Assets/_Scenes/MainMenu.unity
 Assets/_Scenes/Prolog.unity
@@ -401,7 +401,7 @@ f4b175ffc1eeca85d2783436b4c764a7 Assembly-CSharp.dll:UnityStandardAssets.Effects
 976fcf73c7ad5a9011ab4bf94ed88af3 Assembly-CSharp.dll:.IntersectionDebug
 ad962bd9afe5ea342f18f7a9abe8d55e Assembly-CSharp.dll:CaronteFX.CNTriggerByForce
 6746ad828d32ad6e5c07a63950fd4be6 Assembly-CSharp.dll:UnityStandardAssets.Water.WaterTile
-b6175f941558824942b9aee4562af2fd Assembly-CSharp.dll:.stickToMe
+bb5224bdb581113f748048985be4054c Assembly-CSharp.dll:.stickToMe
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DialogSys
 676d9ee9f050d1064e9e308848904d5a Assembly-CSharp.dll:Valve.VR.InteractionSystem.CircularDrive
 983a952571108d7602d019f0575858cd Assembly-CSharp.dll:CaronteFX.CNServos

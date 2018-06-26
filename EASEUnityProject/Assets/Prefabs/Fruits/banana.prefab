@@ -30,7 +30,7 @@ GameObject:
   - component: {fileID: 114447086544138136}
   m_Layer: 0
   m_Name: banana
-  m_TagString: Untagged
+  m_TagString: Physical
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

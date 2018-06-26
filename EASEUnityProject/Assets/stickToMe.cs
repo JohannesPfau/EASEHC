@@ -9,6 +9,7 @@ public class stickToMe : AuxiliaryFunctions
     public string goTag;
     public List<GameObject> stickedGameObjects;
     public float scaleSize = -1;
+    public bool onlyCuttables;
 
     private void Start()
     {
@@ -21,6 +22,19 @@ public class stickToMe : AuxiliaryFunctions
         GameObject physical = getPhysicalParent(collision.gameObject, goTag);
         if (physical != null && physical.transform.parent != transform && !isAttachedToHand(physical))
         {
+            if (onlyCuttables)
+                if(physical.GetComponent<isCuttableObject>() == null)
+                {
+                    Debug.Log("no cuttable object");
+                    return;
+
+                }
+                else
+                {
+                    physical.GetComponent<Rigidbody>().isKinematic = true;
+                    physical.GetComponent<Rigidbody>().useGravity = false;
+                }
+
             Debug.Log("Stick: " + physical.name + " to " + gameObject.name);
             //physical.GetComponent<Rigidbody>().useGravity = false;
             //physical.GetComponent<Rigidbody>().isKinematic = true;
