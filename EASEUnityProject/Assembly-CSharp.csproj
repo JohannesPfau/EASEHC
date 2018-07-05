@@ -710,6 +710,24 @@
     <Reference Include="CaronteFX-RuntimeBasic">
       <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/Caronte/CaronteFX/Plugin/Scripts/CaronteFX-RuntimeBasic.dll</HintPath>
     </Reference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RosBridgeClient">
+      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/RosBridgeClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/System.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="UrdfImporter">
+      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/UrdfImporter.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/websocket-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/Jo/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
@@ -718,24 +736,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/Jo/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="websocket-sharp">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/websocket-sharp.dll</HintPath>
-    </Reference>
-    <Reference Include="UrdfImporter">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/UrdfImporter.dll</HintPath>
-    </Reference>
-    <Reference Include="MathNet.Numerics">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/MathNet.Numerics.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/System.Threading.dll</HintPath>
-    </Reference>
-    <Reference Include="RosBridgeClient">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/RosBridgeClient.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/Unity2018/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/3rdParty/RosSharp/Scenes/GazeboSimulationScene.unity
+- path: Assets/_Scenes/URDF_Scene.unity
   isLoaded: 1
   isActive: 1

@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 2
-  lastUpdatedAtString: 2018-07-05T11:25:03.861+02:00
-  initializedAtString: 2018-07-05T11:06:00.163+02:00
-  localBranches: []
-  remoteBranches: []
+  lastUpdatedAtString: 2018-07-05T11:38:02.947+02:00
+  initializedAtString: 2018-07-05T11:38:02.927+02:00
+  localBranches:
+  - name: master
+    tracking: '[None]'
+  remoteBranches:
+  - name: origin/master
+    tracking: '[None]'
   remotes:
   - name: origin
     url: https://github.com/JohannesPfau/EASEHC.git
@@ -25,15 +29,27 @@ MonoBehaviour:
     function: 0
     token: 
   localConfigBranches:
-    keys: []
-    values: []
+    keys:
+    - master
+    values:
+    - name: master
+      remote:
+        name: 
+        url: 
+      trackingBranch: 
   remoteConfigBranches:
     keys:
     - origin
     subKeys:
-    - Values: []
+    - Values:
+      - master
     subKeyValues:
-    - Values: []
+    - Values:
+      - name: master
+        remote:
+          name: origin
+          url: https://github.com/JohannesPfau/EASEHC.git
+        trackingBranch: 
   configRemotes:
     keys:
     - origin

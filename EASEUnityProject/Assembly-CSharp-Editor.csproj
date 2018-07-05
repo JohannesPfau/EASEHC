@@ -198,9 +198,7 @@
     <Compile Include="Assets\3rdParty\SteamVR\Editor\SteamVR_SkyboxEditor.cs" />
     <Compile Include="Assets\3rdParty\SteamVR\Editor\SteamVR_Update.cs" />
     <Compile Include="Assets\3rdParty\URDFImporter\Editor\URDFImporter.cs" />
-    <None Include="Assets\3rdParty\GitHub\Editor\credits.txt" />
     <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Editor\PluginResources\Strings\cr_strings_en.xml" />
-    <None Include="Assets\3rdParty\GitHub\Editor\eula.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -456,6 +454,24 @@
     <Reference Include="CaronteFX-RuntimeBasic">
       <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/Caronte/CaronteFX/Plugin/Scripts/CaronteFX-RuntimeBasic.dll</HintPath>
     </Reference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RosBridgeClient">
+      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/RosBridgeClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/System.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="UrdfImporter">
+      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/UrdfImporter.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/websocket-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/Jo/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.7/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
@@ -476,51 +492,6 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2015/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="websocket-sharp">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/websocket-sharp.dll</HintPath>
-    </Reference>
-    <Reference Include="UrdfImporter">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/UrdfImporter.dll</HintPath>
-    </Reference>
-    <Reference Include="MathNet.Numerics">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/MathNet.Numerics.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/System.Threading.dll</HintPath>
-    </Reference>
-    <Reference Include="RosBridgeClient">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/RosSharp/Plugins/RosBridgeClient.dll</HintPath>
-    </Reference>
-    <Reference Include="AsyncBridge.Net35">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/GitHub/Editor/AsyncBridge.Net35.dll</HintPath>
-    </Reference>
-    <Reference Include="GitHub.Api">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/GitHub/Editor/GitHub.Api.dll</HintPath>
-    </Reference>
-    <Reference Include="GitHub.Unity">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/GitHub/Editor/GitHub.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="sfw.net">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/GitHub/Editor/sfw.net.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/GitHub/Editor/ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/GitHub/Editor/System.Threading.dll</HintPath>
-    </Reference>
-    <Reference Include="GitHub.Logging">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/GitHub/Editor/GitHub.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="ReadOnlyCollectionsInterfaces">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/GitHub/Editor/ReadOnlyCollectionsInterfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Posix">
-      <HintPath>D:/EASE/EASEUnityProject/EASEUnityProject/Assets/3rdParty/GitHub/Editor/Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/Unity2018/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/mscorlib.dll</HintPath>

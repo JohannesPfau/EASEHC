@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 1
-  lastUpdatedAtString: 2018-07-05T11:25:04.766+02:00
-  initializedAtString: 2018-07-05T11:03:34.607+02:00
+  lastUpdatedAtString: 2018-07-05T11:37:31.799+02:00
+  initializedAtString: 2018-07-05T11:36:19.399+02:00
   currentGitRemote:
     name: origin
     url: https://github.com/JohannesPfau/EASEHC.git
@@ -34,4 +34,4 @@ MonoBehaviour:
   currentConfigRemote:
     name: origin
     url: https://github.com/JohannesPfau/EASEHC.git
-  currentHead: 9dd6305
+  currentHead: 299ddee
