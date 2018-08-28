@@ -1,0 +1,243 @@
+fileFormatVersion: 2
+guid: dd98c3f35f93c534592ae3e3cf08ae83
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: scp_mw_chainsaw_03
+    100002: //RootNode
+    100004: scp_mw_chainsaw_tooth_001
+    100006: scp_mw_chainsaw_tooth_002
+    100008: scp_mw_chainsaw_tooth_003
+    100010: scp_mw_chainsaw_tooth_004
+    100012: scp_mw_chainsaw_tooth_005
+    100014: scp_mw_chainsaw_tooth_006
+    100016: scp_mw_chainsaw_tooth_007
+    100018: scp_mw_chainsaw_tooth_008
+    100020: scp_mw_chainsaw_tooth_009
+    100022: scp_mw_chainsaw_tooth_010
+    100024: scp_mw_chainsaw_tooth_011
+    100026: scp_mw_chainsaw_tooth_012
+    100028: scp_mw_chainsaw_tooth_013
+    100030: scp_mw_chainsaw_tooth_014
+    100032: scp_mw_chainsaw_tooth_015
+    100034: scp_mw_chainsaw_tooth_016
+    100036: scp_mw_chainsaw_tooth_017
+    100038: scp_mw_chainsaw_tooth_018
+    100040: scp_mw_chainsaw_tooth_019
+    100042: scp_mw_chainsaw_tooth_020
+    100044: scp_mw_chainsaw_tooth_path
+    400000: //RootNode
+    400002: scp_mw_chainsaw_03
+    400004: scp_mw_chainsaw_tooth_001
+    400006: scp_mw_chainsaw_tooth_002
+    400008: scp_mw_chainsaw_tooth_003
+    400010: scp_mw_chainsaw_tooth_004
+    400012: scp_mw_chainsaw_tooth_005
+    400014: scp_mw_chainsaw_tooth_006
+    400016: scp_mw_chainsaw_tooth_007
+    400018: scp_mw_chainsaw_tooth_008
+    400020: scp_mw_chainsaw_tooth_009
+    400022: scp_mw_chainsaw_tooth_010
+    400024: scp_mw_chainsaw_tooth_011
+    400026: scp_mw_chainsaw_tooth_012
+    400028: scp_mw_chainsaw_tooth_013
+    400030: scp_mw_chainsaw_tooth_014
+    400032: scp_mw_chainsaw_tooth_015
+    400034: scp_mw_chainsaw_tooth_016
+    400036: scp_mw_chainsaw_tooth_017
+    400038: scp_mw_chainsaw_tooth_018
+    400040: scp_mw_chainsaw_tooth_019
+    400042: scp_mw_chainsaw_tooth_020
+    400044: scp_mw_chainsaw_tooth_path
+    2300000: scp_mw_chainsaw_03
+    2300002: scp_mw_chainsaw_tooth_001
+    2300004: scp_mw_chainsaw_tooth_002
+    2300006: scp_mw_chainsaw_tooth_003
+    2300008: scp_mw_chainsaw_tooth_004
+    2300010: scp_mw_chainsaw_tooth_005
+    2300012: scp_mw_chainsaw_tooth_006
+    2300014: scp_mw_chainsaw_tooth_007
+    2300016: scp_mw_chainsaw_tooth_008
+    2300018: scp_mw_chainsaw_tooth_009
+    2300020: scp_mw_chainsaw_tooth_010
+    2300022: scp_mw_chainsaw_tooth_011
+    2300024: scp_mw_chainsaw_tooth_012
+    2300026: scp_mw_chainsaw_tooth_013
+    2300028: scp_mw_chainsaw_tooth_014
+    2300030: scp_mw_chainsaw_tooth_015
+    2300032: scp_mw_chainsaw_tooth_016
+    2300034: scp_mw_chainsaw_tooth_017
+    2300036: scp_mw_chainsaw_tooth_018
+    2300038: scp_mw_chainsaw_tooth_019
+    2300040: scp_mw_chainsaw_tooth_020
+    3300000: scp_mw_chainsaw_03
+    3300002: scp_mw_chainsaw_tooth_001
+    3300004: scp_mw_chainsaw_tooth_002
+    3300006: scp_mw_chainsaw_tooth_003
+    3300008: scp_mw_chainsaw_tooth_004
+    3300010: scp_mw_chainsaw_tooth_005
+    3300012: scp_mw_chainsaw_tooth_006
+    3300014: scp_mw_chainsaw_tooth_007
+    3300016: scp_mw_chainsaw_tooth_008
+    3300018: scp_mw_chainsaw_tooth_009
+    3300020: scp_mw_chainsaw_tooth_010
+    3300022: scp_mw_chainsaw_tooth_011
+    3300024: scp_mw_chainsaw_tooth_012
+    3300026: scp_mw_chainsaw_tooth_013
+    3300028: scp_mw_chainsaw_tooth_014
+    3300030: scp_mw_chainsaw_tooth_015
+    3300032: scp_mw_chainsaw_tooth_016
+    3300034: scp_mw_chainsaw_tooth_017
+    3300036: scp_mw_chainsaw_tooth_018
+    3300038: scp_mw_chainsaw_tooth_019
+    3300040: scp_mw_chainsaw_tooth_020
+    4300000: scp_mw_chainsaw_tooth_001
+    4300002: scp_mw_chainsaw_tooth_019
+    4300004: scp_mw_chainsaw_tooth_002
+    4300006: scp_mw_chainsaw_tooth_003
+    4300008: scp_mw_chainsaw_tooth_004
+    4300010: scp_mw_chainsaw_tooth_005
+    4300012: scp_mw_chainsaw_tooth_006
+    4300014: scp_mw_chainsaw_tooth_007
+    4300016: scp_mw_chainsaw_tooth_008
+    4300018: scp_mw_chainsaw_tooth_009
+    4300020: scp_mw_chainsaw_tooth_010
+    4300022: scp_mw_chainsaw_tooth_011
+    4300024: scp_mw_chainsaw_tooth_012
+    4300026: scp_mw_chainsaw_tooth_013
+    4300028: scp_mw_chainsaw_tooth_014
+    4300030: scp_mw_chainsaw_tooth_015
+    4300032: scp_mw_chainsaw_tooth_016
+    4300034: scp_mw_chainsaw_tooth_017
+    4300036: scp_mw_chainsaw_tooth_018
+    4300038: scp_mw_chainsaw_tooth_020
+    4300040: scp_mw_chainsaw_03
+    7400000: chainsaw_03_animation
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: chainsaw_03_animation
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: scp_mw_chainsaw_03
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_001
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_002
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_003
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_004
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_005
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_006
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_007
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_008
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_009
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_010
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_011
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_012
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_013
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_014
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_015
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_016
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_017
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_018
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_019
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_020
+        weight: 1
+      - path: scp_mw_chainsaw_tooth_path
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 

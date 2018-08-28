@@ -13,7 +13,7 @@ public class VolumeOf : MonoBehaviour {
         {
             Mesh mesh = GetComponent<MeshFilter>().sharedMesh;
             float volume = VolumeOfMesh(mesh);
-            string msg = "The volume of the mesh is " + volume + " cube units.";
+            string msg = "The volume of " + gameObject.name + " is " + volume + " cube units.";
             //Debug.Log(msg);
         }
 
@@ -40,6 +40,6 @@ public class VolumeOf : MonoBehaviour {
                 Vector3 p3 = vertices[triangles[i + 2]];
                 volume += SignedVolumeOfTriangle(p1, p2, p3);
             }
-            return Mathf.Abs(volume);
+            return Mathf.Abs(volume) * transform.localScale.x * transform.localScale.y * transform.localScale.z * 100;
         }    
 }

@@ -8,6 +8,7 @@ using Valve.VR.InteractionSystem;
 public class VRObjectSlicer : MonoBehaviour {
 
     float minimalPercentageCutoff = 0.15f;
+    float minimalSizeTotal = 0.05f;
 
     public void Slice(GameObject source)
     {
@@ -60,8 +61,9 @@ public class VRObjectSlicer : MonoBehaviour {
         MeshCollider mc = part.AddComponent<MeshCollider>();
         mc.convex = true;
         part.AddComponent<VolumeOf>();
-        float percentage = part.GetComponent<VolumeOf>().getVolume() / source.GetComponent<VolumeOf>().getVolume();
-        if (percentage >= minimalPercentageCutoff)
+        //float percentage = part.GetComponent<VolumeOf>().getVolume() / source.GetComponent<VolumeOf>().getVolume();
+        //if (percentage >= minimalPercentageCutoff)
+        if(part.GetComponent<VolumeOf>().getVolume() > minimalSizeTotal)
             return true;
 
         return false;
