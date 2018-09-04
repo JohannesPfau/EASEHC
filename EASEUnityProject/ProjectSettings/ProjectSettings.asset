@@ -138,7 +138,7 @@ PlayerSettings:
     hololens:
       depthFormat: 1
       depthBufferSharingEnabled: 0
-    enable360StereoCapture: 0
+    enable360StereoCapture: 1
     oculus:
       sharedDepthBuffer: 0
       dashSupport: 0
