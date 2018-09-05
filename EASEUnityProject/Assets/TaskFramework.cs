@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class TaskFramework : MonoBehaviour {
 
@@ -21,8 +22,12 @@ public class TaskFramework : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            Debug.Log("menu button pressed");
+            proceed();
+        }
+    }
 
     void init()
     {
@@ -89,6 +94,20 @@ public class TaskFramework : MonoBehaviour {
         oldTask.taskState = Task.TaskState.DELETED;
         Destroy(oldTask.gameObject);
         checkCurrentTask();
+    }
+
+    public Task getCurrentTask()
+    {
+        foreach (Task t in getAllTasks())
+            if (t.taskState == Task.TaskState.CURRENT)
+                return t;
+        return null;
+    }
+
+    public void proceed()
+    {
+        if(getCurrentTask())
+            getCurrentTask().button_Check();
     }
 
 }

@@ -20,6 +20,7 @@ namespace Valve.VR.InteractionSystem
         public bool throwable;
         public string displayedName;
         public string commandOnTrigger;
+        bool startToTrackMe;
 
         private Vector3 oldPosition;
         private Quaternion oldRotation;
@@ -176,7 +177,10 @@ namespace Valve.VR.InteractionSystem
             }
 
             if (commandOnTrigger.Length > 0 && hand.GetStandardInteractionButtonUp())
+            {
                 GameObject.Find("LevelLogic").SendMessage(commandOnTrigger);
+                GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().trackEvent(TrackingEvent.TrackingEventType.USAGE, gameObject);
+            }
 
         }
 
@@ -191,6 +195,7 @@ namespace Valve.VR.InteractionSystem
             if(throwable)
             {
                 attached = true;
+                startToTrackMe = true; // for tracking, never set false again
 
                 onPickUp.Invoke();
 
@@ -200,6 +205,7 @@ namespace Valve.VR.InteractionSystem
                 rb.isKinematic = true;
                 //rb.useGravity = false;
                 rb.interpolation = RigidbodyInterpolation.None;
+                GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().trackEvent(TrackingEvent.TrackingEventType.PICKUP, gameObject);
 
                 if (hand.controller == null)
                 {
@@ -251,6 +257,7 @@ namespace Valve.VR.InteractionSystem
                 rb.isKinematic = false;
                 rb.useGravity = true;
                 rb.interpolation = RigidbodyInterpolation.Interpolate;
+                GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().trackEvent(TrackingEvent.TrackingEventType.PUTDOWN, gameObject);
 
                 Vector3 position = Vector3.zero;
                 Vector3 velocity = Vector3.zero;
@@ -353,6 +360,18 @@ namespace Valve.VR.InteractionSystem
                 velocityEstimator.FinishEstimatingVelocity();
             }
         }
-        
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (!startToTrackMe)
+                return;
+
+            if(attached)
+                GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().trackEvent(TrackingEvent.TrackingEventType.COLLISION_WHILE_HELD, gameObject, collision.transform.gameObject);
+            else
+                GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().trackEvent(TrackingEvent.TrackingEventType.COLLISION, gameObject, collision.transform.gameObject);
+            if (collision.transform.GetComponent<InteractableVRObject>())
+                collision.transform.GetComponent<InteractableVRObject>().startToTrackMe = true;
+        }
     }
 }

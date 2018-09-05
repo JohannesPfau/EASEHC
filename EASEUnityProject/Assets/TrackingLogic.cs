@@ -9,6 +9,7 @@ public class TrackingLogic : MonoBehaviour {
     public GameObject player;
     public GameObject playerHandL;
     public GameObject playerHandR;
+    public GameObject playerHead;
 
     public GameObject test;
 
@@ -23,9 +24,15 @@ public class TrackingLogic : MonoBehaviour {
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        {
+            Debug.Log("Tracking stopped");
             recording = false;
+        }
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
+        {
+            Debug.Log("Tracking started");
             recording = true;
+        }
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
             displayList();
 
@@ -39,30 +46,36 @@ public class TrackingLogic : MonoBehaviour {
             recordDelayed += Time.deltaTime;
     }
     
-    public void trackEvent(string type, params GameObject[] relatedObjects)
+    public void trackEvent(TrackingEvent.TrackingEventType type, params GameObject[] relatedObjects)
     {
+        if (!recording)
+            return;
         eventList.Add(new TrackingEvent(type, relatedObjects));
     }
 
     public void trackPositions()
     {
-        eventList.Add(new TrackingEvent(TrackingEvent.TrackingEventType.MOVEMENT, player, playerHandL, playerHandR));
+        if (!recording)
+            return;
+        eventList.Add(new TrackingEvent(TrackingEvent.TrackingEventType.MOVEMENT, player, playerHandL, playerHandR, playerHead));
     }
 
     public void displayList()
     {
         foreach (TrackingEvent evt in eventList)
         {
+            if (evt.eventType == TrackingEvent.TrackingEventType.MOVEMENT) // dont display movement bc of visibility
+                continue;
+
             for(int i = 0; i < evt.relatedObjects.Length; i++)
             {
                 string locationdata = "";
                 if (evt.objectPositions.Length >= i)
-                {
                     locationdata += " POS: " + evt.objectPositions[i] + " ROT: " + evt.objectRotations[i];
-                }
 
-                Debug.Log(evt.timestamp + " (" + evt.eventType.ToString() + ") " + evt.relatedObjects[i].name + locationdata);
+                Debug.Log(evt.timestamp + " (" + evt.eventType.ToString() + ") " + evt.relatedObjects[i].name + locationdata + "@:\"" + evt.currentTask +"\"");
             }
+            Debug.Log(" - - - ");
         }
     }
 }
