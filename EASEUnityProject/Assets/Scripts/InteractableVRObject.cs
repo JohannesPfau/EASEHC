@@ -373,5 +373,13 @@ namespace Valve.VR.InteractionSystem
             if (collision.transform.GetComponent<InteractableVRObject>())
                 collision.transform.GetComponent<InteractableVRObject>().startToTrackMe = true;
         }
+
+        private void OnCollisionExit(Collision collision)
+        {
+            if (!startToTrackMe)
+                return;
+            
+            GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().trackEvent(TrackingEvent.TrackingEventType.COLLISION_EXIT, gameObject, collision.transform.gameObject);
+        }
     }
 }

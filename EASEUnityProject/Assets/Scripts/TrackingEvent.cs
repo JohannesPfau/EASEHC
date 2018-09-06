@@ -47,6 +47,7 @@ public class TrackingEvent : MonoBehaviour {
         PICKUP,
         COLLISION,
         COLLISION_WHILE_HELD,
+        COLLISION_EXIT,
         PUTDOWN,
         USAGE,
         THROW //?

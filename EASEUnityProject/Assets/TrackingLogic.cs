@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TrackingLogic : MonoBehaviour {
 
+    public bool alwaysRecording;
+
     List<TrackingEvent> eventList;
     public bool recording;
     public GameObject player;
@@ -19,6 +21,11 @@ public class TrackingLogic : MonoBehaviour {
     private void Start()
     {
         eventList = new List<TrackingEvent>();
+        if(alwaysRecording)
+        {
+            Debug.Log("Tracking started");
+            recording = true;
+        }
     }
 
     private void Update()
@@ -77,5 +84,11 @@ public class TrackingLogic : MonoBehaviour {
             }
             Debug.Log(" - - - ");
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (alwaysRecording)
+            displayList();
     }
 }
