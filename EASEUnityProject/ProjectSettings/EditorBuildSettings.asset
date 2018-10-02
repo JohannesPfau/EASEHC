@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/OpenWorld.unity
     guid: 085635c030e26bf42ad896d71703b684
+  - enabled: 1
+    path: Assets/_Scenes/KITCHEN_CLASH.unity
+    guid: b32c38a1875f28541a9d609944cdfc30
+  - enabled: 1
+    path: Assets/_Scenes/TASK_SCENE.unity
+    guid: 9a5e6dc486ce73c4eb8aef739112f6d3
   m_configObjects: {}

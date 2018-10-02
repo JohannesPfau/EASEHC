@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TrackingLogic : MonoBehaviour {
 
@@ -57,7 +58,10 @@ public class TrackingLogic : MonoBehaviour {
     {
         if (!recording)
             return;
-        eventList.Add(new TrackingEvent(type, relatedObjects));
+        TrackingEvent te = new TrackingEvent(type, relatedObjects);
+        eventList.Add(te);
+        if(GameObject.Find("TaskFramework"))
+            GameObject.Find("TaskFramework").GetComponent<TaskFramework>().showTrackedEvent(te);
     }
 
     public void trackPositions()

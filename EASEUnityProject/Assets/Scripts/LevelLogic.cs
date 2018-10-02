@@ -14,7 +14,8 @@ public class LevelLogic : MonoBehaviour {
     public void Start()
     {
         progressGO = GameObject.Find("PROGRESS");
-        progressGO.SetActive(false);
+        if(progressGO)
+            progressGO.SetActive(false);
     }
 
     public void Update () {

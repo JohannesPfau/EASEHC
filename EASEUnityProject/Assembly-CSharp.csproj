@@ -413,6 +413,7 @@
     <Compile Include="Assets\hasBeenAttached.cs" />
     <Compile Include="Assets\isCuttableObject.cs" />
     <Compile Include="Assets\isCuttingObject.cs" />
+    <Compile Include="Assets\KitchenClashMainMenuLogic.cs" />
     <Compile Include="Assets\Level4Logic.cs" />
     <Compile Include="Assets\Level5Logic.cs" />
     <Compile Include="Assets\LevelOWLogic.cs" />
@@ -539,6 +540,7 @@
     <Compile Include="Assets\Scripts\TrackingEvent.cs" />
     <Compile Include="Assets\stickToMe.cs" />
     <Compile Include="Assets\TaskFramework.cs" />
+    <Compile Include="Assets\TaskSceneLogic.cs" />
     <Compile Include="Assets\ToPlunge.cs" />
     <Compile Include="Assets\TrackingLogic.cs" />
     <Compile Include="Assets\VolumeOf.cs" />

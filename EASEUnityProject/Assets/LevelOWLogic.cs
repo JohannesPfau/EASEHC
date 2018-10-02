@@ -6,6 +6,7 @@ using Valve.VR.InteractionSystem;
 public class LevelOWLogic : LevelLogic {
 
     // Use this for initialization
+
     void Start()
     {
         base.Start();
@@ -13,6 +14,7 @@ public class LevelOWLogic : LevelLogic {
         Destroy(GameObject.Find("WashingMachine_inside").GetComponent<CircularDrive>());
         Destroy(GameObject.Find("WashingMachine_inside").GetComponent<Interactable>());
         GameObject.Find("WashingMachine_inside").GetComponent<Animator>().SetTrigger("Start");
+        
     }
 
     // Update is called once per frame

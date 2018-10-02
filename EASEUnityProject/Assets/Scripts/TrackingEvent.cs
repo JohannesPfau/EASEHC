@@ -41,6 +41,16 @@ public class TrackingEvent : MonoBehaviour {
         }
     }
 
+    public bool similarTo(TrackingEvent te)
+    {
+        if(eventType == te.eventType && relatedObjects.Length > 1)
+            if((te.relatedObjects[0] == relatedObjects[0] && te.relatedObjects[1] == relatedObjects[1]) ||
+               (te.relatedObjects[0] == relatedObjects[1] && te.relatedObjects[1] == relatedObjects[0]))
+                return true;
+
+        return false;
+    }
+
     public enum TrackingEventType
     {
         MOVEMENT,

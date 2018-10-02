@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14ac910ddf9ae7b45872c300753c0d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taskName: 
   taskState: 0
 --- !u!114 &114750554887303810
 MonoBehaviour:
@@ -257,7 +258,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: cf77686251a15f142957bb317388133e, type: 3}
+    m_Font: {fileID: 12800000, guid: 65aa8bd04c262e2489ad74e2cb784c75, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 1
