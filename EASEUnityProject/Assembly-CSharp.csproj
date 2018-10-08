@@ -555,8 +555,6 @@
     <None Include="Assets\3rdParty\Standard Assets\Prototyping\Shaders\WorldCoordDiffuse.shader" />
     <None Include="Assets\3rdParty\EzySlice-master\EzySlice-Examples\Assets\Examples\Readme.txt" />
     <None Include="Assets\3rdParty\Gamestrap\UI\Fonts\Bebas\Flat-it License.txt" />
-    <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Shaders\Oven\CFX Corpuscles Depth.shader" />
-    <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Shaders\CFX Standard Specular (double sided).shader" />
     <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Shaders\Oven\CFX-COMMON.cginc" />
     <None Include="Assets\3rdParty\HolyShift\readme.txt" />
     <None Include="Assets\3rdParty\SteamVR\Resources\SteamVR_ClearAll.shader" />
@@ -565,11 +563,8 @@
     <None Include="Assets\Obi\Resources\ObiMaterials\SimpleFluid.shader" />
     <None Include="Assets\3rdParty\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularSmooth.shader" />
     <None Include="Assets\3rdParty\Standard Assets\Effects\Projectors\Guidelines.txt" />
-    <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Shaders\Oven\CFX Fluid Compositor.shader" />
     <None Include="Assets\3rdParty\EzySlice-master\EzySlice-Examples\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\Obi\Resources\ObiMaterials\FluidColorsBlend.shader" />
-    <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Resources\CFX Standard VA.shader" />
-    <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Resources\CFX Standard VA Specular Setup.shader" />
     <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Resources\CarCSVertexNormalsFastUpdater.compute" />
     <None Include="Assets\3rdParty\Gamestrap\UI\Fonts\Monospace\README.txt" />
     <None Include="Assets\Obi\Resources\ObiMaterials\ParticleShader.shader" />
@@ -580,7 +575,6 @@
     <None Include="Assets\3rdParty\Standard Assets\Vehicles\Car\Shaders\DiffuseReflectiveShader.shader" />
     <None Include="Assets\3rdParty\kitchen props\Readme.txt" />
     <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Resources\CarCSInterpolation.compute" />
-    <None Include="Assets\Obi\Resources\ObiMaterials\StandardBackfaces.shader" />
     <None Include="Assets\3rdParty\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
     <None Include="Assets\Obi\Resources\ObiMaterials\ObiParticles.cginc" />
     <None Include="Assets\3rdParty\SteamVR\InteractionSystem\Teleport\Shaders\Highlight.shader" />
@@ -594,7 +588,6 @@
     <None Include="Assets\3rdParty\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
     <None Include="Assets\3rdParty\Standard Assets\Vehicles\Car\Shaders\ReflectiveDiffuseSpec.shader" />
     <None Include="Assets\3rdParty\Standard Assets\Environment\Water\DO_NOT_WORK_IN_VR.txt" />
-    <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Shaders\CFX DisplayNormals.shader" />
     <None Include="Assets\3rdParty\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
     <None Include="Assets\Obi\Resources\ObiMaterials\SimpleParticleShader.shader" />
     <None Include="Assets\3rdParty\Meshinator\Documentation\ReadMe.txt" />
@@ -602,9 +595,7 @@
     <None Include="Assets\3rdParty\Gamestrap\UI\Fonts\OpenSans\LICENSE.txt" />
     <None Include="Assets\3rdParty\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
     <None Include="Assets\3rdParty\Standard Assets\Fonts\OpenSans\License!.txt" />
-    <None Include="Assets\Obi\Resources\ObiMaterials\FluidShader.shader" />
     <None Include="Assets\3rdParty\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
-    <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Resources\CFX Standard VA (double sided).shader" />
     <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Resources\CarCSComputeBones.compute" />
     <None Include="Assets\3rdParty\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
     <None Include="Assets\Obi\Resources\ObiMaterials\ObiUtils.cginc" />
@@ -612,7 +603,6 @@
     <None Include="Assets\3rdParty\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
     <None Include="Assets\3rdParty\Gamestrap\UI\Fonts\Basis33\README.txt" />
     <None Include="Assets\Obi\Resources\ObiMaterials\ObiFluids.cginc" />
-    <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Shaders\CFX Standard (double sided).shader" />
     <None Include="Assets\3rdParty\Gamestrap\UI\Fonts\Polaris\FontInfo.txt" />
     <None Include="Assets\3rdParty\Gamestrap\UI\Fonts\Bigfish\FontInfo.txt" />
     <None Include="Assets\3rdParty\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
@@ -628,7 +618,6 @@
     <None Include="Assets\3rdParty\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
     <None Include="Assets\3rdParty\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
     <None Include="Assets\3rdParty\Gamestrap\UI\Gizmos\_readme.txt" />
-    <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Shaders\CFX VertexColors.shader" />
     <None Include="Assets\Obi\Resources\ObiMaterials\ObiEllipsoids.cginc" />
     <None Include="Assets\3rdParty\SteamVR\Resources\SteamVR_AlphaOut.shader" />
     <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Resources\CarCSVertexAnimationFiber.compute" />
@@ -636,12 +625,10 @@
     <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Resources\CarCSComputeBonesInter.compute" />
     <None Include="Assets\3rdParty\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Obi\Resources\ObiMaterials\DistanceFieldSlice.shader" />
-    <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Shaders\CFX Standard Specular (interior).shader" />
     <None Include="Assets\Obi\Resources\ObiMaterials\ScreenSpaceCurvatureFlow.shader" />
     <None Include="Assets\Obi\Resources\ObiMaterials\UnityStandardCoreForwardSimpleBackfaces.cginc" />
     <None Include="Assets\Obi\Plugins\libOni.bundle\Contents\Resources\CMakeLists.txt" />
     <None Include="Assets\3rdParty\SteamVR\readme.txt" />
-    <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Resources\CFX Standard VA Specular Setup (double sided).shader" />
     <None Include="Assets\3rdParty\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\3rdParty\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
     <None Include="Assets\3rdParty\Standard Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
@@ -655,8 +642,6 @@
     <None Include="Assets\3rdParty\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
     <None Include="Assets\3rdParty\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
     <None Include="Assets\3rdParty\Meshinator\Example Scenes\Prefabs\Materials\diamond shader.shader" />
-    <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Shaders\Oven\CFX Corpuscles Diffuse.shader" />
-    <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Shaders\CFX Standard (interior).shader" />
     <None Include="Assets\3rdParty\SampleScenes\Shaders\Skybox-Procedural.shader" />
     <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Resources\CFX-BASIC.cginc" />
     <None Include="Assets\3rdParty\SteamVR\InteractionSystem\Readme_InteractionSystem.txt" />

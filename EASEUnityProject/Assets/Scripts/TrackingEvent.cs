@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
-public class TrackingEvent : MonoBehaviour {
+public class TrackingEvent {
 
     public DateTime timestamp;
     public TrackingEventType eventType;
@@ -44,10 +45,13 @@ public class TrackingEvent : MonoBehaviour {
     public bool similarTo(TrackingEvent te)
     {
         if(eventType == te.eventType && relatedObjects.Length > 1)
-            if((te.relatedObjects[0] == relatedObjects[0] && te.relatedObjects[1] == relatedObjects[1]) ||
-               (te.relatedObjects[0] == relatedObjects[1] && te.relatedObjects[1] == relatedObjects[0]))
+        {
+            Debug.Log("Comparing " + te.relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName + " with " + relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName + " and " + te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName + " with " + relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName);
+            if ((te.relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName == relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName && te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName == relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName) ||
+               (te.relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName == relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName && te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName == relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName))
                 return true;
-
+        }
+        // topf topf apfel apfel
         return false;
     }
 

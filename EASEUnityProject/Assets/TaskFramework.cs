@@ -34,6 +34,8 @@ public class TaskFramework : MonoBehaviour {
     float meanTimeTotal = 50;
 
     List<string> taskList;
+    public SteamVR_Controller.Device controllerL;
+    public SteamVR_Controller.Device controllerR;
 
     // Use this for initialization
     void Start () {
@@ -62,7 +64,13 @@ public class TaskFramework : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update ()
+    {
+        if (controllerL == null && GameObject.Find("Hand1") && GameObject.Find("Hand1").GetComponent<Hand>())
+            controllerL = GameObject.Find("Hand1").GetComponent<Hand>().controller;
+        if (controllerR == null && GameObject.Find("Hand2") && GameObject.Find("Hand2").GetComponent<Hand>())
+            controllerR = GameObject.Find("Hand2").GetComponent<Hand>().controller;
+
         if(taskTimeCounting)
         {
             float t = Time.time - taskTime;
@@ -102,7 +110,16 @@ public class TaskFramework : MonoBehaviour {
                 TotalProgressBar.GetComponentsInChildren<Image>()[1].color = new Color(150f / 225f, 150f / 225f, 150f / 225f);
         }
 
-        if(Input.GetKeyDown(KeyCode.Return))
+        // overflow
+        if (trackedActionsPanel.GetComponentsInChildren<Image>().Length > 10)
+        {
+            DestroyImmediate(trackedActionsPanel.GetComponentsInChildren<Image>()[0].gameObject);
+            // new [0]
+            trackedActionsPanel.GetComponentsInChildren<Image>()[0].sprite = dotsSprite;
+            trackedActionsPanel.GetComponentsInChildren<Image>()[0].GetComponentInChildren<Text>().text = "";
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Return) || (controllerL != null && controllerL.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip) || (controllerR != null && controllerR.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip))))
         {
             Debug.Log("menu button pressed");
             proceed();
@@ -205,12 +222,13 @@ public class TaskFramework : MonoBehaviour {
     public Sprite COLLISIONwhileHELDsprite;
     public Sprite COLLISIONEXITsprite;
     public Sprite dotsSprite;
-    TrackingEvent lastTrackedEvent;
+    public TrackingEvent lastTrackedEvent;
+
     public void showTrackedEvent(TrackingEvent te)
     {
         if (te.eventType == TrackingEvent.TrackingEventType.MOVEMENT)
             return;
-
+        
         if (lastTrackedEvent != null && te.similarTo(lastTrackedEvent))
             return;
         lastTrackedEvent = te;
@@ -244,15 +262,6 @@ public class TaskFramework : MonoBehaviour {
             if (te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>())
                 t += " and " + te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName;
         go.GetComponentInChildren<Text>().text = t;
-
-        // overflow
-        while(trackedActionsPanel.GetComponentsInChildren<Image>().Length > 10)
-        {
-            DestroyImmediate(trackedActionsPanel.GetComponentsInChildren<Image>()[0].gameObject);
-            // new [0]
-            trackedActionsPanel.GetComponentsInChildren<Image>()[0].sprite = dotsSprite;
-            trackedActionsPanel.GetComponentsInChildren<Image>()[0].GetComponentInChildren<Text>().text = "";
-        }
     }
 
     public void resetTrackedEvents()

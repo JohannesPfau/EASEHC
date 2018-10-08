@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class KitchenClashMainMenuLogic : MonoBehaviour {
-
+    
     int progress = 0;
     public GameObject plane1;
     public GameObject plane2;
@@ -59,44 +59,6 @@ public class KitchenClashMainMenuLogic : MonoBehaviour {
                         showSelectedMenuItem();
                     }
                 break;
-        }
-
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            GameObject.Find("ControllerTest").GetComponent<UnityEngine.UI.Text>().text = "";
-            foreach (string s in Input.GetJoystickNames())
-                GameObject.Find("ControllerTest").GetComponent<UnityEngine.UI.Text>().text += s + "\r\n";
-        }
-
-        // debug Controller <-> Player mapping
-
-        if (Input.GetKeyDown(KeyCode.Joystick1Button7))
-        {
-            GameObject.Find("ControllerTest").GetComponent<UnityEngine.UI.Text>().text = "Joystick 1";
-            GameObject go = Instantiate(go_1, debugSpawnGO.transform);
-            go.AddComponent<Rigidbody>();
-            go.AddComponent<BoxCollider>();
-        }
-        if (Input.GetKeyDown(KeyCode.Joystick2Button7))
-        {
-            GameObject.Find("ControllerTest").GetComponent<UnityEngine.UI.Text>().text = "Joystick 2";
-            GameObject go = Instantiate(go_2, debugSpawnGO.transform);
-            go.AddComponent<Rigidbody>();
-            go.AddComponent<BoxCollider>();
-        }
-        if (Input.GetKeyDown(KeyCode.Joystick3Button7))
-        {
-            GameObject.Find("ControllerTest").GetComponent<UnityEngine.UI.Text>().text = "Joystick 3";
-            GameObject go = Instantiate(go_3, debugSpawnGO.transform);
-            go.AddComponent<Rigidbody>();
-            go.AddComponent<BoxCollider>();
-        }
-        if (Input.GetKeyDown(KeyCode.Joystick4Button7))
-        {
-            GameObject.Find("ControllerTest").GetComponent<UnityEngine.UI.Text>().text = "Joystick 4";
-            GameObject go = Instantiate(go_4, debugSpawnGO.transform);
-            go.AddComponent<Rigidbody>();
-            go.AddComponent<BoxCollider>();
         }
     }
 

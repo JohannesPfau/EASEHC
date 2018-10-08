@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Scenes/KITCHEN_CLASH_VR.unity
+    guid: b7af962eecf2d794bb5bb3ce0f008d0b
+  - enabled: 1
     path: Assets/_Scenes/MainMenu.unity
     guid: b885e9ec1cd99814580610abef62248c
   - enabled: 1
@@ -29,9 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/OpenWorld.unity
     guid: 085635c030e26bf42ad896d71703b684
-  - enabled: 1
-    path: Assets/_Scenes/KITCHEN_CLASH.unity
-    guid: b32c38a1875f28541a9d609944cdfc30
   - enabled: 1
     path: Assets/_Scenes/TASK_SCENE.unity
     guid: 9a5e6dc486ce73c4eb8aef739112f6d3
