@@ -1,0 +1,573 @@
+{
+    "version": "2.2.0",
+    "application": "web-openccg",
+    "uuid": "2cdd7c4d-2f58-474f-9015-481739ce0d91",
+    "sentence": "take the cup off the table",
+    "parses": {
+        "smain/.r": "(@x1:gs-AffectingDirectedMotion( <mood>imperative ^ <gs-route>x2 ^ <gum-actee>(w2:slm-Cup ^ cup ^ <det>the ^ <ident>specific ^ <quant>singular) ^ <gum-processInConfiguration>(w0:slm-Moving ^ slm-Taking)) ^ @x4:gs-SpatialLocating( <gs-locatum>w2:slm-Cup ^ <gs-placement>(x3:gs-GeneralizedLocation ^ <gs-hasSpatialModality>(w3:gs-DenialOfFunctionalControl ^ slm-Off) ^ <gs-relatum>(w5:slm-Table ^ slm-Table ^ <det>the ^ <ident>specific ^ <quant>singular))))",
+        "smain/.r/0": "(@x1:gs-AffectingDirectedMotion( <mood>imperative ^ <gs-route>x2 ^ <gum-actee>(w2:slm-Cup ^ cup ^ <det>the ^ <ident>specific ^ <quant>singular) ^ <gum-processInConfiguration>(w0:slm-Taking ^ slm-Taking)) ^ @x4:gs-SpatialLocating( <gs-locatum>w2:slm-Cup ^ <gs-placement>(x3:gs-GeneralizedLocation ^ <gs-hasSpatialModality>(w3:gs-DenialOfFunctionalControl ^ slm-Off) ^ <gs-relatum>(w5:slm-Table ^ slm-Table ^ <det>the ^ <ident>specific ^ <quant>singular))))",
+        "smain": "@x1:gs-AffectingDirectedMotion( <mood>imperative ^ <gs-route>(x2:gs-GeneralizedRoute ^ <gs-pathPlacement>(x3:gs-GeneralizedLocation ^ <gs-hasSpatialModality>(w3:gs-DenialOfFunctionalControl ^ gs-DenialOfFunctionalControl) ^ <gs-relatum>(w5:slm-Table ^ slm-Table ^ <det>the ^ <ident>specific ^ <quant>singular))) ^ <gum-actee>(w2:slm-Cup ^ cup ^ <det>the ^ <ident>specific ^ <quant>singular) ^ <gum-processInConfiguration>(w0:slm-Moving ^ slm-Taking))",
+        "smain/0": "@x1:gs-AffectingDirectedMotion( <mood>imperative ^ <gs-route>(x2:gs-GeneralizedRoute ^ <gs-pathPlacement>(x3:gs-GeneralizedLocation ^ <gs-hasSpatialModality>(w3:gs-DenialOfFunctionalControl ^ gs-DenialOfFunctionalControl) ^ <gs-relatum>(w5:slm-Table ^ slm-Table ^ <det>the ^ <ident>specific ^ <quant>singular))) ^ <gum-actee>(w2:slm-Cup ^ cup ^ <det>the ^ <ident>specific ^ <quant>singular) ^ <gum-processInConfiguration>(w0:slm-Taking ^ slm-Taking))"
+    },
+    "http_status": 200,
+    "json_parses": {
+        "smain/.r": [
+            {
+                "__class__": "Nominal",
+                "name": "x1",
+                "roles": [
+                    {
+                        "__class__": "Role",
+                        "type": "mood",
+                        "target": "imperative"
+                    },
+                    {
+                        "__class__": "Role",
+                        "type": "gs-route",
+                        "target": {
+                            "__class__": "Variable",
+                            "name": "x2",
+                            "roles": [
+                                {
+                                    "__class__": "Role",
+                                    "type": "gum-actee",
+                                    "target": {
+                                        "__class__": "Variable",
+                                        "name": "w2",
+                                        "roles": [
+                                            {
+                                                "__class__": "Role",
+                                                "type": "entity",
+                                                "target": "cup"
+                                            },
+                                            {
+                                                "__class__": "Role",
+                                                "type": "det",
+                                                "target": "the"
+                                            },
+                                            {
+                                                "__class__": "Role",
+                                                "type": "ident",
+                                                "target": "specific"
+                                            },
+                                            {
+                                                "__class__": "Role",
+                                                "type": "quant",
+                                                "target": "singular"
+                                            }
+                                        ],
+                                        "type": "slm-Cup"
+                                    }
+                                },
+                                {
+                                    "__class__": "Role",
+                                    "type": "gum-processInConfiguration",
+                                    "target": {
+                                        "__class__": "Variable",
+                                        "name": "w0",
+                                        "roles": [
+                                            {
+                                                "__class__": "Role",
+                                                "type": "entity",
+                                                "target": "slm-Taking"
+                                            }
+                                        ],
+                                        "type": "slm-Moving"
+                                    }
+                                }
+                            ],
+                            "type": null
+                        }
+                    }
+                ],
+                "type": "gs-AffectingDirectedMotion"
+            },
+            {
+                "__class__": "Nominal",
+                "name": "x4",
+                "roles": [
+                    {
+                        "__class__": "Role",
+                        "type": "gs-locatum",
+                        "target": {
+                            "__class__": "Variable",
+                            "name": "w2",
+                            "roles": [
+                                {
+                                    "__class__": "Role",
+                                    "type": "gs-placement",
+                                    "target": {
+                                        "__class__": "Variable",
+                                        "name": "x3",
+                                        "roles": [
+                                            {
+                                                "__class__": "Role",
+                                                "type": "gs-hasSpatialModality",
+                                                "target": {
+                                                    "__class__": "Variable",
+                                                    "name": "w3",
+                                                    "roles": [
+                                                        {
+                                                            "__class__": "Role",
+                                                            "type": "entity",
+                                                            "target": "slm-Off"
+                                                        }
+                                                    ],
+                                                    "type": "gs-DenialOfFunctionalControl"
+                                                }
+                                            },
+                                            {
+                                                "__class__": "Role",
+                                                "type": "gs-relatum",
+                                                "target": {
+                                                    "__class__": "Variable",
+                                                    "name": "w5",
+                                                    "roles": [
+                                                        {
+                                                            "__class__": "Role",
+                                                            "type": "entity",
+                                                            "target": "slm-Table"
+                                                        },
+                                                        {
+                                                            "__class__": "Role",
+                                                            "type": "det",
+                                                            "target": "the"
+                                                        },
+                                                        {
+                                                            "__class__": "Role",
+                                                            "type": "ident",
+                                                            "target": "specific"
+                                                        },
+                                                        {
+                                                            "__class__": "Role",
+                                                            "type": "quant",
+                                                            "target": "singular"
+                                                        }
+                                                    ],
+                                                    "type": "slm-Table"
+                                                }
+                                            }
+                                        ],
+                                        "type": "gs-GeneralizedLocation"
+                                    }
+                                }
+                            ],
+                            "type": "slm-Cup"
+                        }
+                    }
+                ],
+                "type": "gs-SpatialLocating"
+            }
+        ],
+        "smain/.r/0": [
+            {
+                "__class__": "Nominal",
+                "name": "x1",
+                "roles": [
+                    {
+                        "__class__": "Role",
+                        "type": "mood",
+                        "target": "imperative"
+                    },
+                    {
+                        "__class__": "Role",
+                        "type": "gs-route",
+                        "target": {
+                            "__class__": "Variable",
+                            "name": "x2",
+                            "roles": [
+                                {
+                                    "__class__": "Role",
+                                    "type": "gum-actee",
+                                    "target": {
+                                        "__class__": "Variable",
+                                        "name": "w2",
+                                        "roles": [
+                                            {
+                                                "__class__": "Role",
+                                                "type": "entity",
+                                                "target": "cup"
+                                            },
+                                            {
+                                                "__class__": "Role",
+                                                "type": "det",
+                                                "target": "the"
+                                            },
+                                            {
+                                                "__class__": "Role",
+                                                "type": "ident",
+                                                "target": "specific"
+                                            },
+                                            {
+                                                "__class__": "Role",
+                                                "type": "quant",
+                                                "target": "singular"
+                                            }
+                                        ],
+                                        "type": "slm-Cup"
+                                    }
+                                },
+                                {
+                                    "__class__": "Role",
+                                    "type": "gum-processInConfiguration",
+                                    "target": {
+                                        "__class__": "Variable",
+                                        "name": "w0",
+                                        "roles": [
+                                            {
+                                                "__class__": "Role",
+                                                "type": "entity",
+                                                "target": "slm-Taking"
+                                            }
+                                        ],
+                                        "type": "slm-Taking"
+                                    }
+                                }
+                            ],
+                            "type": null
+                        }
+                    }
+                ],
+                "type": "gs-AffectingDirectedMotion"
+            },
+            {
+                "__class__": "Nominal",
+                "name": "x4",
+                "roles": [
+                    {
+                        "__class__": "Role",
+                        "type": "gs-locatum",
+                        "target": {
+                            "__class__": "Variable",
+                            "name": "w2",
+                            "roles": [
+                                {
+                                    "__class__": "Role",
+                                    "type": "gs-placement",
+                                    "target": {
+                                        "__class__": "Variable",
+                                        "name": "x3",
+                                        "roles": [
+                                            {
+                                                "__class__": "Role",
+                                                "type": "gs-hasSpatialModality",
+                                                "target": {
+                                                    "__class__": "Variable",
+                                                    "name": "w3",
+                                                    "roles": [
+                                                        {
+                                                            "__class__": "Role",
+                                                            "type": "entity",
+                                                            "target": "slm-Off"
+                                                        }
+                                                    ],
+                                                    "type": "gs-DenialOfFunctionalControl"
+                                                }
+                                            },
+                                            {
+                                                "__class__": "Role",
+                                                "type": "gs-relatum",
+                                                "target": {
+                                                    "__class__": "Variable",
+                                                    "name": "w5",
+                                                    "roles": [
+                                                        {
+                                                            "__class__": "Role",
+                                                            "type": "entity",
+                                                            "target": "slm-Table"
+                                                        },
+                                                        {
+                                                            "__class__": "Role",
+                                                            "type": "det",
+                                                            "target": "the"
+                                                        },
+                                                        {
+                                                            "__class__": "Role",
+                                                            "type": "ident",
+                                                            "target": "specific"
+                                                        },
+                                                        {
+                                                            "__class__": "Role",
+                                                            "type": "quant",
+                                                            "target": "singular"
+                                                        }
+                                                    ],
+                                                    "type": "slm-Table"
+                                                }
+                                            }
+                                        ],
+                                        "type": "gs-GeneralizedLocation"
+                                    }
+                                }
+                            ],
+                            "type": "slm-Cup"
+                        }
+                    }
+                ],
+                "type": "gs-SpatialLocating"
+            }
+        ],
+        "smain": {
+            "__class__": "Nominal",
+            "name": "x1",
+            "roles": [
+                {
+                    "__class__": "Role",
+                    "type": "mood",
+                    "target": "imperative"
+                },
+                {
+                    "__class__": "Role",
+                    "type": "gs-route",
+                    "target": {
+                        "__class__": "Variable",
+                        "name": "x2",
+                        "roles": [
+                            {
+                                "__class__": "Role",
+                                "type": "gs-pathPlacement",
+                                "target": {
+                                    "__class__": "Variable",
+                                    "name": "x3",
+                                    "roles": [
+                                        {
+                                            "__class__": "Role",
+                                            "type": "gs-hasSpatialModality",
+                                            "target": {
+                                                "__class__": "Variable",
+                                                "name": "w3",
+                                                "roles": [
+                                                    {
+                                                        "__class__": "Role",
+                                                        "type": "entity",
+                                                        "target": "gs-DenialOfFunctionalControl"
+                                                    }
+                                                ],
+                                                "type": "gs-DenialOfFunctionalControl"
+                                            }
+                                        },
+                                        {
+                                            "__class__": "Role",
+                                            "type": "gs-relatum",
+                                            "target": {
+                                                "__class__": "Variable",
+                                                "name": "w5",
+                                                "roles": [
+                                                    {
+                                                        "__class__": "Role",
+                                                        "type": "entity",
+                                                        "target": "slm-Table"
+                                                    },
+                                                    {
+                                                        "__class__": "Role",
+                                                        "type": "det",
+                                                        "target": "the"
+                                                    },
+                                                    {
+                                                        "__class__": "Role",
+                                                        "type": "ident",
+                                                        "target": "specific"
+                                                    },
+                                                    {
+                                                        "__class__": "Role",
+                                                        "type": "quant",
+                                                        "target": "singular"
+                                                    }
+                                                ],
+                                                "type": "slm-Table"
+                                            }
+                                        }
+                                    ],
+                                    "type": "gs-GeneralizedLocation"
+                                }
+                            }
+                        ],
+                        "type": "gs-GeneralizedRoute"
+                    }
+                },
+                {
+                    "__class__": "Role",
+                    "type": "gum-actee",
+                    "target": {
+                        "__class__": "Variable",
+                        "name": "w2",
+                        "roles": [
+                            {
+                                "__class__": "Role",
+                                "type": "entity",
+                                "target": "cup"
+                            },
+                            {
+                                "__class__": "Role",
+                                "type": "det",
+                                "target": "the"
+                            },
+                            {
+                                "__class__": "Role",
+                                "type": "ident",
+                                "target": "specific"
+                            },
+                            {
+                                "__class__": "Role",
+                                "type": "quant",
+                                "target": "singular"
+                            }
+                        ],
+                        "type": "slm-Cup"
+                    }
+                },
+                {
+                    "__class__": "Role",
+                    "type": "gum-processInConfiguration",
+                    "target": {
+                        "__class__": "Variable",
+                        "name": "w0",
+                        "roles": [
+                            {
+                                "__class__": "Role",
+                                "type": "entity",
+                                "target": "slm-Taking"
+                            }
+                        ],
+                        "type": "slm-Moving"
+                    }
+                }
+            ],
+            "type": "gs-AffectingDirectedMotion"
+        },
+        "smain/0": {
+            "__class__": "Nominal",
+            "name": "x1",
+            "roles": [
+                {
+                    "__class__": "Role",
+                    "type": "mood",
+                    "target": "imperative"
+                },
+                {
+                    "__class__": "Role",
+                    "type": "gs-route",
+                    "target": {
+                        "__class__": "Variable",
+                        "name": "x2",
+                        "roles": [
+                            {
+                                "__class__": "Role",
+                                "type": "gs-pathPlacement",
+                                "target": {
+                                    "__class__": "Variable",
+                                    "name": "x3",
+                                    "roles": [
+                                        {
+                                            "__class__": "Role",
+                                            "type": "gs-hasSpatialModality",
+                                            "target": {
+                                                "__class__": "Variable",
+                                                "name": "w3",
+                                                "roles": [
+                                                    {
+                                                        "__class__": "Role",
+                                                        "type": "entity",
+                                                        "target": "gs-DenialOfFunctionalControl"
+                                                    }
+                                                ],
+                                                "type": "gs-DenialOfFunctionalControl"
+                                            }
+                                        },
+                                        {
+                                            "__class__": "Role",
+                                            "type": "gs-relatum",
+                                            "target": {
+                                                "__class__": "Variable",
+                                                "name": "w5",
+                                                "roles": [
+                                                    {
+                                                        "__class__": "Role",
+                                                        "type": "entity",
+                                                        "target": "slm-Table"
+                                                    },
+                                                    {
+                                                        "__class__": "Role",
+                                                        "type": "det",
+                                                        "target": "the"
+                                                    },
+                                                    {
+                                                        "__class__": "Role",
+                                                        "type": "ident",
+                                                        "target": "specific"
+                                                    },
+                                                    {
+                                                        "__class__": "Role",
+                                                        "type": "quant",
+                                                        "target": "singular"
+                                                    }
+                                                ],
+                                                "type": "slm-Table"
+                                            }
+                                        }
+                                    ],
+                                    "type": "gs-GeneralizedLocation"
+                                }
+                            }
+                        ],
+                        "type": "gs-GeneralizedRoute"
+                    }
+                },
+                {
+                    "__class__": "Role",
+                    "type": "gum-actee",
+                    "target": {
+                        "__class__": "Variable",
+                        "name": "w2",
+                        "roles": [
+                            {
+                                "__class__": "Role",
+                                "type": "entity",
+                                "target": "cup"
+                            },
+                            {
+                                "__class__": "Role",
+                                "type": "det",
+                                "target": "the"
+                            },
+                            {
+                                "__class__": "Role",
+                                "type": "ident",
+                                "target": "specific"
+                            },
+                            {
+                                "__class__": "Role",
+                                "type": "quant",
+                                "target": "singular"
+                            }
+                        ],
+                        "type": "slm-Cup"
+                    }
+                },
+                {
+                    "__class__": "Role",
+                    "type": "gum-processInConfiguration",
+                    "target": {
+                        "__class__": "Variable",
+                        "name": "w0",
+                        "roles": [
+                            {
+                                "__class__": "Role",
+                                "type": "entity",
+                                "target": "slm-Taking"
+                            }
+                        ],
+                        "type": "slm-Taking"
+                    }
+                }
+            ],
+            "type": "gs-AffectingDirectedMotion"
+        }
+    },
+    "graphs": {
+        "smain/.r": "strict graph \"\" {\n\tnode [label=\"\\N\"];\n\tsubgraph cluster_x4 {\n\t\tgraph [fillcolor=lightskyblue,\n\t\t\tlabel=\"x4: gs-SpatialLocating\",\n\t\t\tstyle=filled\n\t\t];\n\t\tsubgraph \"cluster_gs-locatum\" {\n\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\tlabel=\"gs-locatum\",\n\t\t\t\tstyle=filled\n\t\t\t];\n\t\t\tsubgraph cluster_w2 {\n\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\tlabel=\"w2: slm-Cup\",\n\t\t\t\t\tstyle=filled\n\t\t\t\t];\n\t\t\t\tsubgraph \"cluster_gs-placement\" {\n\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\tlabel=\"gs-placement\",\n\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t];\n\t\t\t\t\tsubgraph cluster_x3 {\n\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\tlabel=\"x3: gs-GeneralizedLocation\",\n\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t];\n\t\t\t\t\t\tsubgraph \"cluster_gs-hasSpatialModality\" {\n\t\t\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\t\t\tlabel=\"gs-hasSpatialModality\",\n\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\tsubgraph cluster_w3 {\n\t\t\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\t\t\tlabel=\"w3: gs-DenialOfFunctionalControl\",\n\t\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\t\tw3\t\t\t\t\t\t\t\t [fillcolor=aliceblue,\n\t\t\t\t\t\t\t\t\tlabel=\"{&lt;entity&gt; slm-Off}\",\n\t\t\t\t\t\t\t\t\tshape=Mrecord,\n\t\t\t\t\t\t\t\t\tstyle=filled];\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tsubgraph \"cluster_gs-relatum\" {\n\t\t\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\t\t\tlabel=\"gs-relatum\",\n\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\tsubgraph cluster_w5 {\n\t\t\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\t\t\tlabel=\"w5: slm-Table\",\n\t\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\t\tw5\t\t\t\t\t\t\t\t [fillcolor=aliceblue,\n\t\t\t\t\t\t\t\t\tlabel=\"{&lt;entity&gt; slm-Table|&lt;det&gt; the|&lt;ident&gt; specific|&lt;quant&gt; singular}\",\n\t\t\t\t\t\t\t\t\tshape=Mrecord,\n\t\t\t\t\t\t\t\t\tstyle=filled];\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tsubgraph cluster_x1 {\n\t\tgraph [fillcolor=lightskyblue,\n\t\t\tlabel=\"x1: gs-AffectingDirectedMotion\",\n\t\t\tstyle=filled\n\t\t];\n\t\tsubgraph \"cluster_gs-route\" {\n\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\tlabel=\"gs-route\",\n\t\t\t\tstyle=filled\n\t\t\t];\n\t\t\tsubgraph cluster_x2 {\n\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\tlabel=None,\n\t\t\t\t\tstyle=filled\n\t\t\t\t];\n\t\t\t\tsubgraph \"cluster_gum-processInConfiguration\" {\n\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\tlabel=\"gum-processInConfiguration\",\n\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t];\n\t\t\t\t\tsubgraph cluster_w0 {\n\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\tlabel=\"w0: slm-Moving\",\n\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t];\n\t\t\t\t\t\tw0\t\t\t\t\t\t [fillcolor=aliceblue,\n\t\t\t\t\t\t\tlabel=\"{&lt;entity&gt; slm-Taking}\",\n\t\t\t\t\t\t\tshape=Mrecord,\n\t\t\t\t\t\t\tstyle=filled];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tsubgraph \"cluster_gum-actee\" {\n\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\tlabel=\"gum-actee\",\n\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t];\n\t\t\t\t\tsubgraph cluster_w2 {\n\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\tlabel=\"w2: slm-Cup\",\n\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tx1\t\t [fillcolor=aliceblue,\n\t\t\tlabel=\"{&lt;mood&gt; imperative}\",\n\t\t\tshape=Mrecord,\n\t\t\tstyle=filled];\n\t}\n}\n",
+        "smain/.r/0": "strict graph \"\" {\n\tnode [label=\"\\N\"];\n\tsubgraph cluster_x1 {\n\t\tgraph [fillcolor=lightskyblue,\n\t\t\tlabel=\"x1: gs-AffectingDirectedMotion\",\n\t\t\tstyle=filled\n\t\t];\n\t\tsubgraph \"cluster_gs-route\" {\n\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\tlabel=\"gs-route\",\n\t\t\t\tstyle=filled\n\t\t\t];\n\t\t\tsubgraph cluster_x2 {\n\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\tlabel=None,\n\t\t\t\t\tstyle=filled\n\t\t\t\t];\n\t\t\t\tsubgraph \"cluster_gum-actee\" {\n\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\tlabel=\"gum-actee\",\n\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t];\n\t\t\t\t\tsubgraph cluster_w2 {\n\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\tlabel=\"w2: slm-Cup\",\n\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tsubgraph \"cluster_gum-processInConfiguration\" {\n\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\tlabel=\"gum-processInConfiguration\",\n\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t];\n\t\t\t\t\tsubgraph cluster_w0 {\n\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\tlabel=\"w0: slm-Taking\",\n\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t];\n\t\t\t\t\t\tw0\t\t\t\t\t\t [fillcolor=aliceblue,\n\t\t\t\t\t\t\tlabel=\"{&lt;entity&gt; slm-Taking}\",\n\t\t\t\t\t\t\tshape=Mrecord,\n\t\t\t\t\t\t\tstyle=filled];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tx1\t\t [fillcolor=aliceblue,\n\t\t\tlabel=\"{&lt;mood&gt; imperative}\",\n\t\t\tshape=Mrecord,\n\t\t\tstyle=filled];\n\t}\n\tsubgraph cluster_x4 {\n\t\tgraph [fillcolor=lightskyblue,\n\t\t\tlabel=\"x4: gs-SpatialLocating\",\n\t\t\tstyle=filled\n\t\t];\n\t\tsubgraph \"cluster_gs-locatum\" {\n\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\tlabel=\"gs-locatum\",\n\t\t\t\tstyle=filled\n\t\t\t];\n\t\t\tsubgraph cluster_w2 {\n\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\tlabel=\"w2: slm-Cup\",\n\t\t\t\t\tstyle=filled\n\t\t\t\t];\n\t\t\t\tsubgraph \"cluster_gs-placement\" {\n\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\tlabel=\"gs-placement\",\n\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t];\n\t\t\t\t\tsubgraph cluster_x3 {\n\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\tlabel=\"x3: gs-GeneralizedLocation\",\n\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t];\n\t\t\t\t\t\tsubgraph \"cluster_gs-hasSpatialModality\" {\n\t\t\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\t\t\tlabel=\"gs-hasSpatialModality\",\n\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\tsubgraph cluster_w3 {\n\t\t\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\t\t\tlabel=\"w3: gs-DenialOfFunctionalControl\",\n\t\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\t\tw3\t\t\t\t\t\t\t\t [fillcolor=aliceblue,\n\t\t\t\t\t\t\t\t\tlabel=\"{&lt;entity&gt; slm-Off}\",\n\t\t\t\t\t\t\t\t\tshape=Mrecord,\n\t\t\t\t\t\t\t\t\tstyle=filled];\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tsubgraph \"cluster_gs-relatum\" {\n\t\t\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\t\t\tlabel=\"gs-relatum\",\n\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\tsubgraph cluster_w5 {\n\t\t\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\t\t\tlabel=\"w5: slm-Table\",\n\t\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\t\tw5\t\t\t\t\t\t\t\t [fillcolor=aliceblue,\n\t\t\t\t\t\t\t\t\tlabel=\"{&lt;entity&gt; slm-Table|&lt;det&gt; the|&lt;ident&gt; specific|&lt;quant&gt; singular}\",\n\t\t\t\t\t\t\t\t\tshape=Mrecord,\n\t\t\t\t\t\t\t\t\tstyle=filled];\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}\n",
+        "smain": "strict graph \"\" {\n\tnode [label=\"\\N\"];\n\tsubgraph cluster_x1 {\n\t\tgraph [fillcolor=lightskyblue,\n\t\t\tlabel=\"x1: gs-AffectingDirectedMotion\",\n\t\t\tstyle=filled\n\t\t];\n\t\tsubgraph \"cluster_gum-actee\" {\n\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\tlabel=\"gum-actee\",\n\t\t\t\tstyle=filled\n\t\t\t];\n\t\t\tsubgraph cluster_w2 {\n\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\tlabel=\"w2: slm-Cup\",\n\t\t\t\t\tstyle=filled\n\t\t\t\t];\n\t\t\t\tw2\t\t\t\t [fillcolor=aliceblue,\n\t\t\t\t\tlabel=\"{&lt;entity&gt; cup|&lt;det&gt; the|&lt;ident&gt; specific|&lt;quant&gt; singular}\",\n\t\t\t\t\tshape=Mrecord,\n\t\t\t\t\tstyle=filled];\n\t\t\t}\n\t\t}\n\t\tsubgraph \"cluster_gs-route\" {\n\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\tlabel=\"gs-route\",\n\t\t\t\tstyle=filled\n\t\t\t];\n\t\t\tsubgraph cluster_x2 {\n\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\tlabel=\"x2: gs-GeneralizedRoute\",\n\t\t\t\t\tstyle=filled\n\t\t\t\t];\n\t\t\t\tsubgraph \"cluster_gs-pathPlacement\" {\n\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\tlabel=\"gs-pathPlacement\",\n\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t];\n\t\t\t\t\tsubgraph cluster_x3 {\n\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\tlabel=\"x3: gs-GeneralizedLocation\",\n\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t];\n\t\t\t\t\t\tsubgraph \"cluster_gs-hasSpatialModality\" {\n\t\t\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\t\t\tlabel=\"gs-hasSpatialModality\",\n\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\tsubgraph cluster_w3 {\n\t\t\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\t\t\tlabel=\"w3: gs-DenialOfFunctionalControl\",\n\t\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\t\tw3\t\t\t\t\t\t\t\t [fillcolor=aliceblue,\n\t\t\t\t\t\t\t\t\tlabel=\"{&lt;entity&gt; gs-DenialOfFunctionalControl}\",\n\t\t\t\t\t\t\t\t\tshape=Mrecord,\n\t\t\t\t\t\t\t\t\tstyle=filled];\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tsubgraph \"cluster_gs-relatum\" {\n\t\t\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\t\t\tlabel=\"gs-relatum\",\n\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\tsubgraph cluster_w5 {\n\t\t\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\t\t\tlabel=\"w5: slm-Table\",\n\t\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\t\tw5\t\t\t\t\t\t\t\t [fillcolor=aliceblue,\n\t\t\t\t\t\t\t\t\tlabel=\"{&lt;entity&gt; slm-Table|&lt;det&gt; the|&lt;ident&gt; specific|&lt;quant&gt; singular}\",\n\t\t\t\t\t\t\t\t\tshape=Mrecord,\n\t\t\t\t\t\t\t\t\tstyle=filled];\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tsubgraph \"cluster_gum-processInConfiguration\" {\n\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\tlabel=\"gum-processInConfiguration\",\n\t\t\t\tstyle=filled\n\t\t\t];\n\t\t\tsubgraph cluster_w0 {\n\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\tlabel=\"w0: slm-Moving\",\n\t\t\t\t\tstyle=filled\n\t\t\t\t];\n\t\t\t\tw0\t\t\t\t [fillcolor=aliceblue,\n\t\t\t\t\tlabel=\"{&lt;entity&gt; slm-Taking}\",\n\t\t\t\t\tshape=Mrecord,\n\t\t\t\t\tstyle=filled];\n\t\t\t}\n\t\t}\n\t\tx1\t\t [fillcolor=aliceblue,\n\t\t\tlabel=\"{&lt;mood&gt; imperative}\",\n\t\t\tshape=Mrecord,\n\t\t\tstyle=filled];\n\t}\n}\n",
+        "smain/0": "strict graph \"\" {\n\tnode [label=\"\\N\"];\n\tsubgraph cluster_x1 {\n\t\tgraph [fillcolor=lightskyblue,\n\t\t\tlabel=\"x1: gs-AffectingDirectedMotion\",\n\t\t\tstyle=filled\n\t\t];\n\t\tsubgraph \"cluster_gs-route\" {\n\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\tlabel=\"gs-route\",\n\t\t\t\tstyle=filled\n\t\t\t];\n\t\t\tsubgraph cluster_x2 {\n\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\tlabel=\"x2: gs-GeneralizedRoute\",\n\t\t\t\t\tstyle=filled\n\t\t\t\t];\n\t\t\t\tsubgraph \"cluster_gs-pathPlacement\" {\n\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\tlabel=\"gs-pathPlacement\",\n\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t];\n\t\t\t\t\tsubgraph cluster_x3 {\n\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\tlabel=\"x3: gs-GeneralizedLocation\",\n\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t];\n\t\t\t\t\t\tsubgraph \"cluster_gs-hasSpatialModality\" {\n\t\t\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\t\t\tlabel=\"gs-hasSpatialModality\",\n\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\tsubgraph cluster_w3 {\n\t\t\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\t\t\tlabel=\"w3: gs-DenialOfFunctionalControl\",\n\t\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\t\tw3\t\t\t\t\t\t\t\t [fillcolor=aliceblue,\n\t\t\t\t\t\t\t\t\tlabel=\"{&lt;entity&gt; gs-DenialOfFunctionalControl}\",\n\t\t\t\t\t\t\t\t\tshape=Mrecord,\n\t\t\t\t\t\t\t\t\tstyle=filled];\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tsubgraph \"cluster_gs-relatum\" {\n\t\t\t\t\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\t\t\t\t\tlabel=\"gs-relatum\",\n\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\tsubgraph cluster_w5 {\n\t\t\t\t\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\t\t\t\t\tlabel=\"w5: slm-Table\",\n\t\t\t\t\t\t\t\t\tstyle=filled\n\t\t\t\t\t\t\t\t];\n\t\t\t\t\t\t\t\tw5\t\t\t\t\t\t\t\t [fillcolor=aliceblue,\n\t\t\t\t\t\t\t\t\tlabel=\"{&lt;entity&gt; slm-Table|&lt;det&gt; the|&lt;ident&gt; specific|&lt;quant&gt; singular}\",\n\t\t\t\t\t\t\t\t\tshape=Mrecord,\n\t\t\t\t\t\t\t\t\tstyle=filled];\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tsubgraph \"cluster_gum-actee\" {\n\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\tlabel=\"gum-actee\",\n\t\t\t\tstyle=filled\n\t\t\t];\n\t\t\tsubgraph cluster_w2 {\n\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\tlabel=\"w2: slm-Cup\",\n\t\t\t\t\tstyle=filled\n\t\t\t\t];\n\t\t\t\tw2\t\t\t\t [fillcolor=aliceblue,\n\t\t\t\t\tlabel=\"{&lt;entity&gt; cup|&lt;det&gt; the|&lt;ident&gt; specific|&lt;quant&gt; singular}\",\n\t\t\t\t\tshape=Mrecord,\n\t\t\t\t\tstyle=filled];\n\t\t\t}\n\t\t}\n\t\tsubgraph \"cluster_gum-processInConfiguration\" {\n\t\t\tgraph [fillcolor=honeydew,\n\t\t\t\tlabel=\"gum-processInConfiguration\",\n\t\t\t\tstyle=filled\n\t\t\t];\n\t\t\tsubgraph cluster_w0 {\n\t\t\t\tgraph [fillcolor=lightblue,\n\t\t\t\t\tlabel=\"w0: slm-Taking\",\n\t\t\t\t\tstyle=filled\n\t\t\t\t];\n\t\t\t\tw0\t\t\t\t [fillcolor=aliceblue,\n\t\t\t\t\tlabel=\"{&lt;entity&gt; slm-Taking}\",\n\t\t\t\t\tshape=Mrecord,\n\t\t\t\t\tstyle=filled];\n\t\t\t}\n\t\t}\n\t\tx1\t\t [fillcolor=aliceblue,\n\t\t\tlabel=\"{&lt;mood&gt; imperative}\",\n\t\t\tshape=Mrecord,\n\t\t\tstyle=filled];\n\t}\n}\n"
+    }
+}

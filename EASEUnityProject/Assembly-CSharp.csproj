@@ -519,6 +519,7 @@
     <Compile Include="Assets\Obi\Scripts\Utils\ObiProfiler.cs" />
     <Compile Include="Assets\Obi\Scripts\Utils\ObiUtils.cs" />
     <Compile Include="Assets\onWashingLoadEnter.cs" />
+    <Compile Include="Assets\PipelineInput.cs" />
     <Compile Include="Assets\Scripts\AttachedTo.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\AuxiliaryFunctions.cs" />
@@ -535,6 +536,7 @@
     <Compile Include="Assets\Scripts\MainMenuLogic.cs" />
     <Compile Include="Assets\Scripts\MenuPorter.cs" />
     <Compile Include="Assets\Scripts\Mood.cs" />
+    <Compile Include="Assets\Scripts\PipelineInputData.cs" />
     <Compile Include="Assets\Scripts\ProgressMinigame.cs" />
     <Compile Include="Assets\Scripts\Task.cs" />
     <Compile Include="Assets\Scripts\TrackingEvent.cs" />
@@ -595,6 +597,7 @@
     <None Include="Assets\3rdParty\Gamestrap\UI\Fonts\OpenSans\LICENSE.txt" />
     <None Include="Assets\3rdParty\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
     <None Include="Assets\3rdParty\Standard Assets\Fonts\OpenSans\License!.txt" />
+    <None Include="Assets\JsonDotNet\link.xml" />
     <None Include="Assets\3rdParty\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\3rdParty\Caronte\CaronteFX\Plugin\Materials\Resources\CarCSComputeBones.compute" />
     <None Include="Assets\3rdParty\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
