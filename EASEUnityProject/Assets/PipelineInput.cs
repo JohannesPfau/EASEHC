@@ -25,11 +25,19 @@ public class PipelineInput : MonoBehaviour {
         foreach (string s in jData.graphs.Keys)
             Debug.Log(s + ": " + jData.graphs[s]);
         Debug.Log("--- JSON PARSES ---");
-        Debug.Log(jData.json_parses.smain.__class__);
-        Debug.Log(jData.json_parses.smain.name);
+        foreach(string s in jData.json_parses.Keys)
+        {
+            Debug.Log(s + ": ");
+            foreach(jsonParse j in jData.json_parses[s])
+            {
+                Debug.Log(j.__class__);
+                Debug.Log(j.type);
+                Debug.Log(j.name);
 
-        foreach (jRole r in jData.json_parses.smain.roles)
-            debugRole(r);
+                foreach (jRole r in j.roles)
+                    debugRole(r);
+            }
+        }
     }
 
     void debugRole(jRole r)
@@ -40,12 +48,20 @@ public class PipelineInput : MonoBehaviour {
             if(r.target.type != null)
             {
                 Debug.Log("target: " + r.target.type);
-                debugRole(r.target);
+                debugVariable(r.target);
             }
             else
                 Debug.Log("alt target: " + r.target.alternativeTarget);
+    }
 
-        //if (r.alternativeTarget != null && r.alternativeTarget != "")
+    void debugVariable(jVariable v)
+    {
+        if (v.__class__ != null)
+            Debug.Log(v.__class__ + ": " + v.name + " (" + v.type + ")");
+
+        if (v.roles != null)
+            foreach (jRole vr in v.roles)
+                debugRole(vr);
     }
 
 }
