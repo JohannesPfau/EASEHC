@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/PipelineReaderScene.unity
+- path: Assets/3rdParty/SteamVR/InteractionSystem/Samples/Scenes/Interactions_Example.unity
   isLoaded: 1
   isActive: 1
