@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EASEUnityProject", "Assembly-CSharp.csproj", "{9A7B3DDA-68CF-CDBA-833A-EE7F3040E387}"
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{9A7B3DDA-68CF-CDBA-833A-EE7F3040E387}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EASEUnityProject", "Assembly-CSharp-Editor.csproj", "{342D937F-4F33-62F3-52C3-BE0C92BB684B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{342D937F-4F33-62F3-52C3-BE0C92BB684B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

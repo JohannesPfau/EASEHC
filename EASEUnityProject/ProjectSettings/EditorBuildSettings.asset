@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Scenes/FluidTestScene.unity
+    guid: ee7499c7a0cf94d43a17b628e7f5ca61
+  - enabled: 1
     path: Assets/_Scenes/KITCHEN_CLASH_VR.unity
     guid: b7af962eecf2d794bb5bb3ce0f008d0b
   - enabled: 1
