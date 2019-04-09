@@ -22,6 +22,7 @@ namespace Valve.VR.InteractionSystem
         public string commandOnTrigger;
         public string commandOnDetached;
         bool startToTrackMe;
+        public bool notRestoringGravity;
 
         private Vector3 oldPosition;
         private Quaternion oldRotation;
@@ -257,7 +258,8 @@ namespace Valve.VR.InteractionSystem
 
                 Rigidbody rb = GetComponent<Rigidbody>();
                 rb.isKinematic = false;
-                rb.useGravity = true;
+                if(!notRestoringGravity)
+                    rb.useGravity = true;
                 rb.interpolation = RigidbodyInterpolation.Interpolate;
                 if(GameObject.Find("TrackingLogic"))
                     GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().trackEvent(TrackingEvent.TrackingEventType.PUTDOWN, gameObject);

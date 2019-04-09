@@ -44,9 +44,12 @@ public class TrackingEvent {
 
     public bool similarTo(TrackingEvent te)
     {
+        if (te == null || relatedObjects == null || relatedObjects.Length < 2 || te.relatedObjects == null || te.relatedObjects.Length < 2 || te.relatedObjects[0] == null || te.relatedObjects[1] == null || relatedObjects[0] == null || relatedObjects[1] == null
+            || !relatedObjects[0].GetComponentInChildren<InteractableVRObject>() || !relatedObjects[1].GetComponentInChildren<InteractableVRObject>() || !te.relatedObjects[0].GetComponentInChildren<InteractableVRObject>() || !te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>())
+            return false;
         if(eventType == te.eventType && relatedObjects.Length > 1)
         {
-            Debug.Log("Comparing " + te.relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName + " with " + relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName + " and " + te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName + " with " + relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName);
+            //Debug.Log("Comparing " + te.relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName + " with " + relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName + " and " + te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName + " with " + relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName);
             if ((te.relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName == relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName && te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName == relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName) ||
                (te.relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName == relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName && te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName == relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName))
                 return true;
@@ -60,10 +63,10 @@ public class TrackingEvent {
         MOVEMENT,
         PICKUP,
         COLLISION,
-        COLLISION_WHILE_HELD,
+        COLLISION_WHILE_HELD, // eg knife with fruit
         COLLISION_EXIT,
         PUTDOWN,
-        USAGE,
+        USAGE, // eg pressing button
         THROW //?
     }
 }

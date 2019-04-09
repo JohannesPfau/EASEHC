@@ -25,9 +25,8 @@ public class stickToMe : AuxiliaryFunctions
             if (onlyCuttables)
                 if(physical.GetComponent<isCuttableObject>() == null)
                 {
-                    Debug.Log("no cuttable object");
+                    //Debug.Log("no cuttable object");
                     return;
-
                 }
                 else
                 {

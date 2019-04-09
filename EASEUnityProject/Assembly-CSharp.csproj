@@ -412,6 +412,7 @@
     <Compile Include="Assets\CaptureCameraScript.cs" />
     <Compile Include="Assets\CreateStereoCubemaps.cs" />
     <Compile Include="Assets\emptyFromMe.cs" />
+    <Compile Include="Assets\followObjByForce.cs" />
     <Compile Include="Assets\FPSDisplay.cs" />
     <Compile Include="Assets\hasBeenAttached.cs" />
     <Compile Include="Assets\isCuttableObject.cs" />

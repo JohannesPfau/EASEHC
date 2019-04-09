@@ -28,10 +28,10 @@ public class TaskFramework : MonoBehaviour {
     float totalTime;
     bool totalTimeCounting;
 
-    float bestTime = 2; // TODO: get empirically
-    float bestTimeTotal = 20;
-    float meanTime = 5;
-    float meanTimeTotal = 50;
+    float bestTime = 20; // TODO: get empirically
+    float bestTimeTotal = 100;
+    float meanTime = 50;
+    float meanTimeTotal = 200;
 
     List<string> taskList;
     public SteamVR_Controller.Device controllerL;
@@ -40,9 +40,15 @@ public class TaskFramework : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		taskList = new List<string>();
-        exampleInstructions1(); // TODO: Interface to tasks coming from NLP
+        //exampleInstructions1(); // TODO: Interface to tasks coming from NLP
+        switch(PlayerPrefs.GetInt("progress"))
+        {
+            case 0:
+                ratingEvaluation0();
+                break;
+        }        
 
-        init();
+        //init();  // UI REWORK
         startCountTask();
         startCountTotal();
     }
@@ -74,13 +80,13 @@ public class TaskFramework : MonoBehaviour {
         if(taskTimeCounting)
         {
             float t = Time.time - taskTime;
-            int m = (((int)t) / 60);
-            int s = ((int)t - m);
-            int ms = (int)((t * 100f) -100*m -100*s);
-            string str_m = m > 9 ? "" + m : "0" + m;
-            string str_s = s > 9 ? "" + s : "0" + s;
-            string str_ms = ms > 9 ? "" + ms : "0" + ms;
-            TaskProgressTime.GetComponentInChildren<Text>().text = str_m + ":" + str_s + ":" + str_ms;
+            //int m = (((int)t) / 60);
+            //int s = ((int)t - m);
+            //int ms = (int)((t * 100f) -100*m -100*s);
+            //string str_m = m > 9 ? "" + m : "0" + m;
+            //string str_s = s > 9 ? "" + s : "0" + s;
+            //string str_ms = ms > 9 ? "" + ms : "0" + ms;
+            //TaskProgressTime.GetComponentInChildren<Text>().text = str_m + ":" + str_s + ":" + str_ms;
             TaskProgressBar.GetComponentsInChildren<Image>()[1].fillAmount = t / (meanTime * 2);
             if (t <= bestTime)
                 TaskProgressBar.GetComponentsInChildren<Image>()[1].color = new Color(1, 221f / 255f, 0);
@@ -93,13 +99,13 @@ public class TaskFramework : MonoBehaviour {
         if(totalTimeCounting)
         {
             float t = Time.time - totalTime;
-            int m = (((int)t) / 60);
-            int s = ((int)t - m);
-            int ms = (int)((t * 100f) - 100 * m - 100 * s);
-            string str_m = m > 9 ? "" + m : "0" + m;
-            string str_s = s > 9 ? "" + s : "0" + s;
-            string str_ms = ms > 9 ? "" + ms : "0" + ms;
-            TotalProgressTime.GetComponentInChildren<Text>().text = str_m + ":" + str_s + ":" + str_ms;
+            //int m = (((int)t) / 60);
+            //int s = ((int)t - m);
+            //int ms = (int)((t * 100f) - 100 * m - 100 * s);
+            //string str_m = m > 9 ? "" + m : "0" + m;
+            //string str_s = s > 9 ? "" + s : "0" + s;
+            //string str_ms = ms > 9 ? "" + ms : "0" + ms;
+            //TotalProgressTime.GetComponentInChildren<Text>().text = str_m + ":" + str_s + ":" + str_ms;
             TotalProgressBar.GetComponentsInChildren<Image>()[1].fillAmount = t / (meanTimeTotal * 2);
 
             if (t <= bestTimeTotal)
@@ -110,16 +116,16 @@ public class TaskFramework : MonoBehaviour {
                 TotalProgressBar.GetComponentsInChildren<Image>()[1].color = new Color(150f / 225f, 150f / 225f, 150f / 225f);
         }
 
-        // overflow
-        if (trackedActionsPanel.GetComponentsInChildren<Image>().Length > 10)
-        {
-            DestroyImmediate(trackedActionsPanel.GetComponentsInChildren<Image>()[0].gameObject);
-            // new [0]
-            trackedActionsPanel.GetComponentsInChildren<Image>()[0].sprite = dotsSprite;
-            trackedActionsPanel.GetComponentsInChildren<Image>()[0].GetComponentInChildren<Text>().text = "";
-        }
+        //// overflow // UI REWORK
+        //if (trackedActionsPanel.GetComponentsInChildren<Image>().Length > 10)
+        //{
+        //    DestroyImmediate(trackedActionsPanel.GetComponentsInChildren<Image>()[0].gameObject);
+        //    // new [0]
+        //    trackedActionsPanel.GetComponentsInChildren<Image>()[0].sprite = dotsSprite;
+        //    trackedActionsPanel.GetComponentsInChildren<Image>()[0].GetComponentInChildren<Text>().text = "";
+        //}
         
-        if (Input.GetKeyDown(KeyCode.Return) || (controllerL != null && controllerL.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip) || (controllerR != null && controllerR.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip))))
+        if (Input.GetKeyDown(KeyCode.Return))// || (controllerL != null && controllerL.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip) || (controllerR != null && controllerR.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip))))
         {
             Debug.Log("menu button pressed");
             proceed();
@@ -138,6 +144,15 @@ public class TaskFramework : MonoBehaviour {
         taskList.Add("Put it into a bowl.");
         taskList.Add("Cover it.");
     }
+
+    void ratingEvaluation0()
+    {
+        taskList.Add("Decke 2 <color=yellow>Teller</color> auf den Tisch.");
+        taskList.Add("Decke 2 <color=yellow>Glaeser</color> auf den Tisch.");
+        taskList.Add("Decke 2 <color=yellow>Gabeln</color> auf den Tisch.");
+        taskList.Add("Decke 2 <color=yellow>Messer</color> auf den Tisch.");
+    }
+
     public void createNewTask(string taskName, Task.TaskState taskState)
     {
         createNewTask(taskName, taskState, -1);
@@ -223,6 +238,7 @@ public class TaskFramework : MonoBehaviour {
     public Sprite COLLISIONEXITsprite;
     public Sprite dotsSprite;
     public TrackingEvent lastTrackedEvent;
+    public GameObject lastTrackedActionGO;
 
     public void showTrackedEvent(TrackingEvent te)
     {
@@ -235,7 +251,12 @@ public class TaskFramework : MonoBehaviour {
 
         nrActionsText.GetComponent<Text>().text = int.Parse(nrActionsText.GetComponent<Text>().text)+1 + "";
 
-        GameObject go = Instantiate(trackedActionPrefab, trackedActionsPanel.transform);
+        //GameObject go = Instantiate(trackedActionPrefab, trackedActionsPanel.transform); // UI REWORK
+        GameObject go = Instantiate(trackedActionPrefab, GetComponentInParent<Canvas>().transform);
+        if (lastTrackedActionGO)
+            go.transform.localPosition = lastTrackedActionGO.transform.localPosition + new Vector3(0,-80,0);
+        lastTrackedActionGO = go;
+        Destroy(go, 1.5f);
         switch (te.eventType)
         {
             case TrackingEvent.TrackingEventType.PICKUP:
@@ -260,7 +281,7 @@ public class TaskFramework : MonoBehaviour {
         string t = te.relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName;
         if (te.relatedObjects.Length > 1)
             if (te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>())
-                t += " and " + te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName;
+                t += " & " + te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName;
         go.GetComponentInChildren<Text>().text = t;
     }
 

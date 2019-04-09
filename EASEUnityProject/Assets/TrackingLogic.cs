@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Valve.VR.InteractionSystem;
 
 public class TrackingLogic : MonoBehaviour {
 
@@ -15,9 +16,16 @@ public class TrackingLogic : MonoBehaviour {
     public GameObject playerHead;
 
     public GameObject test;
+    public GameObject DONE_text;
+
+    public List<string> levelGoals;
 
     public float movementRecordDelay = 0.1f;
+    public float actionRecordTreshold = 0.5f;
     float recordDelayed = 0;
+    float actionRecordDelayed = 0;
+    public SteamVR_Controller.Device controllerL;
+    public SteamVR_Controller.Device controllerR;
 
     private void Start()
     {
@@ -31,6 +39,11 @@ public class TrackingLogic : MonoBehaviour {
 
     private void Update()
     {
+        if (controllerL == null && GameObject.Find("Hand1") && GameObject.Find("Hand1").GetComponent<Hand>())
+            controllerL = GameObject.Find("Hand1").GetComponent<Hand>().controller;
+        if (controllerR == null && GameObject.Find("Hand2") && GameObject.Find("Hand2").GetComponent<Hand>())
+            controllerR = GameObject.Find("Hand2").GetComponent<Hand>().controller;
+
         if (Input.GetKeyDown(KeyCode.KeypadMinus))
         {
             Debug.Log("Tracking stopped");
@@ -52,16 +65,32 @@ public class TrackingLogic : MonoBehaviour {
         }
         else
             recordDelayed += Time.deltaTime;
+
+        actionRecordDelayed += Time.deltaTime;
+
+        if(levelGoals.Count == 0 && (controllerL != null && controllerL.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip) || (controllerR != null && controllerR.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip))))
+        {
+            // done
+            PlayerPrefs.SetInt("progress", PlayerPrefs.GetInt("progress") + 1);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("TASK_SCENE");
+        }
     }
     
     public void trackEvent(TrackingEvent.TrackingEventType type, params GameObject[] relatedObjects)
     {
         if (!recording)
             return;
+
+        if (actionRecordDelayed < actionRecordTreshold)
+            return;
+        if(type == TrackingEvent.TrackingEventType.COLLISION)
+            actionRecordDelayed = 0;
+
         TrackingEvent te = new TrackingEvent(type, relatedObjects);
         eventList.Add(te);
         if(GameObject.Find("TaskFramework"))
             GameObject.Find("TaskFramework").GetComponent<TaskFramework>().showTrackedEvent(te);
+        checkGoal(te);
     }
 
     public void trackPositions()
@@ -94,5 +123,37 @@ public class TrackingLogic : MonoBehaviour {
     {
         if (alwaysRecording)
             displayList();
+    }
+
+    void checkGoal(TrackingEvent te)
+    {
+        string s = "";
+        foreach(string goal in levelGoals)
+        {
+            string type = goal.Split(":".ToCharArray())[0];
+            if(type == te.eventType.ToString())
+            {
+                string[] objs = goal.Split(":".ToCharArray())[1].Split(",".ToCharArray());
+                if (te.relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName.ToLower().Contains(objs[0].ToLower()))        // TODO: Contains replaced by ontological objects?
+                    if(objs.Length == 1 || te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName.ToLower().Contains(objs[1].ToLower()))
+                    {
+                        Debug.Log("Goal " + goal + " accomplished!");
+                        s = goal;
+                        break;
+                    }
+                // other way around:
+                if(objs.Length > 1 && te.relatedObjects[0].GetComponentInChildren<InteractableVRObject>().displayedName.ToLower().Contains(objs[1].ToLower()))
+                    if(te.relatedObjects[1].GetComponentInChildren<InteractableVRObject>().displayedName.ToLower().Contains(objs[0].ToLower()))
+                    {
+                        Debug.Log("Goal " + goal + " accomplished!");
+                        s = goal;
+                        break;
+                    }
+            }
+        }
+        if (s != "")
+            levelGoals.Remove(s);
+        if (levelGoals.Count == 0)
+            DONE_text.SetActive(true);
     }
 }

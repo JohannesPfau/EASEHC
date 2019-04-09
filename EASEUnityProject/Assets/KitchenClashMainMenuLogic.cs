@@ -154,6 +154,7 @@ public class KitchenClashMainMenuLogic : MonoBehaviour {
         switch(selectedMenuItem.name)
         {
             case "STORY":
+                SceneManager.LoadScene("TASK_SCENE");
                 break;
             case "SANDBOX":
                 SceneManager.LoadScene("TASK_SCENE");
