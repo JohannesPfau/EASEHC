@@ -57,6 +57,9 @@ namespace Valve.VR.InteractionSystem
 
         public bool snapAttachEaseInCompleted = false;
 
+        public bool canBeUsedMultipleTimesForGoalCompletion;
+        public bool usedForGoalCompletion;
+
         //private Hand.AttachmentFlags attachmentFlags = Hand.defaultAttachmentFlags & (~Hand.AttachmentFlags.SnapOnAttach) & (~Hand.AttachmentFlags.DetachOthers);
 
         //-------------------------------------------------

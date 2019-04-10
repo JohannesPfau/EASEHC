@@ -233,6 +233,8 @@
     <Compile Include="Assets\Obi\Editor\ObiTetherConstraintsEditor.cs" />
     <Compile Include="Assets\Obi\Editor\ObiVolumeConstraintsEditor.cs" />
     <Compile Include="Assets\Obi\Editor\PreviewHelpers.cs" />
+    <Compile Include="Assets\RockVR\Video\Editor\VideoCaptureEditor.cs" />
+    <Compile Include="Assets\RockVR\Video\Editor\VideoCaptureMenuEditor.cs" />
     <None Include="Assets\Obi\Editor\Resources\EditorParticle.shader" />
     <None Include="Assets\Obi\Editor\Resources\DistanceFieldPreview.shader" />
     <None Include="Assets\Obi\Editor\Resources\FlatSurfaceShader.shader" />

@@ -46,19 +46,19 @@ public class TaskFramework : MonoBehaviour {
             case 0:
                 ratingEvaluation0();
                 break;
-        }        
+        }
 
         //init();  // UI REWORK
-        startCountTask();
-        startCountTotal();
+        bestIndicator.transform.position = bestStartP.transform.position + (bestEndP.transform.position - bestStartP.transform.position) * (bestTime / (meanTime * 2));
+        Invoke("startCountTask", 3);
+
+        //startCountTotal(); // UI REWORK
     }
 
     void startCountTask()
     {
         taskTime = Time.time;
         taskTimeCounting = true;
-        float perc = bestTime / (meanTime * 2);
-        bestIndicator.transform.position = bestStartP.transform.position + (bestEndP.transform.position - bestStartP.transform.position) * perc;
         resetTrackedEvents();
     }
     void startCountTotal()

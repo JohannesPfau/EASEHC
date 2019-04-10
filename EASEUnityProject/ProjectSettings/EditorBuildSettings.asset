@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/RatingEvaluation_Task0.unity
     guid: c92c60a05dcbcce4795b19024c5b9584
+  - enabled: 1
+    path: Assets/_Scenes/RatingEvaluation_Rating1Scene.unity
+    guid: 1314b22aa522f1444acb3898c6acad49
   m_configObjects: {}
