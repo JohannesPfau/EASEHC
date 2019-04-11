@@ -14,7 +14,7 @@ namespace RockVR.Video
         /// <summary>
         /// Play video properties.
         /// </summary>
-        private UnityEngine.Video.VideoPlayer videoPlayerImpl;
+        public UnityEngine.Video.VideoPlayer videoPlayerImpl;
         private int index = 0;
         public static VideoPlayer instance;
         private void Awake()

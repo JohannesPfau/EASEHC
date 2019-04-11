@@ -422,6 +422,7 @@
     <Compile Include="Assets\Level5Logic.cs" />
     <Compile Include="Assets\LevelOWLogic.cs" />
     <Compile Include="Assets\moppingWater.cs" />
+    <Compile Include="Assets\MuxingReadyListener.cs" />
     <Compile Include="Assets\Obi\Rendering\ObiBaseFluidRenderer.cs" />
     <Compile Include="Assets\Obi\Rendering\ObiDistanceFieldRenderer.cs" />
     <Compile Include="Assets\Obi\Rendering\ObiFluidRenderer.cs" />
@@ -524,6 +525,7 @@
     <Compile Include="Assets\Obi\Scripts\Utils\ObiUtils.cs" />
     <Compile Include="Assets\onWashingLoadEnter.cs" />
     <Compile Include="Assets\PipelineInput.cs" />
+    <Compile Include="Assets\RatingSystemLevelLogic.cs" />
     <Compile Include="Assets\RockVR\Common\Scripts\EventDelegate.cs" />
     <Compile Include="Assets\RockVR\Common\Scripts\FPSDisplay.cs" />
     <Compile Include="Assets\RockVR\Common\Scripts\Platform.cs" />

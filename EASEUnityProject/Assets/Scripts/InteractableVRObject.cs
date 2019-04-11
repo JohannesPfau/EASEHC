@@ -184,7 +184,8 @@ namespace Valve.VR.InteractionSystem
             if (commandOnTrigger.Length > 0 && hand.GetStandardInteractionButtonUp())
             {
                 GameObject.Find("LevelLogic").SendMessage(commandOnTrigger);
-                GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().trackEvent(TrackingEvent.TrackingEventType.USAGE, gameObject);
+                if(GameObject.Find("TrackingLogic"))
+                    GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().trackEvent(TrackingEvent.TrackingEventType.USAGE, gameObject);
             }
 
         }

@@ -162,6 +162,18 @@ public class KitchenClashMainMenuLogic : MonoBehaviour {
             case "DAILY_CHALLENGE":
                 SceneManager.LoadScene("TASK_SCENE");
                 break;
+
+            //Rating Evaluation:
+            case "START":
+                PlayerPrefs.SetInt("progress", 0);
+                SceneManager.LoadScene("TASK_SCENE");
+                break;
+            case "BEWERTEN1":
+                SceneManager.LoadScene("RatingEvaluation_Rating1Scene");
+                break;
+            case "BEWERTEN2":
+                SceneManager.LoadScene("RatingEvaluation_Rating2Scene");
+                break;
             case "QUIT":
                 Application.Quit();
                 break;

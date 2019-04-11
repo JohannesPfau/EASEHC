@@ -45,7 +45,7 @@ public class TrackingLogic : MonoBehaviour {
             dedicatedCaptureCamera.transform.localPosition = Vector3.zero;
             dedicatedCaptureCamera.transform.localRotation = Quaternion.identity;
         }
-        PlayerPrefs.SetInt("progress", levelNr);
+        PlayerPrefs.SetInt("progress", levelNr); // easier debugging
     }
 
     private void Update()
@@ -79,11 +79,11 @@ public class TrackingLogic : MonoBehaviour {
 
         actionRecordDelayed += Time.deltaTime;
 
-        if(levelGoals.Count == 0 && (controllerL != null && controllerL.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip) || (controllerR != null && controllerR.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip))))
+        if((levelGoals.Count == 0 && (controllerL != null && controllerL.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip) || (controllerR != null && controllerR.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip))))
+            || Input.GetKeyDown(KeyCode.Return)) // debug
         {
             // done
-            PlayerPrefs.SetInt("progress", PlayerPrefs.GetInt("progress") + 1);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("RatingEvaluation_Rating1Scene");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("PROCESSING_SCENE");
             VideoCaptureCtrl.instance.StopCapture();
         }
     }

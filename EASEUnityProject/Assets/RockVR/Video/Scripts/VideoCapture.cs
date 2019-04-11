@@ -779,6 +779,7 @@ namespace RockVR.Video
             if (VideoCaptureCtrl.instance.debug)
             {
                 Debug.Log("[VideoMuxing::Muxing] Mux process finish!");
+                MuxingReadyListener.onMuxingReady();
             }
             return true;
         }
