@@ -2212,6 +2212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4d92b7e10189746a3af421b4cd6a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isProcessingScene: 1
   TaskDescriptionText: {fileID: 1708937803}
   TaskText: {fileID: 174832797}
   bestTimeText: {fileID: 1899830699}
@@ -5601,7 +5602,7 @@ MonoBehaviour:
   throwable: 1
   displayedName: 
   commandOnTrigger: 
-  commandOnDetached: progress
+  commandOnDetached: 
   notRestoringGravity: 0
   attachmentFlags: 12
   attachmentPoint: 

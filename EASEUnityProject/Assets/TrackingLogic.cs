@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Valve.VR.InteractionSystem;
 
@@ -67,6 +68,13 @@ public class TrackingLogic : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
             displayList();
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (VideoCaptureCtrl.instance)
+                Destroy(VideoCaptureCtrl.instance.gameObject);
+            SceneManager.LoadScene("TASK_SCENE");
+        }
+            
 
         if (recording && player != null && playerHandL != null && playerHandR != null && recordDelayed > movementRecordDelay)
         {
@@ -84,7 +92,10 @@ public class TrackingLogic : MonoBehaviour {
         {
             // done
             UnityEngine.SceneManagement.SceneManager.LoadScene("PROCESSING_SCENE");
-            VideoCaptureCtrl.instance.StopCapture();
+            if (VideoCaptureCtrl.instance.status == VideoCaptureCtrlBase.StatusType.STARTED)
+                VideoCaptureCtrl.instance.StopCapture();
+            else
+                MuxingReadyListener.onMuxingReady();
         }
     }
     
@@ -224,6 +235,9 @@ public class TrackingLogic : MonoBehaviour {
             case 0:
                 goalDisplay_level0();
                 break;
+            case 1:
+                goalDisplay_level1();
+                break;
         }
     }
 
@@ -249,6 +263,27 @@ public class TrackingLogic : MonoBehaviour {
             t += "4. Decke 2 <color=yellow>Messer</color> auf den Tisch.";
         else
             t += "<color=grey>4. Decke 2 Messer auf den Tisch.</color>";
+
+        GameObject.Find("TaskDescriptionText").GetComponent<Text>().text = t;
+    }
+
+    void goalDisplay_level1()
+    {
+        string t = "";
+        if (levelGoals.Contains("COLLISION_WHILE_HELD:Gurke,Messer"))
+            t += "1. Schneide eine <color=yellow>Gurke</color> in Scheiben.\r\n\r\n";
+        else
+            t += "<color=grey>1. Schneide eine Gurke in Scheiben.</color>\r\n\r\n";
+
+        if (levelGoals.Contains("COLLISION:Gurke,Salatschuessel"))
+            t += "2. Lege die Scheiben in eine <color=yellow>Schuessel</color>.\r\n\r\n";
+        else
+            t += "<color=grey>2. Lege die Scheiben in eine Schuessel.</color>\r\n\r\n";
+
+        if (levelGoals.Contains("COLLISION:Salatschuessel,Öl"))
+            t += "3. Begiesse den Salat mit <color=yellow>Öl</color>.\r\n\r\n";
+        else
+            t += "<color=grey>3. Begiesse den Salat mit Öl.</color>\r\n\r\n";
 
         GameObject.Find("TaskDescriptionText").GetComponent<Text>().text = t;
     }

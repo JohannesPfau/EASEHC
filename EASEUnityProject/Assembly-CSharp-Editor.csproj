@@ -235,6 +235,13 @@
     <Compile Include="Assets\Obi\Editor\PreviewHelpers.cs" />
     <Compile Include="Assets\RockVR\Video\Editor\VideoCaptureEditor.cs" />
     <Compile Include="Assets\RockVR\Video\Editor\VideoCaptureMenuEditor.cs" />
+    <Compile Include="Assets\Technie\PhysicsCreator\Editor\CommonUi.cs" />
+    <Compile Include="Assets\Technie\PhysicsCreator\Editor\HullPainterEditor.cs" />
+    <Compile Include="Assets\Technie\PhysicsCreator\Editor\HullPainterWindow.cs" />
+    <Compile Include="Assets\Technie\PhysicsCreator\Editor\PhysicsSeeder.cs" />
+    <Compile Include="Assets\Technie\PhysicsCreator\Editor\RaycastUtil.cs" />
+    <Compile Include="Assets\Technie\PhysicsCreator\Editor\SceneManipulator.cs" />
+    <Compile Include="Assets\Technie\PhysicsCreator\Editor\SelectionUtil.cs" />
     <None Include="Assets\Obi\Editor\Resources\EditorParticle.shader" />
     <None Include="Assets\Obi\Editor\Resources\DistanceFieldPreview.shader" />
     <None Include="Assets\Obi\Editor\Resources\FlatSurfaceShader.shader" />

@@ -546,7 +546,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tischdecken fuer 2
+  m_Text: Tutorial
 --- !u!222 &174832798
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5504,6 +5504,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   snapAttachEaseInCompleted: 0
+  canBeUsedMultipleTimesForGoalCompletion: 0
+  usedForGoalCompletion: 0
 --- !u!114 &1385115406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6715,8 +6717,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0021, y: -0.8836}
-  m_SizeDelta: {x: 332.8435, y: 482.4967}
+  m_AnchoredPosition: {x: 0.0021, y: -0.595}
+  m_SizeDelta: {x: 332.844, y: 424.69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1708937802
 MonoBehaviour:
@@ -6757,18 +6759,23 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 65aa8bd04c262e2489ad74e2cb784c75, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 4
-    m_MaxSize: 103
+    m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "1. Decke 2 <color=yellow>Teller</color> auf den Tisch.\r\n\r\n2. Decke
-    2 <color=yellow>Glaeser</color> auf den Tisch.\r\n\r\n3. Decke 2 <color=yellow>Gabeln</color>
-    auf den Tisch.\r\n\r\n4. Decke 2 <color=yellow>Messer</color> auf den Tisch."
+  m_Text: 'Sieh Dich in der virtuellen Umgebung gut um.
+
+
+    In den folgenden Leveln wirst Du Aufgaben erhalten, die mit den Gegenstaenden
+    in dieser Wohnung zu tun haben.
+
+
+    Wenn Du fertig bist, sag dem Experimentleiter einfach Bescheid.'
 --- !u!222 &1708937804
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7874,6 +7881,7 @@ MonoBehaviour:
   COLLISIONEXITsprite: {fileID: 21300000, guid: 51f9d1c2e2abdb14e8b68836f60b41db,
     type: 3}
   dotsSprite: {fileID: 0}
+  lastTrackedActionGO: {fileID: 0}
 --- !u!114 &1988105224
 MonoBehaviour:
   m_ObjectHideFlags: 0

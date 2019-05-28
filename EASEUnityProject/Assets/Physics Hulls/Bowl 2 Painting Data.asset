@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de965f2e710c1c489ead8e62cd25da0, type: 3}
+  m_Name: Bowl 2 Painting Data
+  m_EditorClassIdentifier: 
+  hullData: {fileID: 11400000, guid: 5b9dca245f65bf34f83652a9d95b24f2, type: 2}
+  sourceMesh: {fileID: 4300000, guid: d76797594fd2e7b419909267ad74eb01, type: 3}
+  activeHull: 4
+  faceThickness: 0.1
+  hulls:
+  - name: Hull 1
+    type: 0
+    colour: {r: 0, g: 1, b: 1, a: 0.3}
+    material: {fileID: 0}
+    isTrigger: 0
+    selectedFaces: 1b0000001a00000013000000120000000b0000000a000000
+    collisionMesh: {fileID: 0}
+    faceCollisionMesh: {fileID: 0}
+    collisionBox:
+      m_Center: {x: 0.00012056471, y: -0.0017023826, z: -0.002373058}
+      m_Extent: {x: 0.0028141988, y: 0.0010059552, z: 0.0004411405}
+    hasColliderError: 0
+    numColliderFaces: 0
+  - name: Hull 2
+    type: 0
+    colour: {r: 1, g: 0, b: 1, a: 0.3}
+    material: {fileID: 0}
+    isTrigger: 0
+    selectedFaces: 190000001800000011000000100000000500000004000000
+    collisionMesh: {fileID: 0}
+    faceCollisionMesh: {fileID: 0}
+    collisionBox:
+      m_Center: {x: -0.0022524917, y: -0.0017023826, z: 0}
+      m_Extent: {x: 0.00044114236, y: 0.0010059552, z: 0.0028141974}
+    hasColliderError: 0
+    numColliderFaces: 0
+  - name: Hull 3
+    type: 0
+    colour: {r: 1, g: 1, b: 0, a: 0.3}
+    material: {fileID: 0}
+    isTrigger: 0
+    selectedFaces: 17000000160000000e0000000f0000000900000008000000
+    collisionMesh: {fileID: 0}
+    faceCollisionMesh: {fileID: 0}
+    collisionBox:
+      m_Center: {x: 0.00012056471, y: -0.0017023826, z: 0.002373055}
+      m_Extent: {x: 0.0028141988, y: 0.0010059552, z: 0.0004411423}
+    hasColliderError: 0
+    numColliderFaces: 0
+  - name: Hull 4
+    type: 0
+    colour: {r: 1, g: 0, b: 0, a: 0.3}
+    material: {fileID: 0}
+    isTrigger: 0
+    selectedFaces: 0d0000000c00000000000000010000001500000014000000
+    collisionMesh: {fileID: 0}
+    faceCollisionMesh: {fileID: 0}
+    collisionBox:
+      m_Center: {x: 0.002493621, y: -0.0017023826, z: -5.820766e-10}
+      m_Extent: {x: 0.00044114236, y: 0.0010059552, z: 0.002814198}
+    hasColliderError: 0
+    numColliderFaces: 0
+  - name: Hull 5
+    type: 0
+    colour: {r: 0, g: 1, b: 0, a: 0.3}
+    material: {fileID: 0}
+    isTrigger: 0
+    selectedFaces: 02000000030000000700000006000000
+    collisionMesh: {fileID: 0}
+    faceCollisionMesh: {fileID: 0}
+    collisionBox:
+      m_Center: {x: 0.000120565295, y: -0.0023149177, z: -0.0000000024447218}
+      m_Extent: {x: 0.002062041, y: 0.0003934201, z: 0.0020620394}
+    hasColliderError: 0
+    numColliderFaces: 0

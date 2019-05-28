@@ -6,4 +6,5 @@ using UnityEngine;
 public class isCuttableObject : MonoBehaviour {
 
     public Material innerMaterial;
+    public bool isCut;
 }

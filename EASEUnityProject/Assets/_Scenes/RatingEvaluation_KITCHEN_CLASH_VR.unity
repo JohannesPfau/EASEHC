@@ -4033,7 +4033,7 @@ MonoBehaviour:
   go_2: {fileID: 0}
   go_3: {fileID: 0}
   go_4: {fileID: 0}
-  inactiveMaterial: {fileID: 2100000, guid: 07bcd4e0597eb0648b7a45624f2e0594, type: 2}
+  inactiveMaterial: {fileID: 2100000, guid: 5fe0aebe85b574b4a94e74712f0aa915, type: 2}
   activeMaterial: {fileID: 2100000, guid: 9c0880e4cd8a8704e82b6940624b569a, type: 2}
   activeMaterial_Fruit: {fileID: 2100000, guid: 8ab6cc3e1d7614ebe940ca761cfd559e,
     type: 2}

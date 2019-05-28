@@ -8,7 +8,7 @@ using Valve.VR.InteractionSystem;
 public class VRObjectSlicer : MonoBehaviour {
 
     float minimalPercentageCutoff = 0.15f;
-    float minimalSizeTotal = 0.05f;
+    float minimalSizeTotal = 0.1f;
 
     public void Slice(GameObject source)
     {
@@ -26,8 +26,10 @@ public class VRObjectSlicer : MonoBehaviour {
             { 
                 if (checkIfOverMinimal(lower, source) && checkIfOverMinimal(upper, source))
                 {
+                    source.GetComponent<isCuttableObject>().isCut = true;
                     applyChangesToHullPart(lower, source);
                     applyChangesToHullPart(upper, source);
+                    Debug.Log("Slicing " + source.name);
                     source.SetActive(false);
                 }
                 else
@@ -46,6 +48,7 @@ public class VRObjectSlicer : MonoBehaviour {
 
     public void applyChangesToHullPart(GameObject part, GameObject source)
     {
+        part.name = source.name;
         InteractableVRObject ivro = part.AddComponent<InteractableVRObject>();
         ivro.grabbable = source.GetComponent<InteractableVRObject>().grabbable;
         ivro.throwable = source.GetComponent<InteractableVRObject>().throwable;
