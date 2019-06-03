@@ -384,6 +384,7 @@ MonoBehaviour:
     type: 3}
   COLLISIONEXITsprite: {fileID: 21300000, guid: 51f9d1c2e2abdb14e8b68836f60b41db,
     type: 3}
+  USAGEsprite: {fileID: 21300000, guid: a456ae7279ac15b4ba738b81b107a68d, type: 3}
   dotsSprite: {fileID: 21300000, guid: a0c26132462ce9945b1ecdd8b975137b, type: 3}
   lastTrackedActionGO: {fileID: 0}
 --- !u!114 &34082327

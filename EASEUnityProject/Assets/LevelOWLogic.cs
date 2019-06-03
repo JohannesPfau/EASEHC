@@ -41,4 +41,12 @@ public class LevelOWLogic : LevelLogic {
             }
         }
     }
+    public Material redMaterial;
+    public bool hotplate_on;
+    public void Herdknopf()
+    {
+        hotplate_on = true;
+        GameObject.Find("Herdplatte").GetComponent<MeshRenderer>().material = redMaterial;
+        GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().levelGoals.Remove("USAGE:Herdknopf"); //Task2
+    }
 }

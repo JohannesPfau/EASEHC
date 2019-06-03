@@ -41,13 +41,25 @@ public class TaskSceneLogic : MonoBehaviour {
                 break;
             case 1:
                 TaskText.text = "Gurkensalat";
-                TaskDescriptionText.text =  "1. Schneide eine <color=yellow>Gurke</color> in Scheiben.\r\n\r\n"+
-                                            "2. Lege die Scheiben in eine <color=yellow>Schuessel</color>.\r\n\r\n"+
+                TaskDescriptionText.text = "1. Schneide eine <color=yellow>Gurke</color> in Scheiben.\r\n\r\n" +
+                                            "2. Lege die Scheiben in eine <color=yellow>Schuessel</color>.\r\n\r\n" +
                                             "3. Begiesse den Salat mit <color=yellow>Öl</color>.";
                 bestTimeText.text = "00:00:00";
                 meanTimeText.text = "00:00:00";
                 nrActionsText.text = "0";
                 PlayerPrefs.SetString("currentTaskScene", "RatingEvaluation_Task1");
+                break;
+            case 2:
+                TaskText.text = "Steak";
+                TaskDescriptionText.text = "1. Stelle eine <color=yellow>Pfanne</color> auf den Herd.\r\n\r\n" +
+                                            "2. Erhitze die <color=yellow>Herdplatte</color>.\r\n\r\n" +
+                                            "3. Gib etwas <color=yellow>Öl</color> in die Pfanne.\r\n\r\n" +
+                                            "4. Lege ein <color=yellow>Steak</color> dazu.\r\n\r\n" +
+                                            "5. Brate es auf den gewuenschten Grad und lege es dann auf den <color=yellow>Teller</color>.\r\n\r\n"; 
+                bestTimeText.text = "00:00:00";
+                meanTimeText.text = "00:00:00";
+                nrActionsText.text = "0";
+                PlayerPrefs.SetString("currentTaskScene", "RatingEvaluation_Task2");
                 break;
         }
         if (isProcessingScene)

@@ -2212,6 +2212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4d92b7e10189746a3af421b4cd6a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isProcessingScene: 0
   TaskDescriptionText: {fileID: 1708937803}
   TaskText: {fileID: 174832797}
   bestTimeText: {fileID: 1899830699}
@@ -7880,7 +7881,8 @@ MonoBehaviour:
     type: 3}
   COLLISIONEXITsprite: {fileID: 21300000, guid: 51f9d1c2e2abdb14e8b68836f60b41db,
     type: 3}
-  dotsSprite: {fileID: 0}
+  USAGEsprite: {fileID: 21300000, guid: a456ae7279ac15b4ba738b81b107a68d, type: 3}
+  dotsSprite: {fileID: 21300000, guid: a0c26132462ce9945b1ecdd8b975137b, type: 3}
   lastTrackedActionGO: {fileID: 0}
 --- !u!114 &1988105224
 MonoBehaviour:

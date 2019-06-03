@@ -236,6 +236,7 @@ public class TaskFramework : MonoBehaviour {
     public Sprite COLLISIONsprite;
     public Sprite COLLISIONwhileHELDsprite;
     public Sprite COLLISIONEXITsprite;
+    public Sprite USAGEsprite;
     public Sprite dotsSprite;
     public TrackingEvent lastTrackedEvent;
     public GameObject lastTrackedActionGO;
@@ -273,6 +274,9 @@ public class TaskFramework : MonoBehaviour {
                 break;
             case TrackingEvent.TrackingEventType.COLLISION_EXIT:
                 go.GetComponent<Image>().sprite = COLLISIONEXITsprite;
+                break;
+            case TrackingEvent.TrackingEventType.USAGE:
+                go.GetComponent<Image>().sprite = USAGEsprite;
                 break;
             default:
                 go.GetComponent<Image>().sprite = null;

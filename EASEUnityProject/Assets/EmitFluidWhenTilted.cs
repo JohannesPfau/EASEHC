@@ -20,7 +20,8 @@ public class EmitFluidWhenTilted : MonoBehaviour
         if (transform.rotation.eulerAngles.x >= minXemitting && transform.rotation.eulerAngles.x <= maxXemitting)
         {
             emitter.SetActive(true);
-            GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().levelGoals.Remove("COLLISION:Salatschuessel,Öl");
+            GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().levelGoals.Remove("COLLISION:Salatschuessel,Öl"); //Task1
+            GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().levelGoals.Remove("COLLISION:Öl,Pfanne"); //Task2
         }
         //else
         //    emitter.SetActive(false);

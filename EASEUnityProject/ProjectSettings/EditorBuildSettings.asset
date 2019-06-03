@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/RatingEvaluation_Task1.unity
-    guid: e9d01186379e546488c851b7786346fd
-  - enabled: 1
     path: Assets/_Scenes/RatingEvaluation_KITCHEN_CLASH_VR.unity
     guid: 4067a5bd3bd02064490b0b6fa370af06
   - enabled: 1
@@ -20,6 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/RatingEvaluation_Task0.unity
     guid: c92c60a05dcbcce4795b19024c5b9584
+  - enabled: 1
+    path: Assets/_Scenes/RatingEvaluation_Task1.unity
+    guid: e9d01186379e546488c851b7786346fd
+  - enabled: 1
+    path: Assets/_Scenes/RatingEvaluation_Task2.unity
+    guid: b6ebb13f8a8a8f94eac96db1661dd74a
   - enabled: 1
     path: Assets/_Scenes/PROCESSING_SCENE.unity
     guid: 00644249a16c64444a354fd37307add0

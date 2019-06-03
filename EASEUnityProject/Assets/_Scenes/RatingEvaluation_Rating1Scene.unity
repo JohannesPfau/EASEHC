@@ -384,6 +384,7 @@ MonoBehaviour:
     type: 3}
   COLLISIONEXITsprite: {fileID: 21300000, guid: 51f9d1c2e2abdb14e8b68836f60b41db,
     type: 3}
+  USAGEsprite: {fileID: 21300000, guid: a456ae7279ac15b4ba738b81b107a68d, type: 3}
   dotsSprite: {fileID: 21300000, guid: a0c26132462ce9945b1ecdd8b975137b, type: 3}
   lastTrackedActionGO: {fileID: 0}
 --- !u!114 &34082327
@@ -2278,7 +2279,6 @@ MonoBehaviour:
   starEnabledMat: {fileID: 2100000, guid: 82096aab38f01cb40a1cbf8629a810ba, type: 2}
   starDisabledMat: {fileID: 2100000, guid: 31b29cea830e0e24da72018652e5ed31, type: 2}
   doneText: {fileID: 175342517}
-  done2Text: {fileID: 0}
   hearts: []
 --- !u!4 &483583923
 Transform:

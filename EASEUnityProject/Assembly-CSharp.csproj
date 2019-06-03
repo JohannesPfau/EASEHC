@@ -585,6 +585,7 @@
     <Compile Include="Assets\Technie\PhysicsCreator\Scripts\SphereUtils.cs" />
     <Compile Include="Assets\ToPlunge.cs" />
     <Compile Include="Assets\TrackingLogic.cs" />
+    <Compile Include="Assets\transformableSteak.cs" />
     <Compile Include="Assets\VideoController.cs" />
     <Compile Include="Assets\VolumeOf.cs" />
     <Compile Include="Assets\VRObjectSlicer.cs" />

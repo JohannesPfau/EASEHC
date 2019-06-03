@@ -238,6 +238,9 @@ public class TrackingLogic : MonoBehaviour {
             case 1:
                 goalDisplay_level1();
                 break;
+            case 2:
+                goalDisplay_level2();
+                break;
         }
     }
 
@@ -270,7 +273,7 @@ public class TrackingLogic : MonoBehaviour {
     void goalDisplay_level1()
     {
         string t = "";
-        if (levelGoals.Contains("COLLISION_WHILE_HELD:Gurke,Messer"))
+        if (levelGoals.Contains("COLLISION:Gurke,Messer"))
             t += "1. Schneide eine <color=yellow>Gurke</color> in Scheiben.\r\n\r\n";
         else
             t += "<color=grey>1. Schneide eine Gurke in Scheiben.</color>\r\n\r\n";
@@ -284,6 +287,37 @@ public class TrackingLogic : MonoBehaviour {
             t += "3. Begiesse den Salat mit <color=yellow>Öl</color>.\r\n\r\n";
         else
             t += "<color=grey>3. Begiesse den Salat mit Öl.</color>\r\n\r\n";
+
+        GameObject.Find("TaskDescriptionText").GetComponent<Text>().text = t;
+    }
+
+    public void goalDisplay_level2()
+    {
+        string t = "";
+        if (levelGoals.Contains("USAGE:Herdknopf"))
+            t += "1. Erhitze die <color=yellow>Herdplatte</color>.\r\n\r\n";
+        else
+            t += "<color=grey>1. Erhitze die Herdplatte.</color>\r\n\r\n";
+
+        if (levelGoals.Contains("COLLISION:Pfanne,Herd"))
+            t += "2. Stelle eine <color=yellow>Pfanne</color> auf den Herd.\r\n\r\n";
+        else
+            t += "<color=grey>2. Stelle eine Pfanne auf den Herd.</color>\r\n\r\n";
+
+        if (levelGoals.Contains("COLLISION:Öl,Pfanne"))
+            t += "3. Gib etwas <color=yellow>Öl</color> in die Pfanne.\r\n\r\n";
+        else
+            t += "<color=grey>3. Gib etwas Öl in die Pfanne.</color>\r\n\r\n";
+
+        if (levelGoals.Contains("COLLISION:Steak,Pfanne"))
+            t += "4. Lege ein <color=yellow>Steak</color> dazu.\r\n\r\n";
+        else
+            t += "<color=grey>4. Lege ein Steak dazu.</color>\r\n\r\n";
+
+        if (levelGoals.Contains("COLLISION:Steak,Teller"))
+            t += "5. Brate es auf den gewuenschten Grad und lege es dann auf den <color=yellow>Teller</color>.\r\n\r\n";
+        else
+            t += "<color=grey>5. Brate es auf den gewuenschten Grad und lege es dann auf den Teller.</color>\r\n\r\n";
 
         GameObject.Find("TaskDescriptionText").GetComponent<Text>().text = t;
     }
