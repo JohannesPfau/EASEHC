@@ -94,8 +94,8 @@ public class TrackingLogic : MonoBehaviour {
             UnityEngine.SceneManagement.SceneManager.LoadScene("PROCESSING_SCENE");
             if (VideoCaptureCtrl.instance.status == VideoCaptureCtrlBase.StatusType.STARTED)
                 VideoCaptureCtrl.instance.StopCapture();
-            else
-                MuxingReadyListener.onMuxingReady();
+            //else
+            //    MuxingReadyListener.onMuxingReady();
         }
     }
     

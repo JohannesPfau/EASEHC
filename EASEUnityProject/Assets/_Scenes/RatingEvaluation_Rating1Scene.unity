@@ -2262,8 +2262,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTwoVideoSystem: 0
-  video1url: file://C:/Users/Jo/Documents/RockVR/Video/2019-04-11-13-37-44-J6W5R.mp4
-  video2url: 
   videoPlayer1: {fileID: 1709553376}
   videoPlayer2: {fileID: 0}
   videoImage: {fileID: 920871779}
@@ -3344,7 +3342,7 @@ PrefabInstance:
     - target: {fileID: 2373130, guid: 84ced649ac57f3a43a501cf77116797a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 82096aab38f01cb40a1cbf8629a810ba, type: 2}
+      objectReference: {fileID: 2100000, guid: 31b29cea830e0e24da72018652e5ed31, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84ced649ac57f3a43a501cf77116797a, type: 3}
 --- !u!1 &692660044

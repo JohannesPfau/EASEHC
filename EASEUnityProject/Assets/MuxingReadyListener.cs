@@ -1,6 +1,9 @@
 ﻿using RockVR.Video;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +11,14 @@ public class MuxingReadyListener : MonoBehaviour
 {
     public GameObject toEnable;
     static bool done;
-    public static void onMuxingReady()
+    static string _videoname;
+    static string _filePath;
+    bool serializingDone;
+    public static void onMuxingReady(string videoname, string filePath)
     {
         done = true;
+        _videoname = videoname;
+        _filePath = filePath;
     }
 
     private void Update()
@@ -18,6 +26,11 @@ public class MuxingReadyListener : MonoBehaviour
         if(done)
         {
             toEnable.SetActive(true);
+
+            //persistence
+            if(!serializingDone)
+                serialize();
+
             if (AuxiliaryFunctions.isGripButtonPressed())
                 proceed();
         }
@@ -38,5 +51,31 @@ public class MuxingReadyListener : MonoBehaviour
         else
             UnityEngine.SceneManagement.SceneManager.LoadScene("RatingEvaluation_KITCHEN_CLASH_VR");
 
+    }
+
+    void serialize()
+    {
+        serializingDone = true;
+
+        string vddmPath = Application.persistentDataPath + "/VideoDescriptionDataManager.json";
+        string vddName = _videoname + ".json";
+
+        VideoDescriptionData vdd = new VideoDescriptionData(_videoname, _filePath);
+        VideoDescriptionDataManager vddM;
+        if (!File.Exists(vddmPath))
+        {
+            vddM = new VideoDescriptionDataManager();
+            vddM.videoDescriptionDataFiles = new string[] { vddName };
+        }
+        else
+        {
+            vddM = JsonUtility.FromJson<VideoDescriptionDataManager>(File.ReadAllText(vddmPath));
+            List<string> vdds = vddM.videoDescriptionDataFiles.OfType<string>().ToList();
+            vdds.Add(vddName);
+            vddM.videoDescriptionDataFiles = vdds.ToArray<string>();
+        }
+
+        File.WriteAllText(Application.persistentDataPath + "/" + vddName, JsonUtility.ToJson(vdd, true));
+        File.WriteAllText(vddmPath, JsonUtility.ToJson(vddM, true));
     }
 }

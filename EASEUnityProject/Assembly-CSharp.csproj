@@ -563,6 +563,8 @@
     <Compile Include="Assets\Scripts\ProgressMinigame.cs" />
     <Compile Include="Assets\Scripts\Task.cs" />
     <Compile Include="Assets\Scripts\TrackingEvent.cs" />
+    <Compile Include="Assets\Scripts\VideoDescriptionData.cs" />
+    <Compile Include="Assets\Scripts\VideoDescriptionDataManager.cs" />
     <Compile Include="Assets\stickToMe.cs" />
     <Compile Include="Assets\TaskFramework.cs" />
     <Compile Include="Assets\TaskSceneLogic.cs" />

@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 public class RatingSystemLevelLogic : MonoBehaviour
 {
     public bool isTwoVideoSystem;
-    public string video1url;
-    public string video2url;
+    VideoDescriptionData vdd1;
+    VideoDescriptionData vdd2;
+
     public VideoPlayer videoPlayer1;
     public VideoPlayer videoPlayer2;
 
@@ -22,19 +26,52 @@ public class RatingSystemLevelLogic : MonoBehaviour
     public GameObject[] hearts;
 
     bool started;
+    int starsSelected; // 1 ... 5
+    int heartSelected; // 1 if video1, -1 if video2
+
+    List<VideoDescriptionData> currentVDDs;
 
     private void Start()
     {
-        videoPlayer1.url = video1url; // TODO: get from playerprefs
+        //get available videos from persistence
+        deserialize();
+
+        videoPlayer1.url = vdd1.filename; // set by serialized json
         if (isTwoVideoSystem)
-            videoPlayer2.url = video2url;
+            videoPlayer2.url = vdd2.filename;
     }
 
     private void Update()
     {
         if(doneText && AuxiliaryFunctions.isGripButtonPressed())
         {
+            // serialize rating
+            if(!isTwoVideoSystem)
+                updateJson(vdd1.videoname, starsSelected);
+            else
+            {
+                updateJson(vdd1.videoname, heartSelected);
+                updateJson(vdd2.videoname, -heartSelected);
+            }
+
             // switch to next one
+            Pause();
+            if(selectNextVDDs())
+            {
+                doneText.SetActive(false);
+                started = false;
+                videoImage.SetActive(false);
+
+                videoPlayer1.url = vdd1.filename;
+                if (!isTwoVideoSystem)
+                    showStars(0);
+                else
+                {
+                    rateReset();
+                    video2Image.SetActive(false);
+                    videoPlayer2.url = vdd2.filename;
+                }
+            }
         }
     }
 
@@ -97,6 +134,7 @@ public class RatingSystemLevelLogic : MonoBehaviour
 
     public void showStars(int count)
     {
+        starsSelected = count;
         for (int i = 0; i < count; i++)
             stars[i].GetComponent<MeshRenderer>().material = starEnabledMat;
         for (int i = count; i < 5; i++)
@@ -128,15 +166,93 @@ public class RatingSystemLevelLogic : MonoBehaviour
 
     public void rate1()
     {
+        heartSelected = 1;
         hearts[0].SetActive(true);
         hearts[1].SetActive(false);
     }
     public void rate2()
     {
+        heartSelected = -1;
         hearts[1].SetActive(true);
         hearts[0].SetActive(false);
 
         if(started)
             doneText.SetActive(true);
+    }
+    void rateReset()
+    {
+        heartSelected = 0;
+        hearts[0].SetActive(true);
+        hearts[0].SetActive(false);
+    }
+
+    void deserialize()
+    {
+        string vddmPath = Application.persistentDataPath + "/VideoDescriptionDataManager.json";
+
+        if (!File.Exists(vddmPath))
+        {
+            Debug.Log("No VideoDescriptionDataManager found.");
+            SceneManager.LoadScene("RatingEvaluation_KITCHEN_CLASH_VR");
+        }
+        else
+        {
+            VideoDescriptionDataManager vddM = JsonUtility.FromJson<VideoDescriptionDataManager>(File.ReadAllText(vddmPath));
+            currentVDDs = new List<VideoDescriptionData>();
+
+            // filter out all with same userID to prevent rating own sessions
+            foreach(string vddpath in vddM.videoDescriptionDataFiles)
+            {
+                VideoDescriptionData vdd = JsonUtility.FromJson<VideoDescriptionData>(File.ReadAllText(Application.persistentDataPath + "/" + vddpath));
+                //if(vdd.userID != PlayerPrefs.GetString("userID")) // TODO: comment in when userID works
+                    currentVDDs.Add(vdd);
+            }
+            selectNextVDDs();
+        }
+    }
+
+    bool selectNextVDDs()
+    {
+        if (currentVDDs.Count == 0 || (isTwoVideoSystem && currentVDDs.Count <= 1))
+        {
+            Debug.Log("No more (suitable) Videos found.");
+            SceneManager.LoadScene("RatingEvaluation_KITCHEN_CLASH_VR");
+            return false;
+        }
+        vdd1 = currentVDDs[Random.Range(0, currentVDDs.Count)];
+        currentVDDs.Remove(vdd1);
+        if (isTwoVideoSystem)
+        {
+            vdd2 = currentVDDs[Random.Range(0, currentVDDs.Count)];
+            currentVDDs.Remove(vdd2);
+        }
+        return true;
+    }
+    
+    void updateJson(string videoName, int value)
+    {
+        string vddPath = Application.persistentDataPath + "/" + videoName+ ".json";
+        if (!File.Exists(vddPath))
+        {
+            Debug.Log("File not found: " + vddPath);
+            return;
+        }
+        VideoDescriptionData vdd = JsonUtility.FromJson<VideoDescriptionData>(File.ReadAllText(vddPath));
+        if(!isTwoVideoSystem)
+        {
+            // ABSOLUTE
+            List<int> absoluteRatings = vdd.absoluteRatings.OfType<int>().ToList();
+            absoluteRatings.Add(value);
+            vdd.absoluteRatings = absoluteRatings.ToArray<int>();
+        }
+        else
+        {
+            // RELATIVE
+            List<int> relativeRatings = vdd.relativeRatings.OfType<int>().ToList();
+            relativeRatings.Add(value);
+            vdd.relativeRatings = relativeRatings.ToArray<int>();
+        }
+
+        File.WriteAllText(vddPath, JsonUtility.ToJson(vdd, true));
     }
 }

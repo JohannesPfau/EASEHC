@@ -650,11 +650,11 @@ namespace RockVR.Video
                     encodedFrameCount++;
                     if (VideoCaptureCtrl.instance.debug)
                     {
-                        Debug.Log(
-                            "[VideoCapture::FrameEncodeThreadFunction] Encoded " +
-                            encodedFrameCount + " frames. " + frameQueue.Count +
-                            " frames remaining."
-                        );
+                        //Debug.Log(
+                        //    "[VideoCapture::FrameEncodeThreadFunction] Encoded " +
+                        //    encodedFrameCount + " frames. " + frameQueue.Count +
+                        //    " frames remaining."
+                        //);
                     }
                 }
                 else
@@ -749,7 +749,8 @@ namespace RockVR.Video
         /// </summary>
         public bool Muxing()
         {
-            filePath = PathConfig.SaveFolder + StringUtils.GetMp4FileName(StringUtils.GetRandomString(5));
+            string videoname = StringUtils.GetMp4FileName(StringUtils.GetRandomString(5));
+            filePath = PathConfig.SaveFolder + videoname;
             System.IntPtr libAPI = MuxingLib_Get(
                 videoCapture.bitrate,
                 filePath,
@@ -779,7 +780,7 @@ namespace RockVR.Video
             if (VideoCaptureCtrl.instance.debug)
             {
                 Debug.Log("[VideoMuxing::Muxing] Mux process finish!");
-                MuxingReadyListener.onMuxingReady();
+                MuxingReadyListener.onMuxingReady(videoname,filePath);
             }
             return true;
         }
