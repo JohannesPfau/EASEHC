@@ -43,7 +43,7 @@ public class RatingSystemLevelLogic : MonoBehaviour
 
     private void Update()
     {
-        if(doneText && AuxiliaryFunctions.isGripButtonPressed())
+        if(doneText.activeSelf && AuxiliaryFunctions.isGripButtonPressed())
         {
             // serialize rating
             if(!isTwoVideoSystem)
@@ -204,7 +204,7 @@ public class RatingSystemLevelLogic : MonoBehaviour
             foreach(string vddpath in vddM.videoDescriptionDataFiles)
             {
                 VideoDescriptionData vdd = JsonUtility.FromJson<VideoDescriptionData>(File.ReadAllText(Application.persistentDataPath + "/" + vddpath));
-                //if(vdd.userID != PlayerPrefs.GetString("userID")) // TODO: comment in when userID works
+                if(vdd.userID != PlayerPrefs.GetString("userID"))
                     currentVDDs.Add(vdd);
             }
             selectNextVDDs();

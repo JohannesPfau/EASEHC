@@ -9,6 +9,9 @@ public class VideoDescriptionData
     public string filename;
     public int[] absoluteRatings; // 1 ... 5
     public int[] relativeRatings; // -x ... 0 ... +x
+    //public int taskLevel;
+    //public int nrOfActionsSpent;
+    //public int secondsSpent;
 
     public VideoDescriptionData(string videoname, string filename)
     {
