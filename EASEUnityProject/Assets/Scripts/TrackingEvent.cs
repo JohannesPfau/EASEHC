@@ -58,6 +58,17 @@ public class TrackingEvent {
         return false;
     }
 
+    override public string ToString()
+    {
+        string s = "(" + timestamp + ") " + eventType;
+        for(int i=0; i < relatedObjects.Length; i++)
+            if(relatedObjects[i].GetComponentInChildren<InteractableVRObject>())
+                s += " | " + relatedObjects[i].GetComponentInChildren<InteractableVRObject>().displayedName + " (pos):" + objectPositions[i] + " (rot):" + objectRotations[i];
+            else
+                s += " | " + relatedObjects[i].name + " (pos):" + objectPositions[i] + " (rot):" + objectRotations[i];
+        return s;
+    }
+
     public enum TrackingEventType
     {
         MOVEMENT,

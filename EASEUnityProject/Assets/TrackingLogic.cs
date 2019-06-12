@@ -87,16 +87,29 @@ public class TrackingLogic : MonoBehaviour {
 
         actionRecordDelayed += Time.deltaTime;
 
-        if((levelGoals.Count == 0 && (controllerL != null && controllerL.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip) || (controllerR != null && controllerR.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip))))
-            || Input.GetKeyDown(KeyCode.Return)) // debug
+        if ((levelGoals.Count == 0 && (controllerL != null && controllerL.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip) || (controllerR != null && controllerR.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip)))))
+            proceedAfterDone(); // done
+        if(Input.GetKeyDown(KeyCode.Return))
         {
-            // done
-            UnityEngine.SceneManagement.SceneManager.LoadScene("PROCESSING_SCENE");
-            if (VideoCaptureCtrl.instance.status == VideoCaptureCtrlBase.StatusType.STARTED)
-                VideoCaptureCtrl.instance.StopCapture();
-            //else
-            //    MuxingReadyListener.onMuxingReady();
+            // "done" debug
+            levelGoals.Clear();
+            checkDone();
+            proceedAfterDone();
         }
+    }
+
+    void proceedAfterDone()
+    {
+        int i = 0;
+        foreach (TrackingEvent evt in eventList)
+        {
+            PlayerPrefs.SetString("Event" + i, evt.ToString());
+            i++;
+        }
+        PlayerPrefs.SetInt("EventSize", i);
+        SceneManager.LoadScene("PROCESSING_SCENE");
+        if (VideoCaptureCtrl.instance.status == VideoCaptureCtrlBase.StatusType.STARTED)
+            VideoCaptureCtrl.instance.StopCapture();
     }
     
     public void trackEvent(TrackingEvent.TrackingEventType type, params GameObject[] relatedObjects)
@@ -223,12 +236,8 @@ public class TrackingLogic : MonoBehaviour {
         }
         if (s != "")
             levelGoals.Remove(s);
-        if (levelGoals.Count == 0 && !done)
-        {
-            DONE_text.SetActive(true);
-            AudioSource.PlayClipAtPoint(Resources.Load<AudioClip>("TrackedActions/Done"), Camera.main.transform.position);
-            done = true;
-        }
+
+        checkDone();
 
         switch(PlayerPrefs.GetInt("progress"))
         {
@@ -241,6 +250,18 @@ public class TrackingLogic : MonoBehaviour {
             case 2:
                 goalDisplay_level2();
                 break;
+        }
+    }
+
+    void checkDone()
+    {
+        if (levelGoals.Count == 0 && !done)
+        {
+            DONE_text.SetActive(true);
+            AudioSource.PlayClipAtPoint(Resources.Load<AudioClip>("TrackedActions/Done"), Camera.main.transform.position);
+            PlayerPrefs.SetInt("nrOfActionsSpent", int.Parse(GameObject.Find("TaskFramework").GetComponent<TaskFramework>().nrActionsText.GetComponent<Text>().text));
+            PlayerPrefs.SetFloat("secondsSpent", GameObject.Find("TaskFramework").GetComponent<TaskFramework>().getTimeSpent());
+            done = true;
         }
     }
 

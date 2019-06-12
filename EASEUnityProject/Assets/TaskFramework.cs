@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Valve.VR.InteractionSystem;
 
@@ -25,13 +27,14 @@ public class TaskFramework : MonoBehaviour {
 
     float taskTime;
     bool taskTimeCounting;
-    float totalTime;
-    bool totalTimeCounting;
+    //float totalTime;
+    //bool totalTimeCounting;
 
-    float bestTime = 20; // TODO: get empirically
-    float bestTimeTotal = 100;
-    float meanTime = 50;
-    float meanTimeTotal = 200;
+    float bestTime; // TODO: get empirically
+    //float bestTimeTotal = 100;
+    float meanTime;
+    //float meanTimeTotal = 200;
+    float meanNrOfActions;
 
     List<string> taskList;
     public SteamVR_Controller.Device controllerL;
@@ -39,16 +42,17 @@ public class TaskFramework : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		taskList = new List<string>();
+        //taskList = new List<string>();
         //exampleInstructions1(); // TODO: Interface to tasks coming from NLP
-        switch(PlayerPrefs.GetInt("progress"))
-        {
-            case 0:
-                ratingEvaluation0();
-                break;
-        }
+        //switch(PlayerPrefs.GetInt("progress")) // deprecated
+        //{
+        //    case 0:
+        //        ratingEvaluation0();
+        //        break;
+        //}
 
         //init();  // UI REWORK
+        loadVDDsAndCalculateMeans();
         bestIndicator.transform.position = bestStartP.transform.position + (bestEndP.transform.position - bestStartP.transform.position) * (bestTime / (meanTime * 2));
         Invoke("startCountTask", 3);
 
@@ -61,13 +65,103 @@ public class TaskFramework : MonoBehaviour {
         taskTimeCounting = true;
         resetTrackedEvents();
     }
-    void startCountTotal()
+    public float getTimeSpent()
     {
-        totalTime = Time.time;
-        totalTimeCounting = true;
-        float perc = bestTimeTotal / (meanTimeTotal * 2);
-        bestIndicatorTotal.transform.position = bestTotalStartP.transform.position + (bestTotalEndP.transform.position - bestTotalStartP.transform.position) * perc;
+        taskTimeCounting = false;
+        saveScore();
+        return Time.time - taskTime;
     }
+
+    void loadVDDsAndCalculateMeans()
+    {
+        string vddmPath = Application.persistentDataPath + "/VideoDescriptionDataManager.json";
+
+        bestTime = Mathf.Infinity;
+        
+        if (!File.Exists(vddmPath))
+        {
+            bestTime = 100;
+            meanTime = 200;
+            meanNrOfActions = 100;
+            Debug.Log("No VideoDescriptionDataManager found.");
+        }
+        else
+        {
+            VideoDescriptionDataManager vddM = JsonUtility.FromJson<VideoDescriptionDataManager>(File.ReadAllText(vddmPath));
+            int count = 0;
+
+            // filter out different tasks
+            foreach (string vddpath in vddM.videoDescriptionDataFiles)
+            {
+                VideoDescriptionData vdd = JsonUtility.FromJson<VideoDescriptionData>(File.ReadAllText(Application.persistentDataPath + "/" + vddpath));
+                if (vdd.sceneName == SceneManager.GetActiveScene().name)
+                {
+                    meanTime += vdd.secondsSpent;
+                    meanNrOfActions += vdd.nrOfActionsSpent;
+                    if (vdd.secondsSpent < bestTime)
+                        bestTime = vdd.secondsSpent;
+                    count++;
+                }
+            }
+            if(count > 0)
+            {
+                if (count == 1)
+                {
+                    meanTime *= 2;
+                    meanNrOfActions *= 2;
+                }
+                else
+                {
+                    meanTime = meanTime / count;
+                    meanNrOfActions = meanNrOfActions / count;
+                }
+                displayBestAndMeanTimes(bestTime, meanTime, meanNrOfActions);
+            }
+            else
+            {
+                bestTime = 100;
+                meanTime = 200;
+                meanNrOfActions = 100;
+                Debug.Log("No prior executions of this task found.");
+            }
+        }
+    }
+    public void saveScore()
+    {
+        // time
+        float t = (Time.time - taskTime);
+        if (t <= bestTime)
+            PlayerPrefs.SetInt("TimeScore", 4);
+        else if (t <= meanTime)
+            PlayerPrefs.SetInt("TimeScore", 3);
+        else if (t <= meanTime * 2)
+            PlayerPrefs.SetInt("TimeScore", 2);
+        else
+            PlayerPrefs.SetInt("TimeScore", 1);
+
+        // # actions
+        int a = int.Parse(nrActionsText.GetComponent<Text>().text);
+        if(a <= meanNrOfActions)
+            PlayerPrefs.SetInt("ActionsScore", 3);
+        else if (a <= meanNrOfActions * 2)
+            PlayerPrefs.SetInt("ActionsScore", 2);
+        else
+            PlayerPrefs.SetInt("ActionsScore", 1);
+    }
+    public void displayBestAndMeanTimes(float bestTime, float meanTime, float meanNrOfActions)
+    {
+        GameObject.Find("BestTimeText").GetComponent<Text>().text = AuxiliaryFunctions.timeToString(bestTime);        
+        GameObject.Find("MeanTimeText").GetComponent<Text>().text = AuxiliaryFunctions.timeToString(meanTime);
+        GameObject.Find("NrActionsText").GetComponent<Text>().text = (int)meanNrOfActions + "";
+    }
+
+    //void startCountTotal()
+    //{
+    //    totalTime = Time.time;
+    //    totalTimeCounting = true;
+    //    float perc = bestTimeTotal / (meanTimeTotal * 2);
+    //    bestIndicatorTotal.transform.position = bestTotalStartP.transform.position + (bestTotalEndP.transform.position - bestTotalStartP.transform.position) * perc;
+    //}
 
     // Update is called once per frame
     void Update ()
@@ -96,25 +190,25 @@ public class TaskFramework : MonoBehaviour {
                 TaskProgressBar.GetComponentsInChildren<Image>()[1].color = new Color(150f/225f, 150f / 225f, 150f / 225f);
 
         }
-        if(totalTimeCounting)
-        {
-            float t = Time.time - totalTime;
-            //int m = (((int)t) / 60);
-            //int s = ((int)t - m);
-            //int ms = (int)((t * 100f) - 100 * m - 100 * s);
-            //string str_m = m > 9 ? "" + m : "0" + m;
-            //string str_s = s > 9 ? "" + s : "0" + s;
-            //string str_ms = ms > 9 ? "" + ms : "0" + ms;
-            //TotalProgressTime.GetComponentInChildren<Text>().text = str_m + ":" + str_s + ":" + str_ms;
-            TotalProgressBar.GetComponentsInChildren<Image>()[1].fillAmount = t / (meanTimeTotal * 2);
+        //if(totalTimeCounting)
+        //{
+        //    float t = Time.time - totalTime;
+        //    //int m = (((int)t) / 60);
+        //    //int s = ((int)t - m);
+        //    //int ms = (int)((t * 100f) - 100 * m - 100 * s);
+        //    //string str_m = m > 9 ? "" + m : "0" + m;
+        //    //string str_s = s > 9 ? "" + s : "0" + s;
+        //    //string str_ms = ms > 9 ? "" + ms : "0" + ms;
+        //    //TotalProgressTime.GetComponentInChildren<Text>().text = str_m + ":" + str_s + ":" + str_ms;
+        //    TotalProgressBar.GetComponentsInChildren<Image>()[1].fillAmount = t / (meanTimeTotal * 2);
 
-            if (t <= bestTimeTotal)
-                TotalProgressBar.GetComponentsInChildren<Image>()[1].color = new Color(1, 221f / 255f, 0);
-            else if (t <= meanTimeTotal)
-                TotalProgressBar.GetComponentsInChildren<Image>()[1].color = new Color(135f / 255f, 1, 0);
-            else
-                TotalProgressBar.GetComponentsInChildren<Image>()[1].color = new Color(150f / 225f, 150f / 225f, 150f / 225f);
-        }
+        //    if (t <= bestTimeTotal)
+        //        TotalProgressBar.GetComponentsInChildren<Image>()[1].color = new Color(1, 221f / 255f, 0);
+        //    else if (t <= meanTimeTotal)
+        //        TotalProgressBar.GetComponentsInChildren<Image>()[1].color = new Color(135f / 255f, 1, 0);
+        //    else
+        //        TotalProgressBar.GetComponentsInChildren<Image>()[1].color = new Color(150f / 225f, 150f / 225f, 150f / 225f);
+        //}
 
         //// overflow // UI REWORK
         //if (trackedActionsPanel.GetComponentsInChildren<Image>().Length > 10)
@@ -125,11 +219,11 @@ public class TaskFramework : MonoBehaviour {
         //    trackedActionsPanel.GetComponentsInChildren<Image>()[0].GetComponentInChildren<Text>().text = "";
         //}
         
-        if (Input.GetKeyDown(KeyCode.Return))// || (controllerL != null && controllerL.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip) || (controllerR != null && controllerR.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip))))
-        {
-            Debug.Log("menu button pressed");
-            proceed();
-        }
+        //if (Input.GetKeyDown(KeyCode.Return))// || (controllerL != null && controllerL.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip) || (controllerR != null && controllerR.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip))))
+        //{
+        //    Debug.Log("menu button pressed");
+        //    proceed();
+        //}
     }
 
     void init()
@@ -145,7 +239,7 @@ public class TaskFramework : MonoBehaviour {
         taskList.Add("Cover it.");
     }
 
-    void ratingEvaluation0()
+    void ratingEvaluation0() // deprecated
     {
         taskList.Add("Decke 2 <color=yellow>Teller</color> auf den Tisch.");
         taskList.Add("Decke 2 <color=yellow>Glaeser</color> auf den Tisch.");
@@ -209,7 +303,7 @@ public class TaskFramework : MonoBehaviour {
         if(!currentlyRunning)
         {
             taskTimeCounting = false;
-            totalTimeCounting = false;
+            //totalTimeCounting = false;
         }
     }
 

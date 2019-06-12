@@ -37,4 +37,18 @@ public class AuxiliaryFunctions : MonoBehaviour {
             return true;
         return false;
     }
+
+    public static string timeToString(float timeInSec)
+    {
+        string m = ((int)(timeInSec / 60)) + "";
+        if (m.Length == 1)
+            m = "0" + m;
+        string s = ((int)(timeInSec % 60)) + "";
+        if (s.Length == 1)
+            s = "0" + s;
+        string ms = (((int)(timeInSec * 100)) % 100) + "";
+        if (ms.Length == 1)
+            ms = "0" + ms;
+        return m + ":" + s + ":" + ms;
+    }
 }
