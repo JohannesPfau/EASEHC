@@ -60,7 +60,7 @@ public class MuxingReadyListener : MonoBehaviour
         string vddmPath = Application.persistentDataPath + "/VideoDescriptionDataManager.json";
         string vddName = _videoname + ".json";
 
-        VideoDescriptionData vdd = new VideoDescriptionData(_videoname, _filePath, PlayerPrefs.GetString("currentTaskScene"), PlayerPrefs.GetInt("nrOfActionsSpent"), PlayerPrefs.GetFloat("secondsSpent"));
+        VideoDescriptionData vdd = new VideoDescriptionData(_videoname, _filePath, PlayerPrefs.GetString("currentTaskScene"), PlayerPrefs.GetInt("nrOfActionsSpent"), PlayerPrefs.GetFloat("secondsSpent"), PlayerPrefs.GetInt("TimeScore"), PlayerPrefs.GetInt("ActionsScore"));
         VideoDescriptionDataManager vddM;
         if (!File.Exists(vddmPath))
         {

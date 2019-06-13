@@ -7,12 +7,7 @@ public class EmitFluidWhenTilted : MonoBehaviour
     public float minXemitting;
     public float maxXemitting;
     public GameObject emitter;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    bool done;
 
     // Update is called once per frame
     void Update()
@@ -20,8 +15,13 @@ public class EmitFluidWhenTilted : MonoBehaviour
         if (transform.rotation.eulerAngles.x >= minXemitting && transform.rotation.eulerAngles.x <= maxXemitting)
         {
             emitter.SetActive(true);
-            GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().levelGoals.Remove("COLLISION:Salatschuessel,Öl"); //Task1
-            GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().levelGoals.Remove("COLLISION:Öl,Pfanne"); //Task2
+            if(!done)
+            {
+                GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().levelGoals.Remove("COLLISION:Salatschuessel,Öl"); //Task1
+                GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().levelGoals.Remove("COLLISION:Öl,Pfanne"); //Task2
+                GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().checkDone();
+                done = true;
+            }
         }
         //else
         //    emitter.SetActive(false);

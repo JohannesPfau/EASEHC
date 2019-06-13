@@ -29,6 +29,9 @@ public class RatingSystemLevelLogic : MonoBehaviour
     int starsSelected; // 1 ... 5
     int heartSelected; // 1 if video1, -1 if video2
 
+    public int MAX_RATINGS = 10;
+    int ratingsDone = 0;
+
     List<VideoDescriptionData> currentVDDs;
 
     private void Start()
@@ -36,8 +39,9 @@ public class RatingSystemLevelLogic : MonoBehaviour
         //get available videos from persistence
         deserialize();
 
-        videoPlayer1.url = vdd1.filename; // set by serialized json
-        if (isTwoVideoSystem)
+        if(vdd1 != null)
+            videoPlayer1.url = vdd1.filename; // set by serialized json
+        if (isTwoVideoSystem && vdd2 != null)
             videoPlayer2.url = vdd2.filename;
     }
 
@@ -182,8 +186,8 @@ public class RatingSystemLevelLogic : MonoBehaviour
     void rateReset()
     {
         heartSelected = 0;
-        hearts[0].SetActive(true);
         hearts[0].SetActive(false);
+        hearts[1].SetActive(false);
     }
 
     void deserialize()
@@ -213,19 +217,61 @@ public class RatingSystemLevelLogic : MonoBehaviour
 
     bool selectNextVDDs()
     {
+        if(ratingsDone >= MAX_RATINGS)
+        {
+            Debug.Log("Max. ratings (" + MAX_RATINGS + ") reached.");
+            SceneManager.LoadScene("RatingEvaluation_KITCHEN_CLASH_VR");
+            return false;
+        }
         if (currentVDDs.Count == 0 || (isTwoVideoSystem && currentVDDs.Count <= 1))
         {
             Debug.Log("No more (suitable) Videos found.");
             SceneManager.LoadScene("RatingEvaluation_KITCHEN_CLASH_VR");
             return false;
         }
-        vdd1 = currentVDDs[Random.Range(0, currentVDDs.Count)];
-        currentVDDs.Remove(vdd1);
-        if (isTwoVideoSystem)
+        if(!isTwoVideoSystem)
         {
-            vdd2 = currentVDDs[Random.Range(0, currentVDDs.Count)];
+            vdd1 = currentVDDs[Random.Range(0, currentVDDs.Count)];
+            currentVDDs.Remove(vdd1);
+        }
+        else
+        {
+            // test if we can find 2 videos of same task
+            List<VideoDescriptionData> dualVDDlist = new List<VideoDescriptionData>();
+            foreach (VideoDescriptionData dual1 in currentVDDs)
+            {
+                foreach (VideoDescriptionData dual2 in currentVDDs)
+                {
+                    if(dual1 != dual2 && dual1.sceneName == dual2.sceneName) // at least 2 vdds with same scene
+                    {
+                        if (!dualVDDlist.Contains(dual1))
+                            dualVDDlist.Add(dual1);
+                        if (!dualVDDlist.Contains(dual2))
+                            dualVDDlist.Add(dual2);
+                    }
+                }
+            }
+            if(dualVDDlist.Count == 0)
+            {
+                Debug.Log("No more (suitable) Videos found.");
+                SceneManager.LoadScene("RatingEvaluation_KITCHEN_CLASH_VR");
+                return false;
+            }
+
+            //1st vdd random
+            vdd1 = dualVDDlist[Random.Range(0, dualVDDlist.Count)];
+            dualVDDlist.Remove(vdd1);
+            //2nd vdd constrained
+            List<VideoDescriptionData> potentialSecondVDDList = new List<VideoDescriptionData>();
+            foreach (VideoDescriptionData potentialSecondVDD in dualVDDlist)
+                if (potentialSecondVDD.sceneName == vdd1.sceneName)
+                    potentialSecondVDDList.Add(potentialSecondVDD);
+            vdd2 = potentialSecondVDDList[Random.Range(0, potentialSecondVDDList.Count)];
+
+            currentVDDs.Remove(vdd1);
             currentVDDs.Remove(vdd2);
         }
+        ratingsDone++;
         return true;
     }
     

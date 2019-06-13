@@ -35,7 +35,7 @@ public class transformableSteak : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.gameObject.GetComponent<InteractableVRObject>().displayedName.Contains("Pfanne"))
+        if (collision.transform.gameObject.GetComponent<InteractableVRObject>() && collision.transform.gameObject.GetComponent<InteractableVRObject>().displayedName.Contains("Pfanne"))
         {
             onPlate = true;
             steamFX.GetComponent<ParticleSystem>().Play();
@@ -43,7 +43,7 @@ public class transformableSteak : MonoBehaviour
             GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().goalDisplay_level2();
         }
 
-        if (collision.transform.gameObject.GetComponent<InteractableVRObject>().displayedName.Contains("Teller"))
+        if (collision.transform.gameObject.GetComponent<InteractableVRObject>() && collision.transform.gameObject.GetComponent<InteractableVRObject>().displayedName.Contains("Teller"))
         {
             onPlate = false;
             steamFX.GetComponent<ParticleSystem>().Stop();

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using RockVR.Video;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class TaskSceneLogic : MonoBehaviour {
     public GameObject doneStars;
     public GameObject[] tStarsWon;
     public GameObject[] aStarsWon;
+    public GameObject doneText;
 
     // Use this for initialization
     void Start () {
@@ -27,7 +29,8 @@ public class TaskSceneLogic : MonoBehaviour {
                                            "In den folgenden Leveln wirst Du Aufgaben erhalten, die mit den Gegenstaenden in dieser Wohnung zu tun haben.\r\n\r\n" +
                                            "Wenn Du fertig bist, sag dem Experimentleiter einfach Bescheid.";
                 PlayerPrefs.SetString("currentTaskScene", "RatingEvaluation_Tutorial");
-
+                if(doneText && isProcessingScene)
+                    doneText.SetActive(true);
                 break;
             case 0:
                 TaskText.text = "Tischdecken fuer 2";
@@ -61,7 +64,7 @@ public class TaskSceneLogic : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!isProcessingScene && AuxiliaryFunctions.isGripButtonPressed())
+        if ((!isProcessingScene || PlayerPrefs.GetInt("progress") == -1) && AuxiliaryFunctions.isGripButtonPressed())
             progress();
 	}
 
@@ -124,8 +127,7 @@ public class TaskSceneLogic : MonoBehaviour {
     {
         if(PlayerPrefs.GetInt("progress") == -1) // tutorial
         {
-            TaskDescriptionText.text = "In den folgenden Leveln wirst Du Aufgaben erhalten.\r\n\r\n" +
-                "Erledige alle Auftraege moeglichst schnell, mit wenig Arbeitsschritten und ueberzeugend.\r\n\r\n" +
+            TaskDescriptionText.text = "Erledige die Aufgaben der naechsten Level moeglichst schnell, mit wenig Arbeitsschritten und ueberzeugend.\r\n\r\n" +
                 "Deine Ausfuehrung wird nach jedem Level bewertet!";
             return;
         }
@@ -146,6 +148,13 @@ public class TaskSceneLogic : MonoBehaviour {
 
     void progress()
     {
+        if(PlayerPrefs.GetInt("progress") == -1 && isProcessingScene)
+        {
+            PlayerPrefs.SetInt("progress", 0);
+            if (VideoCaptureCtrl.instance)
+                Destroy(VideoCaptureCtrl.instance.gameObject);
+            PlayerPrefs.SetString("currentTaskScene", "TASK_SCENE");
+        }
         StartCoroutine(LoadSceneAsync());
     }
 
