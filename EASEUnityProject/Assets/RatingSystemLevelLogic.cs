@@ -47,7 +47,43 @@ public class RatingSystemLevelLogic : MonoBehaviour
 
     private void Update()
     {
-        if(doneText.activeSelf && AuxiliaryFunctions.isGripButtonPressed())
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            if (pauseObj.activeSelf)
+                Pause();
+            else
+                Play();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+            Replay();
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            Zeitraffer();
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            Zeitlupe();
+        if(Input.GetKeyDown(KeyCode.Escape))
+            SceneManager.LoadScene("RatingEvaluation_KITCHEN_CLASH_VR");
+        if(!isTwoVideoSystem)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                showStars(1);
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+                showStars(2);
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+                showStars(3);
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+                showStars(4);
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+                showStars(5);
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                rate1();
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+                rate2();
+        }
+
+        if (doneText.activeSelf && (AuxiliaryFunctions.isGripButtonPressed() || Input.GetKeyDown(KeyCode.Return)))
         {
             // serialize rating
             if(!isTwoVideoSystem)
@@ -112,6 +148,9 @@ public class RatingSystemLevelLogic : MonoBehaviour
 
     public void Replay()
     {
+        videoPlayer1.Stop();
+        if(isTwoVideoSystem)
+            videoPlayer2.Stop();
         started = false;
         Play();
     }

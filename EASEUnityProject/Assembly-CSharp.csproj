@@ -527,6 +527,7 @@
     <Compile Include="Assets\onWashingLoadEnter.cs" />
     <Compile Include="Assets\PipelineInput.cs" />
     <Compile Include="Assets\RatingSystemLevelLogic.cs" />
+    <Compile Include="Assets\rescaleTool.cs" />
     <Compile Include="Assets\RockVR\Common\Scripts\EventDelegate.cs" />
     <Compile Include="Assets\RockVR\Common\Scripts\FPSDisplay.cs" />
     <Compile Include="Assets\RockVR\Common\Scripts\Platform.cs" />

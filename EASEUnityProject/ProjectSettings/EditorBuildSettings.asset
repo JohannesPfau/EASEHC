@@ -36,10 +36,10 @@ EditorBuildSettings:
     path: Assets/_Scenes/RatingEvaluation_Rating2Scene.unity
     guid: b0516cce3145e93438bdf960cc6f6004
   - enabled: 1
-    path: Assets/_Scenes/KITCHEN_CLASH_VR.unity
+    path: Assets/_Scenes/old/KITCHEN_CLASH_VR.unity
     guid: b7af962eecf2d794bb5bb3ce0f008d0b
   - enabled: 0
-    path: Assets/_Scenes/FluidTestScene.unity
+    path: Assets/_Scenes/old/FluidTestScene.unity
     guid: ee7499c7a0cf94d43a17b628e7f5ca61
   - enabled: 0
     path: Assets/_Scenes/old/MainMenu.unity
@@ -60,6 +60,6 @@ EditorBuildSettings:
     path: Assets/_Scenes/old/Level5.unity
     guid: 9782741be66e2904a8ecc42c92d666b8
   - enabled: 0
-    path: Assets/_Scenes/OpenWorld.unity
+    path: Assets/_Scenes/old/OpenWorld.unity
     guid: 085635c030e26bf42ad896d71703b684
   m_configObjects: {}

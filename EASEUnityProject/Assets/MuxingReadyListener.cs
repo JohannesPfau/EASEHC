@@ -37,6 +37,7 @@ public class MuxingReadyListener : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Return)) // debug
             proceed();
+
     }
 
     void proceed()

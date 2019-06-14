@@ -74,7 +74,9 @@ public class TrackingLogic : MonoBehaviour {
                 Destroy(VideoCaptureCtrl.instance.gameObject);
             SceneManager.LoadScene("TASK_SCENE");
         }
-            
+        if(Input.GetKeyDown(KeyCode.Escape))
+            SceneManager.LoadScene("RatingEvaluation_KITCHEN_CLASH_VR");
+
 
         if (recording && player != null && playerHandL != null && playerHandR != null && recordDelayed > movementRecordDelay)
         {
@@ -107,11 +109,19 @@ public class TrackingLogic : MonoBehaviour {
             i++;
         }
         PlayerPrefs.SetInt("EventSize", i);
-        SceneManager.LoadScene("PROCESSING_SCENE");
         if (VideoCaptureCtrl.instance.status == VideoCaptureCtrlBase.StatusType.STARTED)
             VideoCaptureCtrl.instance.StopCapture();
+
+        StartCoroutine(LoadSceneAsync());
     }
-    
+       
+    IEnumerator LoadSceneAsync()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("PROCESSING_SCENE");
+        while (!asyncLoad.isDone)
+            yield return null;
+    }
+
     public void trackEvent(TrackingEvent.TrackingEventType type, params GameObject[] relatedObjects)
     {
         if (!recording)
@@ -291,7 +301,7 @@ public class TrackingLogic : MonoBehaviour {
         GameObject.Find("TaskDescriptionText").GetComponent<Text>().text = t;
     }
 
-    void goalDisplay_level1()
+    public void goalDisplay_level1()
     {
         string t = "";
         if (levelGoals.Contains("COLLISION:Gurke,Messer"))

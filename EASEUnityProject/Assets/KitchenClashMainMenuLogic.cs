@@ -60,6 +60,22 @@ public class KitchenClashMainMenuLogic : MonoBehaviour {
                     }
                 break;
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            PlayerPrefs.SetInt("progress", 0);
+            SceneManager.LoadScene("TASK_SCENE");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            PlayerPrefs.SetInt("progress", 1);
+            SceneManager.LoadScene("TASK_SCENE");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            PlayerPrefs.SetInt("progress", 2);
+            SceneManager.LoadScene("TASK_SCENE");
+        }
     }
 
     GameObject selectedMenuItem;
