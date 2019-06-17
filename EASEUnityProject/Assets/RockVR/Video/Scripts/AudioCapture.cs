@@ -95,7 +95,7 @@ namespace RockVR.Video
             {
                 eventDelegate.OnComplete();
             }
-            if (VideoCaptureCtrl.instance.debug)
+            if (VideoCaptureCtrl.instance != null && VideoCaptureCtrl.instance.debug)
             {
                 Debug.Log("[AudioCapture::StopCapture] Encode process finish!");
             }

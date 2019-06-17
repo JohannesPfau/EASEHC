@@ -190,20 +190,22 @@ namespace Valve.VR.InteractionSystem
 
         }
 
-
+        public Hand handAttachedTo;
         //-------------------------------------------------
         // Called when this GameObject becomes attached to the hand
         //-------------------------------------------------
         private void OnAttachedToHand(Hand hand)
         {
             attachTime = Time.time;
+            handAttachedTo = hand;
 
-            if(throwable)
+            if (throwable)
             {
                 attached = true;
                 startToTrackMe = true; // for tracking, never set false again
 
-                onPickUp.Invoke();
+                if(onPickUp != null)
+                    onPickUp.Invoke();
 
                 hand.HoverLock(null);
 
@@ -252,11 +254,14 @@ namespace Valve.VR.InteractionSystem
         //-------------------------------------------------
         private void OnDetachedFromHand(Hand hand)
         {
-            if(throwable)
+            handAttachedTo = null;
+
+            if (throwable)
             {
                 attached = false;
 
-                onDetachFromHand.Invoke();
+                if(onDetachFromHand != null)
+                    onDetachFromHand.Invoke();
 
                 hand.HoverUnlock(null);
 
@@ -299,9 +304,16 @@ namespace Valve.VR.InteractionSystem
                 transform.rotation *= Quaternion.AngleAxis(angle * timeUntilFixedUpdate, axis);
             }
             
-            if (commandOnDetached.Length > 0)
+            if (commandOnDetached != null && commandOnDetached.Length > 0)
             {
                 GameObject.Find("LevelLogic").SendMessage(commandOnDetached);
+            }
+
+            float f = 0f;
+            foreach(multiAttached ma in GetComponentsInChildren<multiAttached>())
+            {
+                f += 0.1f;
+                ma.detachMeAfter(f);
             }
         }
 
@@ -360,7 +372,8 @@ namespace Valve.VR.InteractionSystem
             if (throwable)
             {
                 gameObject.SetActive(true);
-                velocityEstimator.BeginEstimatingVelocity();
+                if(velocityEstimator)
+                    velocityEstimator.BeginEstimatingVelocity();
             }
         }
 
@@ -371,7 +384,8 @@ namespace Valve.VR.InteractionSystem
             if (throwable)
             {
                 gameObject.SetActive(false);
-                velocityEstimator.FinishEstimatingVelocity();
+                if (velocityEstimator)
+                    velocityEstimator.FinishEstimatingVelocity();
             }
         }
 
@@ -390,6 +404,30 @@ namespace Valve.VR.InteractionSystem
                     GameObject.Find("TrackingLogic").GetComponent<TrackingLogic>().trackEvent(TrackingEvent.TrackingEventType.COLLISION, gameObject, collision.transform.gameObject);
             if (collision.transform.GetComponent<InteractableVRObject>())
                 collision.transform.GetComponent<InteractableVRObject>().startToTrackMe = true;
+
+
+            if(handAttachedTo)
+            {
+                // multi-collecting
+                foreach (Hand.AttachedObject ao in handAttachedTo.AttachedObjects)
+                {
+                    if (ao.attachedObject.GetComponent<InteractableVRObject>() && collision.gameObject.GetComponent<InteractableVRObject>() && 
+                        ao.attachedObject.GetComponent<InteractableVRObject>().displayedName == collision.gameObject.GetComponent<InteractableVRObject>().displayedName )
+                    {
+                        //handAttachedTo.AttachObject(collision.gameObject, Hand.AttachmentFlags.ParentToHand);
+                        collision.transform.parent = transform;
+                        if(collision.gameObject.GetComponent<Rigidbody>())
+                        {
+                            collision.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                            collision.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                        }
+                        foreach (Collider c in collision.gameObject.GetComponentsInChildren<Collider>())
+                            c.enabled = false;
+                        collision.gameObject.AddComponent<multiAttached>();
+                        break;
+                    }
+                }
+            }
         }
 
         private void OnCollisionExit(Collision collision)

@@ -648,14 +648,14 @@ namespace RockVR.Video
                         VideoCaptureLib_WriteFrames(libAPI, frame.pixels, frame.count);
                     }
                     encodedFrameCount++;
-                    if (VideoCaptureCtrl.instance.debug)
-                    {
-                        //Debug.Log(
-                        //    "[VideoCapture::FrameEncodeThreadFunction] Encoded " +
-                        //    encodedFrameCount + " frames. " + frameQueue.Count +
-                        //    " frames remaining."
-                        //);
-                    }
+                    //if (VideoCaptureCtrl.instance != null && VideoCaptureCtrl.instance.debug)
+                    //{
+                    //    //Debug.Log(
+                    //    //    "[VideoCapture::FrameEncodeThreadFunction] Encoded " +
+                    //    //    encodedFrameCount + " frames. " + frameQueue.Count +
+                    //    //    " frames remaining."
+                    //    //);
+                    //}
                 }
                 else
                 {
