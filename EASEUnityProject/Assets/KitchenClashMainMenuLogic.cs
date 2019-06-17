@@ -44,10 +44,14 @@ public class KitchenClashMainMenuLogic : MonoBehaviour {
                 break;
 
             case 2:
-                if (Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Vertical") > 0)
+                if (Input.GetKeyDown(KeyCode.UpArrow))
                     previousMenuItem();
-                if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") < 0)
+                if (Input.GetKeyDown(KeyCode.DownArrow))
                     nextMenuItem();
+                //if (Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Vertical") > 0)
+                //    previousMenuItem();
+                //if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") < 0)
+                //    nextMenuItem();
                 if (Input.GetButtonDown("Submit"))
                     selectSelectedMenuItem();
                 if (Input.GetButtonDown("Cancel"))

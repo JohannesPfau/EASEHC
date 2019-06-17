@@ -2240,8 +2240,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTwoVideoSystem: 1
-  video1url: file://C:/Users/Jo/Documents/RockVR/Video/2019-04-11-13-11-01-NHJGB.mp4
-  video2url: file://C:/Users/Jo/Documents/RockVR/Video/2019-04-10-15-27-27-IXZPG.mp4
   videoPlayer1: {fileID: 901973226}
   videoPlayer2: {fileID: 1211530980}
   videoImage: {fileID: 920871779}
@@ -2255,6 +2253,7 @@ MonoBehaviour:
   hearts:
   - {fileID: 995866332}
   - {fileID: 1757501910}
+  MAX_RATINGS: 5
 --- !u!4 &483583923
 Transform:
   m_ObjectHideFlags: 0

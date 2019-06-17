@@ -67,7 +67,7 @@ public class TaskSceneLogic : MonoBehaviour {
         if ((!isProcessingScene || PlayerPrefs.GetInt("progress") == -1) && AuxiliaryFunctions.isGripButtonPressed())
             progress();
 
-        if (!isProcessingScene && Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
             SceneManager.LoadScene("RatingEvaluation_KITCHEN_CLASH_VR");
     }
 

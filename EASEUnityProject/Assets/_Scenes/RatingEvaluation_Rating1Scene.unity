@@ -2278,6 +2278,7 @@ MonoBehaviour:
   starDisabledMat: {fileID: 2100000, guid: 31b29cea830e0e24da72018652e5ed31, type: 2}
   doneText: {fileID: 175342517}
   hearts: []
+  MAX_RATINGS: 5
 --- !u!4 &483583923
 Transform:
   m_ObjectHideFlags: 0

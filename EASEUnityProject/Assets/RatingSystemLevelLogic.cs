@@ -29,7 +29,7 @@ public class RatingSystemLevelLogic : MonoBehaviour
     int starsSelected; // 1 ... 5
     int heartSelected; // 1 if video1, -1 if video2
 
-    public int MAX_RATINGS = 10;
+    public int MAX_RATINGS = 5;
     int ratingsDone = 0;
 
     List<VideoDescriptionData> currentVDDs;
@@ -212,6 +212,9 @@ public class RatingSystemLevelLogic : MonoBehaviour
         heartSelected = 1;
         hearts[0].SetActive(true);
         hearts[1].SetActive(false);
+
+        if (started)
+            doneText.SetActive(true);
     }
     public void rate2()
     {

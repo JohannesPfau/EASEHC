@@ -25,8 +25,9 @@ public class TrackingLogic : MonoBehaviour {
 
     public List<string> levelGoals;
 
-    public float movementRecordDelay = 1f;
-    public float actionRecordTreshold = 0.1f;
+    float movementRecordDelay = 1f;
+    float actionRecordTreshold = 0.1f;
+
     float recordDelayed = 0;
     float actionRecordDelayed = 0;
     public SteamVR_Controller.Device controllerL;
