@@ -64,7 +64,7 @@ public class TaskSceneLogic : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if ((!isProcessingScene || PlayerPrefs.GetInt("progress") == -1) && AuxiliaryFunctions.isGripButtonPressed())
+        if ((!isProcessingScene || PlayerPrefs.GetInt("progress") == -1) && (AuxiliaryFunctions.isGripButtonPressed() || Input.GetButtonDown("Submit")))
             progress();
 
         if (Input.GetKeyDown(KeyCode.Escape))

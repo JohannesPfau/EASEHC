@@ -65,6 +65,11 @@ public class KitchenClashMainMenuLogic : MonoBehaviour {
                 break;
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            PlayerPrefs.SetInt("progress", -1);
+            SceneManager.LoadScene("TASK_SCENE");
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             PlayerPrefs.SetInt("progress", 0);
@@ -185,7 +190,8 @@ public class KitchenClashMainMenuLogic : MonoBehaviour {
 
             //Rating Evaluation:
             case "START":
-                PlayerPrefs.SetInt("progress", -1);
+                //PlayerPrefs.SetInt("progress", -1);
+                PlayerPrefs.SetInt("progress", 0); // skip tutorial now
                 SceneManager.LoadScene("TASK_SCENE");
                 break;
             case "BEWERTEN1":

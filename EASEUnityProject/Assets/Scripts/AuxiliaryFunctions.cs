@@ -4,6 +4,8 @@ using UnityEngine;
 using Valve.VR.InteractionSystem;
 
 public class AuxiliaryFunctions : MonoBehaviour {
+
+    public static bool useVideoCapture = false;
     
     public GameObject getPhysicalParent(GameObject go, string goTag)
     {

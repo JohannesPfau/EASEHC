@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de965f2e710c1c489ead8e62cd25da0, type: 3}
+  m_Name: Prop_Big_Chair_01 Painting Data
+  m_EditorClassIdentifier: 
+  hullData: {fileID: 11400000, guid: a60fd2d651804fd40878f6f981dfb47b, type: 2}
+  sourceMesh: {fileID: 4300000, guid: aedb0d5f79716e844b0931f20638b43a, type: 3}
+  activeHull: 3
+  faceThickness: 0.1
+  hulls:
+  - name: Hull 1
+    type: 1
+    colour: {r: 1, g: 0, b: 0.9848051, a: 0.3}
+    material: {fileID: 0}
+    isTrigger: 0
+    selectedFaces: 64000000630000005d00000036000000350000005c000000310000002f0000003000000032000000330000005200000053000000540000005500000067000000660000005b0000005a0000005900000058000000620000004b0000004a0000004c0000004d0000004800000049000000340000005f0000005e000000650000006000000061000000
+    collisionMesh: {fileID: 43084736588039322, guid: a60fd2d651804fd40878f6f981dfb47b,
+      type: 2}
+    faceCollisionMesh: {fileID: 0}
+    collisionBox:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+    hasColliderError: 0
+    numColliderFaces: 16
+  - name: Hull 2
+    type: 1
+    colour: {r: 0, g: 1, b: 0.1271038, a: 0.3}
+    material: {fileID: 0}
+    isTrigger: 0
+    selectedFaces: 2c0000002d0000002b0000002e0000003b0000003c00000046000000450000001e0000001f000000200000002100000023000000240000001700000018000000
+    collisionMesh: {fileID: 43665675749173332, guid: a60fd2d651804fd40878f6f981dfb47b,
+      type: 2}
+    faceCollisionMesh: {fileID: 0}
+    collisionBox:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+    hasColliderError: 0
+    numColliderFaces: 11
+  - name: Hull 3
+    type: 1
+    colour: {r: 1, g: 1, b: 0, a: 0.3}
+    material: {fileID: 0}
+    isTrigger: 0
+    selectedFaces: 37000000260000002500000038000000270000002a000000290000002800000015000000140000001300000012000000160000000e0000000d0000000c000000
+    collisionMesh: {fileID: 43886767816349102, guid: a60fd2d651804fd40878f6f981dfb47b,
+      type: 2}
+    faceCollisionMesh: {fileID: 0}
+    collisionBox:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+    hasColliderError: 0
+    numColliderFaces: 10
+  - name: Hull 4
+    type: 1
+    colour: {r: 1, g: 0, b: 0, a: 0.3}
+    material: {fileID: 0}
+    isTrigger: 0
+    selectedFaces: 06000000080000000a0000000b0000000900000010000000110000001b0000001a000000190000001c0000001d0000000f00000007000000
+    collisionMesh: {fileID: 43618577488093020, guid: a60fd2d651804fd40878f6f981dfb47b,
+      type: 2}
+    faceCollisionMesh: {fileID: 0}
+    collisionBox:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+    hasColliderError: 0
+    numColliderFaces: 9

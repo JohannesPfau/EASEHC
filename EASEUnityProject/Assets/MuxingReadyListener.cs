@@ -23,7 +23,7 @@ public class MuxingReadyListener : MonoBehaviour
 
     private void Update()
     {
-        if(done)
+        if(done || !AuxiliaryFunctions.useVideoCapture)
         {
             toEnable.SetActive(true);
 

@@ -42,10 +42,20 @@ public class TrackingLogic : MonoBehaviour {
         {
             Debug.Log("Tracking started");
             recording = true;
-            VideoCaptureCtrl.instance.StartCapture();
-            dedicatedCaptureCamera.fieldOfView = 43;
-            dedicatedCaptureCamera.transform.localPosition = Vector3.zero;
-            dedicatedCaptureCamera.transform.localRotation = Quaternion.identity;
+            if (AuxiliaryFunctions.useVideoCapture)
+            {
+                VideoCaptureCtrl.instance.StartCapture();
+                dedicatedCaptureCamera.fieldOfView = 43;
+                dedicatedCaptureCamera.transform.localPosition = Vector3.zero;
+                dedicatedCaptureCamera.transform.localRotation = Quaternion.identity;
+            }
+            else
+            {
+                if (VideoCaptureCtrl.instance)
+                    Destroy(VideoCaptureCtrl.instance);
+                if (dedicatedCaptureCamera)
+                    Destroy(dedicatedCaptureCamera);
+            }
         }
         PlayerPrefs.SetInt("progress", levelNr); // easier debugging
     }
@@ -110,7 +120,7 @@ public class TrackingLogic : MonoBehaviour {
             i++;
         }
         PlayerPrefs.SetInt("EventSize", i);
-        if (VideoCaptureCtrl.instance.status == VideoCaptureCtrlBase.StatusType.STARTED)
+        if (AuxiliaryFunctions.useVideoCapture && VideoCaptureCtrl.instance.status == VideoCaptureCtrlBase.StatusType.STARTED)
             VideoCaptureCtrl.instance.StopCapture();
 
         StartCoroutine(LoadSceneAsync());
