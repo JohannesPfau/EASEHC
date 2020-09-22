@@ -561,6 +561,8 @@
     <Compile Include="Assets\Scripts\MainMenuLogic.cs" />
     <Compile Include="Assets\Scripts\MenuPorter.cs" />
     <Compile Include="Assets\Scripts\Mood.cs" />
+    <Compile Include="Assets\Scripts\NEEMConverter.cs" />
+    <Compile Include="Assets\Scripts\NEEMEntry.cs" />
     <Compile Include="Assets\Scripts\PipelineInputData.cs" />
     <Compile Include="Assets\Scripts\ProgressMinigame.cs" />
     <Compile Include="Assets\Scripts\Task.cs" />
