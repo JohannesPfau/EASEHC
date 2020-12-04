@@ -16,7 +16,7 @@ public class NEEMEntry
     public string graph = "user"; // tentative
     public string scope = "{\"time\": {\"since\":{\"$numberDecimal\": \"0\"},\"until\":{\"$numberDecimal\": \"Infinity\"}}}"; // tentative
 
-    public NEEMEntry(string id, string s, string o, string p)
+    public NEEMEntry(string id, string s, string p, string o)
     {
         this.s = s;
         this.o = o;

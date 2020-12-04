@@ -594,6 +594,7 @@
     <Compile Include="Assets\ToPlunge.cs" />
     <Compile Include="Assets\TrackingLogic.cs" />
     <Compile Include="Assets\transformableSteak.cs" />
+    <Compile Include="Assets\UnityToURDF.cs" />
     <Compile Include="Assets\UserIDinputLogic.cs" />
     <Compile Include="Assets\VideoController.cs" />
     <Compile Include="Assets\VolumeOf.cs" />
