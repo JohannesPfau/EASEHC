@@ -19,14 +19,29 @@ public class UnityToURDF : MonoBehaviour
 
         loadFolder("Assets/");
         string globalString = "<robot xmlns:xacro=\"http://ros.org/wiki/xacro\" name=\""+urdfName+"\">";
+        globalString += "<link name=\"room_link\">";
+        globalString += "<inertial>";
+        globalString += "<origin rpy=\"0 0 0\" xyz=\"0.0 0.0 0.0\"/>";
+        globalString += "<mass value=\"1\"/>";
+        globalString += "<inertia ixx=\"1\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"1\" iyz=\"0.0\" izz=\"1\"/>";
+        globalString += "</inertial>";
+        globalString += "</link>";
 
-        foreach(MeshRenderer mr in rootTransform.GetComponentsInChildren<MeshRenderer>())
+        globalString += "<link name=\"world\"/>";
+
+        globalString += "<joint name=\"world_room_joint\" type=\"fixed\">";
+        globalString += "<origin rpy=\"0 0 0\" xyz=\"0.0 0.03 0.0\"/>";
+        globalString += "<parent link=\"world\"/>";
+        globalString += "<child link=\"room_link\"/>";
+        globalString += "</joint>";
+
+        foreach (MeshRenderer mr in rootTransform.GetComponentsInChildren<MeshRenderer>())
         {
             if (!mr.enabled || !mr.gameObject.activeSelf)
                 continue;
             GameObject g = mr.gameObject;
             string uniqueName = g.name.Replace(" ", "_");
-            string parentName = "";
+            string parentName = "room_link";
             //if(g.transform.parent != null)
             //    parentName = g.transform.parent.gameObject.name.Replace(" ", "_");
             if (uniqueNames.Contains(uniqueName))
@@ -70,7 +85,7 @@ public class UnityToURDF : MonoBehaviour
             if (meshName == "UNKNOWN")
                 continue;
 
-            s += "<mesh filename=\"package://KitchenClashMeshes/"+ meshName +".fbx\"/>";           // TODO: .fbx?? TODO: "Sink_Drawer1" or just "sink"??!?!
+            s += "<mesh filename=\"package://h_neem/meshes/" + meshName +".fbx\"/>";           // TODO: .fbx?? TODO: "Sink_Drawer1" or just "sink"??!?!
             s += "</geometry>";
             s += "</visual>";
             s += "</link>";
@@ -108,8 +123,7 @@ public class UnityToURDF : MonoBehaviour
                 j += "</joint>";
                 s += j;
             }
-
-            if(mr.GetComponent<CircularDrive>())
+            else if (mr.GetComponent<CircularDrive>())
             {
                 string j = "<joint name=\"" + uniqueName + "_joint\" type=\"fixed\">";
                 j += "<origin rpy=\"" + g.transform.rotation.eulerAngles.x + " " + g.transform.rotation.eulerAngles.y + " " + g.transform.rotation.eulerAngles.z
@@ -127,6 +141,18 @@ public class UnityToURDF : MonoBehaviour
                     axisZ = 1;
                 j += "<axis xyz=\"" + axisX + " " + axisY + " " + axisZ + "\"/>";
                 j += "<limit effort=\"300\" lower=\""+ mr.GetComponent<CircularDrive>().minAngle * Mathf.Deg2Rad + "\" upper=\"" + mr.GetComponent<CircularDrive>().maxAngle * Mathf.Deg2Rad + "\" velocity=\"10\"/>";            // in "pi"? (rad)
+                j += "</joint>";
+                s += j;
+            }
+            else
+            {
+                string j = "<joint name=\"" + uniqueName + "_joint\" type=\"fixed\">";
+                j += "<origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>";
+                j += "<child link=\"" + uniqueName + "\"/>";
+                j += "<parent link=\"" + parentName + "\"/>";
+
+                j += "<axis xyz=\"0 0 0\"/>";
+                j += "<limit effort=\"300\" lower=\"0\" upper=\"0\" velocity=\"10\"/>";           
                 j += "</joint>";
                 s += j;
             }
