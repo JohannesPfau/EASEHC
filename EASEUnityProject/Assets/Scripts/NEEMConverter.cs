@@ -134,8 +134,8 @@ public class NEEMConverter : MonoBehaviour
 
         float rx = float.Parse(s.Split('(')[4].Split(',')[0]);
         float ry = float.Parse(s.Split('(')[4].Split(',')[1]);
-        float rz = float.Parse(s.Split('(')[4].Split(',')[2].Replace(")", "").Replace(" ", ""));
-        return new NEEMTransform(objName, time, new Vector3(px, py, pz), new Vector3(rx, ry, rz));
+        float rz = float.Parse(s.Split('(')[4].Split(',')[2].Replace(")", "").Replace(" ", ""));        
+        return new NEEMTransform(objName, time, new Vector3(px, py, pz), Quaternion.Euler(rx, ry, rz));
     }
 
     string getRndIdentifier()

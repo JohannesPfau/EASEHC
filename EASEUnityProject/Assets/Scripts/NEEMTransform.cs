@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class NEEMTransform
 {
-    public NEEMTransform(string objName, double unixTimestamp, Vector3 pos, Vector3 rot)
+    public NEEMTransform(string objName, double unixTimestamp, Vector3 pos, Quaternion rot)
     {
         header = new tfHeader();
         header.stamp = "Date("+unixTimestamp+")";
@@ -14,13 +14,14 @@ public class NEEMTransform
         child_frame_id = objName;
         transform = new tfTransform();
         transform.translation = new tfTransform.tfVector3();
-        transform.rotation = new tfTransform.tfVector3();
+        transform.rotation = new tfTransform.tfQuaternion();
         transform.translation.x = pos.x;
         transform.translation.y = pos.y;
         transform.translation.z = pos.z;
         transform.rotation.x = rot.x;
         transform.rotation.y = rot.y;
         transform.rotation.z = rot.z;
+        transform.rotation.w = rot.w;
         __recorded = "Date(" + unixTimestamp + ")";
     }
 
@@ -42,7 +43,7 @@ public class NEEMTransform
     public class tfTransform
     {
         public tfVector3 translation;
-        public tfVector3 rotation;
+        public tfQuaternion rotation;
 
         [Serializable]
         public class tfVector3
@@ -50,6 +51,14 @@ public class NEEMTransform
             public float x;
             public float y;
             public float z;
+        }
+        [Serializable]
+        public class tfQuaternion
+        {
+            public float x;
+            public float y;
+            public float z;
+            public float w;
         }
     }
 }

@@ -37,10 +37,10 @@ public class UnityToURDF : MonoBehaviour
 
         foreach (MeshRenderer mr in rootTransform.GetComponentsInChildren<MeshRenderer>())
         {
-            if (!mr.enabled || !mr.gameObject.activeSelf)
+            if (!mr.enabled || !mr.gameObject.activeSelf || mr.gameObject.name == "Tile")
                 continue;
             GameObject g = mr.gameObject;
-            string uniqueName = g.name.Replace(" ", "_");
+            string uniqueName = g.name.Replace(" ", "_").Replace("(","_").Replace(")","_");
             string parentName = "room_link";
             //if(g.transform.parent != null)
             //    parentName = g.transform.parent.gameObject.name.Replace(" ", "_");
@@ -51,8 +51,9 @@ public class UnityToURDF : MonoBehaviour
             string s = "<link name=\""+ uniqueName + "\" label=\"http://www.ease-crc.org/ont/SOMA.owl#PhysicalObject\">";
             s += "<sphere_inertia mass=\"0\" radius=\"0\"/>";
             s += "<visual>";
-            s += "<origin rpy=\"" + g.transform.rotation.eulerAngles.x + " " + g.transform.rotation.eulerAngles.y + " " + g.transform.rotation.eulerAngles.z 
-                + "\" xyz=\"" + g.transform.position.x + " " + g.transform.position.y + " " + g.transform.position.z + "\"/>";
+            s += "<origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>";
+            //s += "<origin rpy=\"" + g.transform.rotation.eulerAngles.x + " " + g.transform.rotation.eulerAngles.y + " " + g.transform.rotation.eulerAngles.z 
+            //    + "\" xyz=\"" + g.transform.position.x + " " + g.transform.position.y + " " + g.transform.position.z + "\"/>";
             s += "<geometry>";
 
             string meshName = "UNKNOWN";
@@ -85,7 +86,7 @@ public class UnityToURDF : MonoBehaviour
             if (meshName == "UNKNOWN")
                 continue;
 
-            s += "<mesh filename=\"package://h_neem/meshes/" + meshName +".fbx\"/>";           // TODO: .fbx?? TODO: "Sink_Drawer1" or just "sink"??!?!
+            s += "<mesh filename=\"package://h_neem/meshes/" + meshName +".fbx\" scale=\""+ g.transform.lossyScale.x + " " + g.transform.lossyScale.y + " " + g.transform.lossyScale.z + "\"/>";           // TODO: .fbx?? TODO: "Sink_Drawer1" or just "sink"??!?!
             s += "</geometry>";
             s += "</visual>";
             s += "</link>";
@@ -93,7 +94,7 @@ public class UnityToURDF : MonoBehaviour
             if (mr.GetComponent<LinearDrive>())
             {
                 string j = "<joint name=\""+ uniqueName + "_joint\" type=\"prismatic\">";
-                j += "<origin rpy=\"" + g.transform.rotation.eulerAngles.x + " " + g.transform.rotation.eulerAngles.y + " " + g.transform.rotation.eulerAngles.z
+                j += "<origin rpy=\"" + g.transform.rotation.eulerAngles.x * Mathf.Deg2Rad + " " + g.transform.rotation.eulerAngles.y * Mathf.Deg2Rad + " " + g.transform.rotation.eulerAngles.z * Mathf.Deg2Rad
                     + "\" xyz=\"" + g.transform.position.x + " " + g.transform.position.y + " " + g.transform.position.z + "\"/>";
                 j += "<child link=\""+ uniqueName + "\"/>";
                 //if(parentName != "")
@@ -126,7 +127,7 @@ public class UnityToURDF : MonoBehaviour
             else if (mr.GetComponent<CircularDrive>())
             {
                 string j = "<joint name=\"" + uniqueName + "_joint\" type=\"fixed\">";
-                j += "<origin rpy=\"" + g.transform.rotation.eulerAngles.x + " " + g.transform.rotation.eulerAngles.y + " " + g.transform.rotation.eulerAngles.z
+                j += "<origin rpy=\"" + g.transform.rotation.eulerAngles.x * Mathf.Deg2Rad + " " + g.transform.rotation.eulerAngles.y * Mathf.Deg2Rad + " " + g.transform.rotation.eulerAngles.z * Mathf.Deg2Rad
                     + "\" xyz=\"" + g.transform.position.x + " " + g.transform.position.y + " " + g.transform.position.z + "\"/>";
                 j += "<child link=\"" + uniqueName + "\"/>";
                 //if (parentName != "")
@@ -147,7 +148,9 @@ public class UnityToURDF : MonoBehaviour
             else
             {
                 string j = "<joint name=\"" + uniqueName + "_joint\" type=\"fixed\">";
-                j += "<origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>";
+
+                j += "<origin rpy=\"" + g.transform.rotation.eulerAngles.x * Mathf.Deg2Rad + " " + g.transform.rotation.eulerAngles.y * Mathf.Deg2Rad + " " + g.transform.rotation.eulerAngles.z * Mathf.Deg2Rad
+                    + "\" xyz=\"" + g.transform.position.x + " " + g.transform.position.y + " " + g.transform.position.z + "\"/>";
                 j += "<child link=\"" + uniqueName + "\"/>";
                 j += "<parent link=\"" + parentName + "\"/>";
 
