@@ -37,8 +37,9 @@ public class NEEMConverter : MonoBehaviour
         {
             string str = JsonUtility.ToJson(ne, false).Replace("\\\"", "\"");
             if (str.Contains("hasInterval"))
-                str = str.Replace("\"{\"$numberDecimal", "{\"$numberDecimal").Replace("\",\"graph", ",\"graph");
-            str = str.Replace("\"{\"time", "{\"time").Replace("}}}\"}", "}}}}");
+                str = str.Replace("\"{\"$numberDecimal", "{\"$numberDecimal").Replace("\",\"graph", ",\"graph").Replace("}\"," , "},").Replace("hasIntervalBegin,", "hasIntervalBegin\",")
+                    .Replace("hasIntervalEnd,", "hasIntervalEnd\",");
+            str = str.Replace("\"{\"time", "{\"time").Replace("}}}\"}", "}}}}").Replace(",\"since\":\"\"", "").Replace(",\"until\":\"\"", "");
             s += str + "\r\n"; ;
         }
 
@@ -47,21 +48,22 @@ public class NEEMConverter : MonoBehaviour
         meta.created_by = "jpfau";
         meta.created_at = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") + "+00:00";
         meta.model_version = "0.1";
-        meta.description = SceneNameToTaskDescription(vdd.sceneName);
+        meta.description = "Episodic memories of a human operator performing everyday kitchen activities in a simulated virtual reality environment.";
         meta.keywords = new string[] { "KitchenClash" };
+        meta.name = SceneNameToTaskDescription(vdd.sceneName);
+        meta.activity = new NEEMMeta.NEEMActivity(SceneNameToTaskDescription(vdd.sceneName));
 
-        string filePath = "NEEMS/"+id+"/triples/roslog/";
+        string filePath = "NEEMS/"+ SceneNameToTaskName(vdd.sceneName) + "/" + id+"/triples/roslog/";
         new FileInfo(filePath).Directory.Create();
         File.WriteAllText(filePath + "triples.metadata.json", JsonUtility.ToJson(meta,true));
         File.WriteAllText(filePath + "triples.json", s);
 
-        string tfPath = "NEEMS/" + id + "/ros_tf/roslog/";
+        string tfPath = "NEEMS/" + SceneNameToTaskName(vdd.sceneName) + "/" + id + "/ros_tf/roslog/";
         new FileInfo(tfPath).Directory.Create();
         s = "";
         foreach(NEEMTransform tf in tfList)
-            s += JsonUtility.ToJson(tf, false) + "\r\n";
+            s += JsonUtility.ToJson(tf, false).Replace("\"{'$date", "{'$date").Replace("+02:00'}\"", "+02:00'}") + "\r\n";
         File.WriteAllText(tfPath + "tf.json", s);
-
 
 
         Debug.Log("NEEM " + id + " written");
@@ -73,49 +75,70 @@ public class NEEMConverter : MonoBehaviour
         VideoDescriptionData vdd = JsonUtility.FromJson<VideoDescriptionData>(File.ReadAllText(file));
         //DateTime startTime = DateTime.MinValue;
         //string targetObj = "";
+        DateTime initialTime = DateTime.MaxValue;
+
+        string agentID = createAgent(neemList);
 
         foreach(string eventStr in vdd.eventsTracked)
         {
             if (eventStr.Contains("PICKUP"))
             {
                 DateTime time = DateTime.Parse(eventStr.Split('(')[1].Split(')')[0]);
+                if (time < initialTime)
+                    initialTime = time;
+                DateTime endTime = time + TimeSpan.FromSeconds(1);
                 string targetObj = eventStr.Split('|')[1].Split('(')[0].Replace(" ", "");
 
-                string actionID = createAction(episodeID, toUnixTime(time), toUnixTime(time), neemList);
-                string objectID = createObject(convertObjDescription(targetObj), neemList);
-                string affectedObjectID = createAffectedObject(objectID, convertObjDescription(targetObj), neemList);
+                string actionID = createAction(episodeID, toUnixTime(time), toUnixTime(endTime), neemList, agentID);
+                string objectID = createObject(getSOMAstringFor(targetObj), neemList);
+
+                string affectedObjectID = createAffectedObject(objectID, getSOMAstringFor(targetObj), neemList, (time - initialTime).TotalSeconds.ToString(), (endTime - initialTime).TotalSeconds.ToString());
                 createPickingUpTask(actionID, neemList, affectedObjectID);
                 continue;
             }
             if (eventStr.Contains("PUTDOWN"))// && targetObj == eventStr.Split('|')[1].Split('(')[0].Replace(" ", ""))
             {
                 DateTime time = DateTime.Parse(eventStr.Split('(')[1].Split(')')[0]);
+                if (time < initialTime)
+                    initialTime = time;
+                DateTime endTime = time + TimeSpan.FromSeconds(1);
                 string targetObj = eventStr.Split('|')[1].Split('(')[0].Replace(" ", "");
-                string actionID = createAction(episodeID, toUnixTime(time), toUnixTime(time), neemList);
-                string objectID = createObject(convertObjDescription(targetObj), neemList);
-                string affectedObjectID = createAffectedObject(objectID, convertObjDescription(targetObj), neemList);
+                string actionID = createAction(episodeID, toUnixTime(time), toUnixTime(endTime), neemList, agentID);
+                string objectID = createObject(getSOMAstringFor(targetObj), neemList);
+                string affectedObjectID = createAffectedObject(objectID, getSOMAstringFor(targetObj), neemList, (time - initialTime).TotalSeconds.ToString(), (endTime - initialTime).TotalSeconds.ToString());
                 createPuttingDownTask(actionID, neemList, affectedObjectID);
                 continue;
             }
             if(eventStr.Contains("MOVEMENT"))
             {
                 DateTime time = DateTime.Parse(eventStr.Split('(')[1].Split(')')[0]);
-                tfList.Add(convertStringToNEEMTransform(eventStr.Split('|')[1], toUnixTime(time)));
-                tfList.Add(convertStringToNEEMTransform(eventStr.Split('|')[2], toUnixTime(time)));
-                tfList.Add(convertStringToNEEMTransform(eventStr.Split('|')[3], toUnixTime(time)));
-                tfList.Add(convertStringToNEEMTransform(eventStr.Split('|')[4], toUnixTime(time)));
+                if (time < initialTime)
+                    initialTime = time;
+                //tfList.Add(convertStringToNEEMTransform(eventStr.Split('|')[1], toIsoTime(time))); // remove "Player" GameObject from NEEMs
+                tfList.Add(convertStringToNEEMTransform(eventStr.Split('|')[2], toIsoTime(time)));
+                tfList.Add(convertStringToNEEMTransform(eventStr.Split('|')[3], toIsoTime(time)));
+                tfList.Add(convertStringToNEEMTransform(eventStr.Split('|')[4], toIsoTime(time)));
 
                 continue;
             }
             if(eventStr.Contains("COLLISION_WHILE_HELD") && collisionEventToTask(eventStr) == "CUTTING")
             {
                 DateTime time = DateTime.Parse(eventStr.Split('(')[1].Split(')')[0]);
-                string targetObj = eventStr.Split('|')[1].Split('(')[0].Replace(" ", "");
-                string actionID = createAction(episodeID, toUnixTime(time), toUnixTime(time), neemList);
-                string objectID = createObject(convertObjDescription(targetObj), neemList);
-                string affectedObjectID = createAffectedObject(objectID, convertObjDescription(targetObj), neemList);
+                if (time < initialTime)
+                    initialTime = time;
+                DateTime endTime = time + TimeSpan.FromSeconds(1);
+                string toolObj = eventStr.Split('|')[1].Split('(')[0].Replace(" ", "");
+                string patientObj = eventStr.Split('|')[2].Split('(')[0].Replace(" ", "");
 
-                createCuttingTask(actionID, neemList, affectedObjectID);
+
+                string actionID = createAction(episodeID, toUnixTime(time), toUnixTime(endTime), neemList, agentID);
+                string objectID = createObject(getSOMAstringFor(patientObj), neemList);
+                string toolObjectID = createObject(getSOMAstringFor(toolObj), neemList);
+                createTool(toolObjectID, neemList);
+
+                string affectedObjectID = createAffectedObject(objectID, getSOMAstringFor(patientObj), neemList, (time - initialTime).TotalSeconds.ToString(), (endTime - initialTime).TotalSeconds.ToString());
+                
+                createCuttingTask(actionID, neemList, affectedObjectID, toolObjectID);
                 continue;
             }
         }
@@ -124,17 +147,17 @@ public class NEEMConverter : MonoBehaviour
 
     // ----- ----- ----- //
 
-    NEEMTransform convertStringToNEEMTransform(string s, double time)
+    NEEMTransform convertStringToNEEMTransform(string s, string time)
     {
         // eg: Player (pos):(-1.6, -0.9, 6.6) (rot):(0.0, 270.0, 0.0)
         string objName = s.Split('(')[0].Replace(" ", "").Replace("VRCamera","Head").Replace("Hand1","LHand").Replace("Hand2","RHand");
-        float px = float.Parse(s.Split('(')[2].Split(',')[0]);
-        float py = float.Parse(s.Split('(')[2].Split(',')[1]);
-        float pz = float.Parse(s.Split('(')[2].Split(',')[2].Replace(")","").Replace(" ",""));
+        float px = float.Parse(s.Split('(')[2].Split(',')[0]) * 0.3f;
+        float pz = float.Parse(s.Split('(')[2].Split(',')[1]) * 0.3f;       // change y and z for rViz is right-handed
+        float py = float.Parse(s.Split('(')[2].Split(',')[2].Replace(")","").Replace(" ","")) * 0.3f; // change y and z for rViz is right-handed
 
         float rx = float.Parse(s.Split('(')[4].Split(',')[0]);
-        float ry = float.Parse(s.Split('(')[4].Split(',')[1]);
-        float rz = float.Parse(s.Split('(')[4].Split(',')[2].Replace(")", "").Replace(" ", ""));        
+        float rz = float.Parse(s.Split('(')[4].Split(',')[1]); // change y and z for rViz is right-handed
+        float ry = float.Parse(s.Split('(')[4].Split(',')[2].Replace(")", "").Replace(" ", ""));  // change y and z for rViz is right-handed       
         return new NEEMTransform(objName, time, new Vector3(px, py, pz), Quaternion.Euler(rx, ry, rz));
     }
 
@@ -152,15 +175,28 @@ public class NEEMConverter : MonoBehaviour
         neemList.Add(new NEEMEntry(id, "http://www.ease-crc.org/ont/SOMA.owl#Episode_" + id, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.ease-crc.org/ont/SOMA.owl#Episode"));
         neemList.Add(new NEEMEntry(id, "http://www.ease-crc.org/ont/SOMA.owl#Episode_" + id, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#NamedIndividual"));
 
+        neemList.Add(new NEEMEntry(id, "http://www.ease-crc.org/ont/SOMA.owl#Episode_" + id, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isSettingFor", "http://knowrob.org/kb/Kitchen-clash.owl#iai_kitchen_vr_kitchen_root"));
+   
         return id;
     }
 
-    string createAction(string episodeID, double timeStart, double timeEnd, List<NEEMEntry> neemList)
+    string createAgent(List<NEEMEntry> neemList)
+    {
+        string id = getRndIdentifier();
+        neemList.Add(new NEEMEntry(id, "http://knowrob.org/kb/Kitchen-clash-agent.owl#agent_1_" + id, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://knowrob.org/kb/Kitchen-clash-agent.owl#agent_1"));
+        neemList.Add(new NEEMEntry(id, "http://knowrob.org/kb/Kitchen-clash-agent.owl#agent_1_" + id, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#NamedIndividual"));
+
+        return id;
+    }
+
+    string createAction(string episodeID, string timeStart, string timeEnd, List<NEEMEntry> neemList, string agentID)
     {
         string actionID = getRndIdentifier();
         neemList.Add(new NEEMEntry(episodeID, "http://www.ease-crc.org/ont/SOMA.owl#Episode_" + episodeID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#includesAction", "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Action_" + actionID));
         neemList.Add(new NEEMEntry(actionID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Action_" + actionID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Action"));
         neemList.Add(new NEEMEntry(actionID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Action_" + actionID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#NamedIndividual"));
+
+        neemList.Add(new NEEMEntry(actionID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Action_" + actionID, "http://www.ease-crc.org/ont/SOMA.owl#isPerformedBy", "http://knowrob.org/kb/Kitchen-clash-agent.owl#agent_1_"+agentID));
 
         // time
         string timeIntervalID = createTimeInterval(timeStart, timeEnd, neemList);
@@ -173,7 +209,7 @@ public class NEEMConverter : MonoBehaviour
         return actionID;
     }
 
-    string createTimeInterval(double timeStart, double timeEnd, List<NEEMEntry> neemList)
+    string createTimeInterval(string timeStart, string timeEnd, List<NEEMEntry> neemList)
     {
         string timeIntervalID = getRndIdentifier();
         neemList.Add(new NEEMEntry(timeIntervalID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#TimeInterval_" + timeIntervalID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#TimeInterval"));
@@ -197,10 +233,10 @@ public class NEEMConverter : MonoBehaviour
     //{
     //    string transportingTaskID = getRndIdentifier();
 
-    //    neemList.Add(new NEEMEntry(actionID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Action_" + actionID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#executesTask", "http://www.ease-crc.org/ont/EASE-ACT.owl#Transporting_" + transportingTaskID));
+    //    neemList.Add(new NEEMEntry(actionID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Action_" + actionID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#executesTask", "http://www.ease-crc.org/ont/soma.owl#Transporting_" + transportingTaskID));
 
-    //    neemList.Add(new NEEMEntry(transportingTaskID, "http://www.ease-crc.org/ont/EASE-ACT.owl#Transporting_" + transportingTaskID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.ease-crc.org/ont/EASE-ACT.owl#Transporting"));
-    //    neemList.Add(new NEEMEntry(transportingTaskID, "http://www.ease-crc.org/ont/EASE-ACT.owl#Transporting_" + transportingTaskID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#NamedIndividual"));
+    //    neemList.Add(new NEEMEntry(transportingTaskID, "http://www.ease-crc.org/ont/soma.owl#Transporting_" + transportingTaskID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.ease-crc.org/ont/soma.owl#Transporting"));
+    //    neemList.Add(new NEEMEntry(transportingTaskID, "http://www.ease-crc.org/ont/soma.owl#Transporting_" + transportingTaskID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#NamedIndividual"));
     //    return transportingTaskID;
     //}
 
@@ -213,7 +249,7 @@ public class NEEMConverter : MonoBehaviour
         neemList.Add(new NEEMEntry(taskID, "http://www.ease-crc.org/ont/SOMA.owl#PickingUp_" + taskID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.ease-crc.org/ont/SOMA.owl#PickingUp"));
         neemList.Add(new NEEMEntry(taskID, "http://www.ease-crc.org/ont/SOMA.owl#PickingUp_" + taskID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#NamedIndividual"));
 
-        neemList.Add(new NEEMEntry(taskID, "http://www.ease-crc.org/ont/SOMA.owl#PickingUp_" + taskID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines", "http://www.ease-crc.org/ont/EASE-OBJ.owl#AffectedObject_" + affectedObjectID));
+        neemList.Add(new NEEMEntry(taskID, "http://www.ease-crc.org/ont/SOMA.owl#PickingUp_" + taskID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParticipant", "http://www.ease-crc.org/ont/SOMA.owl#Patient_" + affectedObjectID));
 
         return taskID;
     }
@@ -227,11 +263,11 @@ public class NEEMConverter : MonoBehaviour
         neemList.Add(new NEEMEntry(taskID, "http://www.ease-crc.org/ont/SOMA.owl#PuttingDown_" + taskID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.ease-crc.org/ont/SOMA.owl#PuttingDown"));
         neemList.Add(new NEEMEntry(taskID, "http://www.ease-crc.org/ont/SOMA.owl#PuttingDown_" + taskID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#NamedIndividual"));
 
-        neemList.Add(new NEEMEntry(taskID, "http://www.ease-crc.org/ont/SOMA.owl#PickingUp_" + taskID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines", "http://www.ease-crc.org/ont/EASE-OBJ.owl#AffectedObject_" + affectedObjectID));
+        neemList.Add(new NEEMEntry(taskID, "http://www.ease-crc.org/ont/SOMA.owl#PickingUp_" + taskID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParticipant", "http://www.ease-crc.org/ont/SOMA.owl#Patient_" + affectedObjectID));
         return taskID;
     }
 
-    string createCuttingTask(string actionID, List<NEEMEntry> neemList, string affectedObjectID)
+    string createCuttingTask(string actionID, List<NEEMEntry> neemList, string affectedObjectID, string toolID)
     {
         string taskID = getRndIdentifier();
 
@@ -240,32 +276,41 @@ public class NEEMConverter : MonoBehaviour
         neemList.Add(new NEEMEntry(taskID, "http://www.ease-crc.org/ont/SOMA.owl#Cutting_" + taskID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.ease-crc.org/ont/SOMA.owl#Cutting"));
         neemList.Add(new NEEMEntry(taskID, "http://www.ease-crc.org/ont/SOMA.owl#Cutting_" + taskID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#NamedIndividual"));
 
-        neemList.Add(new NEEMEntry(taskID, "http://www.ease-crc.org/ont/SOMA.owl#Cutting_" + taskID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines", "http://www.ease-crc.org/ont/EASE-OBJ.owl#AffectedObject_" + affectedObjectID));
+        neemList.Add(new NEEMEntry(taskID, "http://www.ease-crc.org/ont/SOMA.owl#Cutting_" + taskID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParticipant", "http://www.ease-crc.org/ont/SOMA.owl#Patient_" + affectedObjectID));
+        neemList.Add(new NEEMEntry(taskID, "http://www.ease-crc.org/ont/SOMA.owl#Cutting_" + taskID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParticipant", "http://www.ease-crc.org/ont/SOMA.owl#Tool_" + toolID));
         return taskID;
     }
 
     string createObject(string objType, List<NEEMEntry> neemList)
     {
         string objectID = getRndIdentifier();
-        neemList.Add(new NEEMEntry(objectID, "http://www.ease-crc.org/ont/EASE-OBJ.owl#" + objType + "_" + objectID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.ease-crc.org/ont/EASE-OBJ.owl#" + objType));
-        neemList.Add(new NEEMEntry(objectID, "http://www.ease-crc.org/ont/EASE-OBJ.owl#" + objType + "_" + objectID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#NamedIndividual"));
+        neemList.Add(new NEEMEntry(objectID, objType + "_" + objectID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", objType));
+        neemList.Add(new NEEMEntry(objectID, objType + "_" + objectID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#NamedIndividual"));
         return objectID;
     }
 
-    string createAffectedObject(string objectID, string objType, List<NEEMEntry> neemList)
+    string createAffectedObject(string objectID, string objType, List<NEEMEntry> neemList, string startTime, string endTime)
     {
         string affectedObjectID = getRndIdentifier();
-        neemList.Add(new NEEMEntry(affectedObjectID, "http://www.ease-crc.org/ont/EASE-OBJ.owl#AffectedObject_" + affectedObjectID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#classifies", "http://www.ease-crc.org/ont/EASE-OBJ.owl#" + objType + "_" + objectID));
+        NEEMEntry hasRoleEntry = new NEEMEntry(affectedObjectID, objType + "_" + objectID, "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasRole", "http://www.ease-crc.org/ont/SOMA.owl#Patient_" + affectedObjectID);
+        hasRoleEntry.setTimeScope(startTime, endTime);
+        neemList.Add(hasRoleEntry);
 
-        neemList.Add(new NEEMEntry(affectedObjectID, "http://www.ease-crc.org/ont/EASE-OBJ.owl#AffectedObject_" + affectedObjectID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.ease-crc.org/ont/EASE-OBJ.owl#AffectedObject"));
-        neemList.Add(new NEEMEntry(affectedObjectID, "http://www.ease-crc.org/ont/EASE-OBJ.owl#AffectedObject_" + affectedObjectID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#NamedIndividual"));
+        neemList.Add(new NEEMEntry(affectedObjectID, "http://www.ease-crc.org/ont/SOMA.owl#Patient_" + affectedObjectID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.ease-crc.org/ont/SOMA.owl#Patient"));
+        neemList.Add(new NEEMEntry(affectedObjectID, "http://www.ease-crc.org/ont/SOMA.owl#Patient_" + affectedObjectID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#NamedIndividual"));
 
         return affectedObjectID;
     }
 
+    void createTool(string toolID, List<NEEMEntry> neemList)
+    {
+        neemList.Add(new NEEMEntry(toolID, "http://www.ease-crc.org/ont/SOMA.owl#Tool_" + toolID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.ease-crc.org/ont/SOMA.owl#Tool"));
+        neemList.Add(new NEEMEntry(toolID, "http://www.ease-crc.org/ont/SOMA.owl#Tool_" + toolID, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#NamedIndividual"));
+    }
+
     string SceneNameToTaskDescription(string sceneName)
     {
-        switch(sceneName)
+        switch (sceneName)
         {
             case "RatingEvaluation_Task0":
                 return "Set the table for two persons.";
@@ -276,12 +321,30 @@ public class NEEMConverter : MonoBehaviour
         }
         return "";
     }
+    string SceneNameToTaskName(string sceneName)
+    {
+        switch (sceneName)
+        {
+            case "RatingEvaluation_Task0":
+                return "Tablesetting";
+            case "RatingEvaluation_Task1":
+                return "CucumberSalad";
+            case "RatingEvaluation_Task2":
+                return "Steak.";
+        }
+        return "";
+    }
 
-    double toUnixTime(DateTime dt)
+    string toIsoTime(DateTime dt)
+    {
+        return dt.ToString("yyyy-MM-ddTHH\\:mm\\:ss.fffffffzzz");
+    }
+
+    string toUnixTime(DateTime dt)
     {
         var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         var unixDateTime = (dt.ToUniversalTime() - epoch).TotalSeconds;
-        return unixDateTime;
+        return unixDateTime+"";
     }
 
     string convertObjDescription(string s)
@@ -339,6 +402,65 @@ public class NEEMConverter : MonoBehaviour
                 return "SPONGE";
             case "Apfel":
                 return "APPLE";
+        }
+        return s;
+    }
+
+    string getSOMAstringFor(string s)
+    {
+        switch (s)
+        {
+            case "Teller":
+            case "Kleiner Teller":
+            case "Grosser Teller":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Plate";
+            case "Glas":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Glass";
+            case "Gabel":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Fork";
+            case "Essloeffel":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Spoon";
+            case "Messer":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Knife";
+            case "Hackmesser":
+                return "http://www.ease-crc.org/ont/SOMA.owl#ButcherKnife";
+            case "Gurke":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Cucumber";
+            case "Kuechenmesser":
+                return "http://www.ease-crc.org/ont/SOMA.owl#KitchenKnife";
+            case "Öl":
+            case "Oel":
+                return "http://www.ease-crc.org/ont/SOMA.owl#OliveOil";
+            case "Pfanne":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Pan";
+            case "Steak":
+            case "Steak (medium)":
+            case "Steak (well done)":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Steak";
+            case "Pflanze":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Plant";
+            case "Schuessel":
+            case "Kleine Schuessel":
+            case "Grosse Schuessel":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Bowl";
+            case "Tomate":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Tomato";
+            case "Kartoffel":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Potato";
+            case "Stuhl":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Chair";
+            case "Aubergine":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Eggplant";
+            case "Banane":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Banana";
+            case "Karotte":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Carrot";
+            case "Tablett":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Tablet";
+            case "Schwamm":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Sponge";
+            case "Apfel":
+                return "http://www.ease-crc.org/ont/SOMA.owl#Apple";
         }
         return s;
     }

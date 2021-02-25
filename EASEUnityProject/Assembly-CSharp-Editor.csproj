@@ -206,6 +206,7 @@
     <Compile Include="Assets\3rdParty\SteamVR\Editor\SteamVR_SkyboxEditor.cs" />
     <Compile Include="Assets\3rdParty\SteamVR\Editor\SteamVR_Update.cs" />
     <Compile Include="Assets\3rdParty\URDFImporter\Editor\URDFImporter.cs" />
+    <Compile Include="Assets\Editor\ObjExporter.cs" />
     <Compile Include="Assets\Obi\Editor\ObiAboutWindow.cs" />
     <Compile Include="Assets\Obi\Editor\ObiAerodynamicConstraintsEditor.cs" />
     <Compile Include="Assets\Obi\Editor\ObiBendingConstraintsEditor.cs" />

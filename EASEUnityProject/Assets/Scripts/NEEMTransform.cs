@@ -6,11 +6,11 @@ using UnityEngine;
 [Serializable]
 public class NEEMTransform
 {
-    public NEEMTransform(string objName, double unixTimestamp, Vector3 pos, Quaternion rot)
+    public NEEMTransform(string objName, string isoTimestamp, Vector3 pos, Quaternion rot)
     {
         header = new tfHeader();
-        header.stamp = "Date("+unixTimestamp+")";
-        header.frame_id = "KitchenClashScene";
+        header.stamp = "{'$date':'" + isoTimestamp + "'}";
+        header.frame_id = "map";
         child_frame_id = objName;
         transform = new tfTransform();
         transform.translation = new tfTransform.tfVector3();
@@ -22,7 +22,7 @@ public class NEEMTransform
         transform.rotation.y = rot.y;
         transform.rotation.z = rot.z;
         transform.rotation.w = rot.w;
-        __recorded = "Date(" + unixTimestamp + ")";
+        __recorded = "{'$date':'" + isoTimestamp + "'}";
     }
 
     public tfHeader header;
